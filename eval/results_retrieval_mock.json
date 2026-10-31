@@ -1,0 +1,74 @@
+{
+  "whole_doc": {
+    "chunks": 11,
+    "avg_chars": 613,
+    "doc_hit@1": 0.45,
+    "doc_hit@3": 0.64,
+    "doc_hit@5": 0.73,
+    "fact@1": 0.55,
+    "fact@3": 0.73,
+    "fact@5": 0.82,
+    "MRR": 0.6,
+    "fact@3_misses": [
+      1,
+      9,
+      11
+    ]
+  },
+  "line_with_title": {
+    "chunks": 58,
+    "avg_chars": 138,
+    "doc_hit@1": 0.36,
+    "doc_hit@3": 0.55,
+    "doc_hit@5": 0.91,
+    "fact@1": 0.36,
+    "fact@3": 0.36,
+    "fact@5": 0.45,
+    "MRR": 0.55,
+    "fact@3_misses": [
+      1,
+      4,
+      6,
+      7,
+      9,
+      10,
+      11
+    ]
+  },
+  "fixed_200_ov40": {
+    "chunks": 46,
+    "avg_chars": 176,
+    "doc_hit@1": 0.36,
+    "doc_hit@3": 0.73,
+    "doc_hit@5": 0.82,
+    "fact@1": 0.27,
+    "fact@3": 0.55,
+    "fact@5": 0.55,
+    "MRR": 0.54,
+    "fact@3_misses": [
+      4,
+      7,
+      9,
+      10,
+      11
+    ]
+  },
+  "fixed_400_ov80": {
+    "chunks": 26,
+    "avg_chars": 302,
+    "doc_hit@1": 0.36,
+    "doc_hit@3": 0.73,
+    "doc_hit@5": 0.82,
+    "fact@1": 0.36,
+    "fact@3": 0.55,
+    "fact@5": 0.73,
+    "MRR": 0.58,
+    "fact@3_misses": [
+      1,
+      4,
+      9,
+      10,
+      11
+    ]
+  }
+}
