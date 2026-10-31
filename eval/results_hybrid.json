@@ -1,0 +1,213 @@
+{
+  "whole_doc|vector": {
+    "doc@1": 0.91,
+    "doc@3": 0.91,
+    "doc@5": 1.0,
+    "fact@1": 0.82,
+    "fact@3": 0.91,
+    "fact@5": 1.0,
+    "MRR": 0.93,
+    "fact@3_miss": [
+      2
+    ]
+  },
+  "whole_doc|bm25": {
+    "doc@1": 0.55,
+    "doc@3": 0.64,
+    "doc@5": 0.73,
+    "fact@1": 0.55,
+    "fact@3": 0.64,
+    "fact@5": 0.73,
+    "MRR": 0.66,
+    "fact@3_miss": [
+      4,
+      9,
+      10,
+      11
+    ]
+  },
+  "whole_doc|hybrid_rrf": {
+    "doc@1": 0.64,
+    "doc@3": 0.91,
+    "doc@5": 1.0,
+    "fact@1": 0.55,
+    "fact@3": 0.91,
+    "fact@5": 1.0,
+    "MRR": 0.78,
+    "fact@3_miss": [
+      10
+    ]
+  },
+  "whole_doc|hybrid_w50": {
+    "doc@1": 0.64,
+    "doc@3": 0.82,
+    "doc@5": 1.0,
+    "fact@1": 0.55,
+    "fact@3": 0.82,
+    "fact@5": 1.0,
+    "MRR": 0.78,
+    "fact@3_miss": [
+      10,
+      11
+    ]
+  },
+  "line_with_title|vector": {
+    "doc@1": 0.91,
+    "doc@3": 1.0,
+    "doc@5": 1.0,
+    "fact@1": 0.73,
+    "fact@3": 1.0,
+    "fact@5": 1.0,
+    "MRR": 0.95,
+    "fact@3_miss": []
+  },
+  "line_with_title|bm25": {
+    "doc@1": 0.64,
+    "doc@3": 0.64,
+    "doc@5": 0.73,
+    "fact@1": 0.45,
+    "fact@3": 0.45,
+    "fact@5": 0.64,
+    "MRR": 0.69,
+    "fact@3_miss": [
+      1,
+      4,
+      7,
+      9,
+      10,
+      11
+    ]
+  },
+  "line_with_title|hybrid_rrf": {
+    "doc@1": 0.82,
+    "doc@3": 0.91,
+    "doc@5": 1.0,
+    "fact@1": 0.55,
+    "fact@3": 0.91,
+    "fact@5": 1.0,
+    "MRR": 0.88,
+    "fact@3_miss": [
+      10
+    ]
+  },
+  "line_with_title|hybrid_w50": {
+    "doc@1": 0.73,
+    "doc@3": 0.73,
+    "doc@5": 1.0,
+    "fact@1": 0.45,
+    "fact@3": 0.73,
+    "fact@5": 1.0,
+    "MRR": 0.81,
+    "fact@3_miss": [
+      4,
+      9,
+      11
+    ]
+  },
+  "fixed_200_ov40|vector": {
+    "doc@1": 0.91,
+    "doc@3": 1.0,
+    "doc@5": 1.0,
+    "fact@1": 0.64,
+    "fact@3": 0.91,
+    "fact@5": 0.91,
+    "MRR": 0.95,
+    "fact@3_miss": [
+      11
+    ]
+  },
+  "fixed_200_ov40|bm25": {
+    "doc@1": 0.64,
+    "doc@3": 0.64,
+    "doc@5": 0.64,
+    "fact@1": 0.45,
+    "fact@3": 0.64,
+    "fact@5": 0.64,
+    "MRR": 0.68,
+    "fact@3_miss": [
+      4,
+      9,
+      10,
+      11
+    ]
+  },
+  "fixed_200_ov40|hybrid_rrf": {
+    "doc@1": 0.73,
+    "doc@3": 0.91,
+    "doc@5": 1.0,
+    "fact@1": 0.45,
+    "fact@3": 0.82,
+    "fact@5": 1.0,
+    "MRR": 0.83,
+    "fact@3_miss": [
+      10,
+      11
+    ]
+  },
+  "fixed_200_ov40|hybrid_w50": {
+    "doc@1": 0.73,
+    "doc@3": 0.82,
+    "doc@5": 0.91,
+    "fact@1": 0.55,
+    "fact@3": 0.73,
+    "fact@5": 0.82,
+    "MRR": 0.81,
+    "fact@3_miss": [
+      4,
+      9,
+      11
+    ]
+  },
+  "fixed_400_ov80|vector": {
+    "doc@1": 0.91,
+    "doc@3": 0.91,
+    "doc@5": 1.0,
+    "fact@1": 0.82,
+    "fact@3": 0.91,
+    "fact@5": 0.91,
+    "MRR": 0.93,
+    "fact@3_miss": [
+      2
+    ]
+  },
+  "fixed_400_ov80|bm25": {
+    "doc@1": 0.55,
+    "doc@3": 0.64,
+    "doc@5": 0.64,
+    "fact@1": 0.55,
+    "fact@3": 0.64,
+    "fact@5": 0.64,
+    "MRR": 0.65,
+    "fact@3_miss": [
+      4,
+      9,
+      10,
+      11
+    ]
+  },
+  "fixed_400_ov80|hybrid_rrf": {
+    "doc@1": 0.64,
+    "doc@3": 0.91,
+    "doc@5": 1.0,
+    "fact@1": 0.55,
+    "fact@3": 0.91,
+    "fact@5": 1.0,
+    "MRR": 0.79,
+    "fact@3_miss": [
+      10
+    ]
+  },
+  "fixed_400_ov80|hybrid_w50": {
+    "doc@1": 0.55,
+    "doc@3": 0.82,
+    "doc@5": 1.0,
+    "fact@1": 0.55,
+    "fact@3": 0.82,
+    "fact@5": 1.0,
+    "MRR": 0.75,
+    "fact@3_miss": [
+      10,
+      11
+    ]
+  }
+}

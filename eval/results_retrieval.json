@@ -1,0 +1,56 @@
+{
+  "whole_doc": {
+    "chunks": 11,
+    "avg_chars": 613,
+    "doc_hit@1": 0.91,
+    "doc_hit@3": 0.91,
+    "doc_hit@5": 1.0,
+    "fact@1": 0.82,
+    "fact@3": 0.91,
+    "fact@5": 1.0,
+    "MRR": 0.93,
+    "fact@3_misses": [
+      2
+    ]
+  },
+  "line_with_title": {
+    "chunks": 58,
+    "avg_chars": 138,
+    "doc_hit@1": 0.91,
+    "doc_hit@3": 1.0,
+    "doc_hit@5": 1.0,
+    "fact@1": 0.73,
+    "fact@3": 1.0,
+    "fact@5": 1.0,
+    "MRR": 0.95,
+    "fact@3_misses": []
+  },
+  "fixed_200_ov40": {
+    "chunks": 46,
+    "avg_chars": 176,
+    "doc_hit@1": 0.91,
+    "doc_hit@3": 1.0,
+    "doc_hit@5": 1.0,
+    "fact@1": 0.64,
+    "fact@3": 0.91,
+    "fact@5": 0.91,
+    "MRR": 0.95,
+    "fact@3_misses": [
+      11
+    ]
+  },
+  "fixed_400_ov80": {
+    "chunks": 26,
+    "avg_chars": 302,
+    "doc_hit@1": 0.91,
+    "doc_hit@3": 0.91,
+    "doc_hit@5": 1.0,
+    "fact@1": 0.82,
+    "fact@3": 0.91,
+    "fact@5": 0.91,
+    "MRR": 0.93,
+    "fact@3_misses": [
+      2
+    ]
+  }
+}
