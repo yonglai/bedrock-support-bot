@@ -14,15 +14,16 @@ STATE = pathlib.Path(__file__).resolve().parent.parent / ".guardrail.json"
 bd = boto3.client("bedrock", region_name=REGION)
 
 
-def pii(type_, action):
-    """Set input AND output behaviour explicitly (the legacy single 'action' did not mask inputs)."""
+def pii(type_, action, output=True):
+    """Set input AND output behaviour explicitly (the legacy single 'action' did not mask inputs).
+    output=False: apply only to what the customer types; the model never sees it, so it cannot repeat it."""
     return {
         "type": type_,
         "action": action,
         "inputAction": action,
-        "outputAction": action,
+        "outputAction": action if output else "NONE",
         "inputEnabled": True,
-        "outputEnabled": True,
+        "outputEnabled": output,
     }
 
 
@@ -81,7 +82,7 @@ cfg = dict(
         "piiEntitiesConfig": [
             pii("NAME", "ANONYMIZE"),
             pii("EMAIL", "ANONYMIZE"),
-            pii("PHONE", "ANONYMIZE"),
+            pii("PHONE", "ANONYMIZE", output=False),
             pii("ADDRESS", "ANONYMIZE"),
             pii("CA_HEALTH_NUMBER", "ANONYMIZE"),
             # Never accept these in chat: block the whole message

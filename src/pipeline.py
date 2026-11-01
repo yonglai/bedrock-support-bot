@@ -24,7 +24,15 @@ SYSTEM = (
     "Answer ONLY from the numbered sources provided and cite them like [1]. Be concise. "
     "If the sources do not contain the answer, say you don't have that information and offer to connect "
     "the customer with a team member. Never give legal, medical or investment advice. "
-    "Never ask for or repeat SINs, card numbers or passwords."
+    "Never ask for or repeat SINs, card numbers or passwords. "
+    "State only facts found in the sources: no greetings, estimates, assumptions or general advice. "
+    "Give phone numbers and other contact details exactly as written in the sources. "
+    "Do not explain how amounts are calculated or what they depend on unless the sources say so."
+)
+
+SYSTEM_STRICT = SYSTEM + (
+    " Reply with bullet points only, one per fact, each ending with a citation like [1]. "
+    "No introduction, no closing remarks, no explanations."
 )
 
 rt = boto3.client("bedrock-runtime", region_name=REGION)
@@ -85,7 +93,7 @@ def _grounding_scores(resp):
     return out
 
 
-def generate(question, sources, history=None):
+def generate(question, sources, history=None, system=SYSTEM):
     src_text = "\n".join(
         f"[{i + 1}] ({s['doc']}) {s['text']}" for i, s in enumerate(sources)
     )
@@ -109,7 +117,7 @@ def generate(question, sources, history=None):
     messages = list(history or []) + [{"role": "user", "content": content}]
     resp = rt.converse(
         modelId=MODEL_ID,
-        system=[{"text": SYSTEM}],
+        system=[{"text": system}],
         messages=messages,
         inferenceConfig={"maxTokens": 400, "temperature": 0.1},
         guardrailConfig={
@@ -136,13 +144,20 @@ def answer(question, history=None):
     sources = retrieve(clean)
     t2 = time.perf_counter()
     text, resp = generate(clean, sources, history)
+    retried = False
+    if resp["stopReason"] == "guardrail_intervened":
+        # one retry with a stricter, facts-only prompt before falling back to a human
+        retried = True
+        text, resp = generate(clean, sources, history, system=SYSTEM_STRICT)
     t3 = time.perf_counter()
     save_cache()
     intervened = resp["stopReason"] == "guardrail_intervened"
+    answered = "answered_redacted" if status == "redacted" else "answered"
     return {
         "status": "guardrail_blocked"
         if intervened
-        else ("answered_redacted" if status == "redacted" else "answered"),
+        else answered + ("_retry" if retried else ""),
+        "retried": retried,
         "answer": text,
         "sources": [s["doc"] for s in sources],
         "grounding": _grounding_scores(resp),
