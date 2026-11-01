@@ -1,0 +1,17 @@
+{
+  "C1001": {
+    "name": "Maria Chen", "plan": "Standard", "year": 2026,
+    "dependants": [{"relation": "daughter", "age": 12}],
+    "used_this_year_dollars": {"dental": 900, "physiotherapy": 100}
+  },
+  "C1002": {
+    "name": "Daniel Okafor", "plan": "Enhanced", "year": 2026,
+    "dependants": [],
+    "used_this_year_dollars": {"dental": 2300, "physiotherapy": 600}
+  },
+  "C1003": {
+    "name": "Priya Nair", "plan": "Standard", "year": 2026,
+    "dependants": [{"relation": "son", "age": 16}],
+    "used_this_year_dollars": {"dental": 0, "physiotherapy": 0}
+  }
+}
