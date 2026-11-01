@@ -59,3 +59,12 @@ Hybrid = vector + hand-written BM25 (no stemming, tiny corpus), fused by RRF (k=
 - Caveats: 11 questions; crude BM25; no tuning of fusion weights; OpenSearch's analyzers/stemming would differ.
 - Decision: vector-only + line_with_title, top-3 for now. Candidate next experiment: rerank top-10 with Cohere Rerank 3.5
   (cohere.rerank-v3-5:0 appeared in the model list).
+
+## OpenSearch Serverless NextGen (step 3b/3d)
+- Setup worked first time with NextGen group (min 0 / max 2 OCU, standby replicas ENABLED), VECTORSEARCH collection,
+  `knn_vector` dim 512, engine left at default. 58 chunks indexed and searchable within the polling window.
+- Retrieval on OpenSearch matches the local numpy search exactly (line_with_title, vector-only):
+  doc@1 0.91, doc@3 1.0, fact@1 0.73, fact@3 1.0, fact@5 1.0, MRR@10 0.95. No misses at k=3.
+- Query latency (11 queries after 1 warm-up, from Toronto to us-east-1, question embeddings cached): median 133 ms,
+  max 210 ms. This includes the network round trip, so it is not server-side time.
+- TODO: record idle cost from Cost Explorer after a day (OpenSearch Serverless, NextGen scale-to-zero claim).
