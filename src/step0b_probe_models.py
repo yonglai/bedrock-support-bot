@@ -1,8 +1,10 @@
 """Probe which chat models actually work for your account (tiny call each).
 Run:  uv run python src/step0b_probe_models.py
 """
+
 import boto3
 from botocore.exceptions import ClientError
+
 from config import REGION
 
 CANDIDATES = [
@@ -21,10 +23,17 @@ CANDIDATES = [
 rt = boto3.client("bedrock-runtime", region_name=REGION)
 for mid in CANDIDATES:
     try:
-        r = rt.converse(modelId=mid, messages=[{"role": "user", "content": [{"text": "Say OK."}]}],
-                        inferenceConfig={"maxTokens": 20})
-        print(f"OK      {mid}   ({r['usage']['inputTokens']} in / {r['usage']['outputTokens']} out)")
+        r = rt.converse(
+            modelId=mid,
+            messages=[{"role": "user", "content": [{"text": "Say OK."}]}],
+            inferenceConfig={"maxTokens": 20},
+        )
+        print(
+            f"OK      {mid}   ({r['usage']['inputTokens']} in / {r['usage']['outputTokens']} out)"
+        )
     except ClientError as e:
-        print(f"DENIED  {mid}   {e.response['Error']['Code']}: {e.response['Error']['Message'][:90]}")
-    except Exception as e:
+        print(
+            f"DENIED  {mid}   {e.response['Error']['Code']}: {e.response['Error']['Message'][:90]}"
+        )
+    except Exception as e:  # noqa: BLE001 - report any failure, keep probing
         print(f"ERROR   {mid}   {str(e)[:90]}")

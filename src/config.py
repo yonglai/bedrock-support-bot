@@ -1,4 +1,5 @@
 """Central config. Override with environment variables, never hard-code credentials."""
+
 import os
 
 REGION = os.environ.get("AWS_REGION", "us-east-1")

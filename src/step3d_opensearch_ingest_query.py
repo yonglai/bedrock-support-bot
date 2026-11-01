@@ -26,7 +26,7 @@ for ch, v in zip(chunks, vecs):
     ]
 resp = c.bulk(body="\n".join(lines) + "\n")
 if resp.get("errors"):
-    bad = [i for i in resp["items"] if list(i.values())[0].get("error")]
+    bad = [i for i in resp["items"] if next(iter(i.values())).get("error")]
     raise SystemExit(f"bulk errors, first: {bad[0]}")
 
 print("waiting for documents to become searchable ...")
