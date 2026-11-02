@@ -324,3 +324,27 @@ overview/mental-health conflict. Fix at the source: state "psychologists, social
 in the overview, re-sync the KB, and re-check Q10 and Q501.
 Caveats: n = 2 questions; sources are a reconstruction; the same model writes and checks; the Q501 stored case shows the verifier
 can resolve a conflict either way, so a flag means "look", not "wrong".
+
+## Contextual grounding: Classic vs Standard tier, and the verifier (step10; same text scored by both tiers, thresholds 0.75 / 0.5)
+Inputs: 26 clean answers, 31 injected-error answers (same mutations as step 7), Q501 and Q506 stored wrong answers, and fresh
+re-run answers for those two (Q501 new = correct, Q506 new = wrong, labelled by hand), all against their sources
+(the two re-runs against rebuilt sources). "Blocked" = the guardrail's own decision; every block was a grounding block.
+
+| | clean blocked | injected blocked (31) | real errors caught (3 wrong answers) | Q501 new (correct) blocked | AUROC | median call |
+|---|---|---|---|---|---|---|
+| Classic (default tier) | 0/26 | 18 (58%) | 0 | no | 0.85 | 307 ms |
+| Standard | 0/26 | 30 (97%) | 1 | no | 0.96 | 512 ms |
+| Claim-level verifier (step 7/7b) | 1/26 | 31 (100%) | 3 | yes (false flag) | n/a | about 1.2 s |
+
+- Injected by kind (Classic / Standard blocked): amount 10 and 17 of 18; plan 3 and 5 of 5; percent 5 and 8 of 8.
+- Standard missed one injected error (Q305, amount). Real errors under Standard: caught the stored Q501 "90%" (score 0.0); missed
+  both Q506 answers (stored and re-run: child eye exam limit invented), both scored 1.0.
+- Standard's grounding score took only the values 0.0 and 1.0 on all 61 items, so there is no useful threshold to tune; Classic's
+  scores are graded (clean 0.76-1.00; one of the clean answers sat at 0.76, just above the 0.75 threshold).
+- Standard did not block the correct Q501 re-run or any clean answer; the verifier flagged the Q501 re-run and one clean answer.
+  Both flags came from the overview/mental-health document conflict.
+- Reading: injected errors overstate how easy the problem is. Standard catches nearly all of them but 2 of 3 real errors
+  slipped through, and the missed ones are the scope errors (an adult limit applied to a child). The verifier caught all three
+  but flags more correct answers and costs a model call. A guardrail first, verifier second combination was not tested.
+- Caveats: three real errors; errors injected by me; one scoring pass each (scores may vary between calls); all sources sent
+  as one combined grounding_source block, per the agent; same text for both tiers, scores not comparable across tiers.

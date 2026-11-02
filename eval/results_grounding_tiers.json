@@ -1,0 +1,1100 @@
+[
+ {
+  "id": 1,
+  "kind": "clean",
+  "is_error": false,
+  "verifier_flagged": false,
+  "CLASSIC": {
+   "GROUNDING": 1.0,
+   "RELEVANCE": 1.0,
+   "blocked": false,
+   "ms": 382
+  },
+  "STANDARD": {
+   "GROUNDING": 1.0,
+   "RELEVANCE": 1.0,
+   "blocked": false,
+   "ms": 513
+  }
+ },
+ {
+  "id": 2,
+  "kind": "clean",
+  "is_error": false,
+  "verifier_flagged": false,
+  "CLASSIC": {
+   "GROUNDING": 0.99,
+   "RELEVANCE": 1.0,
+   "blocked": false,
+   "ms": 255
+  },
+  "STANDARD": {
+   "GROUNDING": 1.0,
+   "RELEVANCE": 1.0,
+   "blocked": false,
+   "ms": 434
+  }
+ },
+ {
+  "id": 2,
+  "kind": "amount",
+  "is_error": true,
+  "verifier_flagged": true,
+  "CLASSIC": {
+   "GROUNDING": 0.56,
+   "RELEVANCE": 1.0,
+   "blocked": true,
+   "ms": 332
+  },
+  "STANDARD": {
+   "GROUNDING": 0.0,
+   "RELEVANCE": 1.0,
+   "blocked": true,
+   "ms": 514
+  }
+ },
+ {
+  "id": 2,
+  "kind": "plan",
+  "is_error": true,
+  "verifier_flagged": true,
+  "CLASSIC": {
+   "GROUNDING": 0.05,
+   "RELEVANCE": 0.17,
+   "blocked": true,
+   "ms": 273
+  },
+  "STANDARD": {
+   "GROUNDING": 0.0,
+   "RELEVANCE": 0.4,
+   "blocked": true,
+   "ms": 592
+  }
+ },
+ {
+  "id": 3,
+  "kind": "clean",
+  "is_error": false,
+  "verifier_flagged": false,
+  "CLASSIC": {
+   "GROUNDING": 0.98,
+   "RELEVANCE": 1.0,
+   "blocked": false,
+   "ms": 303
+  },
+  "STANDARD": {
+   "GROUNDING": 1.0,
+   "RELEVANCE": 1.0,
+   "blocked": false,
+   "ms": 469
+  }
+ },
+ {
+  "id": 3,
+  "kind": "percent",
+  "is_error": true,
+  "verifier_flagged": true,
+  "CLASSIC": {
+   "GROUNDING": 0.52,
+   "RELEVANCE": 1.0,
+   "blocked": true,
+   "ms": 308
+  },
+  "STANDARD": {
+   "GROUNDING": 0.0,
+   "RELEVANCE": 1.0,
+   "blocked": true,
+   "ms": 511
+  }
+ },
+ {
+  "id": 3,
+  "kind": "plan",
+  "is_error": true,
+  "verifier_flagged": true,
+  "CLASSIC": {
+   "GROUNDING": 0.61,
+   "RELEVANCE": 0.07,
+   "blocked": true,
+   "ms": 327
+  },
+  "STANDARD": {
+   "GROUNDING": 0.0,
+   "RELEVANCE": 0.4,
+   "blocked": true,
+   "ms": 504
+  }
+ },
+ {
+  "id": 4,
+  "kind": "clean",
+  "is_error": false,
+  "verifier_flagged": false,
+  "CLASSIC": {
+   "GROUNDING": 0.87,
+   "RELEVANCE": 1.0,
+   "blocked": false,
+   "ms": 296
+  },
+  "STANDARD": {
+   "GROUNDING": 1.0,
+   "RELEVANCE": 1.0,
+   "blocked": false,
+   "ms": 470
+  }
+ },
+ {
+  "id": 4,
+  "kind": "amount",
+  "is_error": true,
+  "verifier_flagged": true,
+  "CLASSIC": {
+   "GROUNDING": 0.93,
+   "RELEVANCE": 1.0,
+   "blocked": false,
+   "ms": 349
+  },
+  "STANDARD": {
+   "GROUNDING": 0.0,
+   "RELEVANCE": 1.0,
+   "blocked": true,
+   "ms": 717
+  }
+ },
+ {
+  "id": 5,
+  "kind": "clean",
+  "is_error": false,
+  "verifier_flagged": false,
+  "CLASSIC": {
+   "GROUNDING": 0.99,
+   "RELEVANCE": 1.0,
+   "blocked": false,
+   "ms": 251
+  },
+  "STANDARD": {
+   "GROUNDING": 1.0,
+   "RELEVANCE": 1.0,
+   "blocked": false,
+   "ms": 467
+  }
+ },
+ {
+  "id": 5,
+  "kind": "percent",
+  "is_error": true,
+  "verifier_flagged": true,
+  "CLASSIC": {
+   "GROUNDING": 0.88,
+   "RELEVANCE": 1.0,
+   "blocked": false,
+   "ms": 307
+  },
+  "STANDARD": {
+   "GROUNDING": 0.0,
+   "RELEVANCE": 1.0,
+   "blocked": true,
+   "ms": 538
+  }
+ },
+ {
+  "id": 5,
+  "kind": "amount",
+  "is_error": true,
+  "verifier_flagged": true,
+  "CLASSIC": {
+   "GROUNDING": 0.96,
+   "RELEVANCE": 1.0,
+   "blocked": false,
+   "ms": 281
+  },
+  "STANDARD": {
+   "GROUNDING": 0.0,
+   "RELEVANCE": 1.0,
+   "blocked": true,
+   "ms": 410
+  }
+ },
+ {
+  "id": 6,
+  "kind": "clean",
+  "is_error": false,
+  "verifier_flagged": false,
+  "CLASSIC": {
+   "GROUNDING": 0.79,
+   "RELEVANCE": 1.0,
+   "blocked": false,
+   "ms": 409
+  },
+  "STANDARD": {
+   "GROUNDING": 1.0,
+   "RELEVANCE": 1.0,
+   "blocked": false,
+   "ms": 617
+  }
+ },
+ {
+  "id": 7,
+  "kind": "clean",
+  "is_error": false,
+  "verifier_flagged": false,
+  "CLASSIC": {
+   "GROUNDING": 0.98,
+   "RELEVANCE": 1.0,
+   "blocked": false,
+   "ms": 408
+  },
+  "STANDARD": {
+   "GROUNDING": 1.0,
+   "RELEVANCE": 1.0,
+   "blocked": false,
+   "ms": 514
+  }
+ },
+ {
+  "id": 7,
+  "kind": "amount",
+  "is_error": true,
+  "verifier_flagged": true,
+  "CLASSIC": {
+   "GROUNDING": 0.97,
+   "RELEVANCE": 1.0,
+   "blocked": false,
+   "ms": 258
+  },
+  "STANDARD": {
+   "GROUNDING": 0.0,
+   "RELEVANCE": 1.0,
+   "blocked": true,
+   "ms": 400
+  }
+ },
+ {
+  "id": 8,
+  "kind": "clean",
+  "is_error": false,
+  "verifier_flagged": false,
+  "CLASSIC": {
+   "GROUNDING": 1.0,
+   "RELEVANCE": 1.0,
+   "blocked": false,
+   "ms": 365
+  },
+  "STANDARD": {
+   "GROUNDING": 1.0,
+   "RELEVANCE": 1.0,
+   "blocked": false,
+   "ms": 512
+  }
+ },
+ {
+  "id": 8,
+  "kind": "amount",
+  "is_error": true,
+  "verifier_flagged": true,
+  "CLASSIC": {
+   "GROUNDING": 0.24,
+   "RELEVANCE": 1.0,
+   "blocked": true,
+   "ms": 261
+  },
+  "STANDARD": {
+   "GROUNDING": 0.0,
+   "RELEVANCE": 1.0,
+   "blocked": true,
+   "ms": 556
+  }
+ },
+ {
+  "id": 10,
+  "kind": "clean",
+  "is_error": false,
+  "verifier_flagged": true,
+  "CLASSIC": {
+   "GROUNDING": 0.99,
+   "RELEVANCE": 1.0,
+   "blocked": false,
+   "ms": 309
+  },
+  "STANDARD": {
+   "GROUNDING": 1.0,
+   "RELEVANCE": 1.0,
+   "blocked": false,
+   "ms": 613
+  }
+ },
+ {
+  "id": 10,
+  "kind": "percent",
+  "is_error": true,
+  "verifier_flagged": true,
+  "CLASSIC": {
+   "GROUNDING": 0.47,
+   "RELEVANCE": 1.0,
+   "blocked": true,
+   "ms": 308
+  },
+  "STANDARD": {
+   "GROUNDING": 0.0,
+   "RELEVANCE": 1.0,
+   "blocked": true,
+   "ms": 356
+  }
+ },
+ {
+  "id": 10,
+  "kind": "amount",
+  "is_error": true,
+  "verifier_flagged": true,
+  "CLASSIC": {
+   "GROUNDING": 0.28,
+   "RELEVANCE": 1.0,
+   "blocked": true,
+   "ms": 244
+  },
+  "STANDARD": {
+   "GROUNDING": 0.0,
+   "RELEVANCE": 1.0,
+   "blocked": true,
+   "ms": 552
+  }
+ },
+ {
+  "id": 10,
+  "kind": "plan",
+  "is_error": true,
+  "verifier_flagged": true,
+  "CLASSIC": {
+   "GROUNDING": 0.98,
+   "RELEVANCE": 1.0,
+   "blocked": false,
+   "ms": 385
+  },
+  "STANDARD": {
+   "GROUNDING": 0.0,
+   "RELEVANCE": 0.4,
+   "blocked": true,
+   "ms": 614
+  }
+ },
+ {
+  "id": 11,
+  "kind": "clean",
+  "is_error": false,
+  "verifier_flagged": false,
+  "CLASSIC": {
+   "GROUNDING": 0.97,
+   "RELEVANCE": 1.0,
+   "blocked": false,
+   "ms": 306
+  },
+  "STANDARD": {
+   "GROUNDING": 1.0,
+   "RELEVANCE": 1.0,
+   "blocked": false,
+   "ms": 409
+  }
+ },
+ {
+  "id": 11,
+  "kind": "percent",
+  "is_error": true,
+  "verifier_flagged": true,
+  "CLASSIC": {
+   "GROUNDING": 0.96,
+   "RELEVANCE": 1.0,
+   "blocked": false,
+   "ms": 308
+  },
+  "STANDARD": {
+   "GROUNDING": 0.0,
+   "RELEVANCE": 1.0,
+   "blocked": true,
+   "ms": 566
+  }
+ },
+ {
+  "id": 11,
+  "kind": "amount",
+  "is_error": true,
+  "verifier_flagged": true,
+  "CLASSIC": {
+   "GROUNDING": 0.94,
+   "RELEVANCE": 0.99,
+   "blocked": false,
+   "ms": 273
+  },
+  "STANDARD": {
+   "GROUNDING": 0.0,
+   "RELEVANCE": 1.0,
+   "blocked": true,
+   "ms": 492
+  }
+ },
+ {
+  "id": 101,
+  "kind": "clean",
+  "is_error": false,
+  "verifier_flagged": false,
+  "CLASSIC": {
+   "GROUNDING": 0.99,
+   "RELEVANCE": 1.0,
+   "blocked": false,
+   "ms": 307
+  },
+  "STANDARD": {
+   "GROUNDING": 1.0,
+   "RELEVANCE": 1.0,
+   "blocked": false,
+   "ms": 717
+  }
+ },
+ {
+  "id": 102,
+  "kind": "clean",
+  "is_error": false,
+  "verifier_flagged": false,
+  "CLASSIC": {
+   "GROUNDING": 1.0,
+   "RELEVANCE": 1.0,
+   "blocked": false,
+   "ms": 308
+  },
+  "STANDARD": {
+   "GROUNDING": 1.0,
+   "RELEVANCE": 1.0,
+   "blocked": false,
+   "ms": 513
+  }
+ },
+ {
+  "id": 103,
+  "kind": "clean",
+  "is_error": false,
+  "verifier_flagged": false,
+  "CLASSIC": {
+   "GROUNDING": 0.82,
+   "RELEVANCE": 1.0,
+   "blocked": false,
+   "ms": 306
+  },
+  "STANDARD": {
+   "GROUNDING": 1.0,
+   "RELEVANCE": 1.0,
+   "blocked": false,
+   "ms": 615
+  }
+ },
+ {
+  "id": 103,
+  "kind": "amount",
+  "is_error": true,
+  "verifier_flagged": true,
+  "CLASSIC": {
+   "GROUNDING": 0.01,
+   "RELEVANCE": 1.0,
+   "blocked": true,
+   "ms": 308
+  },
+  "STANDARD": {
+   "GROUNDING": 0.0,
+   "RELEVANCE": 1.0,
+   "blocked": true,
+   "ms": 514
+  }
+ },
+ {
+  "id": 104,
+  "kind": "clean",
+  "is_error": false,
+  "verifier_flagged": false,
+  "CLASSIC": {
+   "GROUNDING": 1.0,
+   "RELEVANCE": 1.0,
+   "blocked": false,
+   "ms": 510
+  },
+  "STANDARD": {
+   "GROUNDING": 1.0,
+   "RELEVANCE": 1.0,
+   "blocked": false,
+   "ms": 456
+  }
+ },
+ {
+  "id": 104,
+  "kind": "amount",
+  "is_error": true,
+  "verifier_flagged": true,
+  "CLASSIC": {
+   "GROUNDING": 0.04,
+   "RELEVANCE": 1.0,
+   "blocked": true,
+   "ms": 252
+  },
+  "STANDARD": {
+   "GROUNDING": 0.0,
+   "RELEVANCE": 1.0,
+   "blocked": true,
+   "ms": 522
+  }
+ },
+ {
+  "id": 105,
+  "kind": "clean",
+  "is_error": false,
+  "verifier_flagged": false,
+  "CLASSIC": {
+   "GROUNDING": 0.99,
+   "RELEVANCE": 0.99,
+   "blocked": false,
+   "ms": 255
+  },
+  "STANDARD": {
+   "GROUNDING": 1.0,
+   "RELEVANCE": 1.0,
+   "blocked": false,
+   "ms": 460
+  }
+ },
+ {
+  "id": 105,
+  "kind": "amount",
+  "is_error": true,
+  "verifier_flagged": true,
+  "CLASSIC": {
+   "GROUNDING": 0.36,
+   "RELEVANCE": 0.93,
+   "blocked": true,
+   "ms": 308
+  },
+  "STANDARD": {
+   "GROUNDING": 0.0,
+   "RELEVANCE": 1.0,
+   "blocked": true,
+   "ms": 511
+  }
+ },
+ {
+  "id": 106,
+  "kind": "clean",
+  "is_error": false,
+  "verifier_flagged": false,
+  "CLASSIC": {
+   "GROUNDING": 0.85,
+   "RELEVANCE": 1.0,
+   "blocked": false,
+   "ms": 512
+  },
+  "STANDARD": {
+   "GROUNDING": 1.0,
+   "RELEVANCE": 1.0,
+   "blocked": false,
+   "ms": 512
+  }
+ },
+ {
+  "id": 107,
+  "kind": "clean",
+  "is_error": false,
+  "verifier_flagged": false,
+  "CLASSIC": {
+   "GROUNDING": 0.76,
+   "RELEVANCE": 1.0,
+   "blocked": false,
+   "ms": 308
+  },
+  "STANDARD": {
+   "GROUNDING": 1.0,
+   "RELEVANCE": 1.0,
+   "blocked": false,
+   "ms": 616
+  }
+ },
+ {
+  "id": 108,
+  "kind": "clean",
+  "is_error": false,
+  "verifier_flagged": false,
+  "CLASSIC": {
+   "GROUNDING": 1.0,
+   "RELEVANCE": 1.0,
+   "blocked": false,
+   "ms": 261
+  },
+  "STANDARD": {
+   "GROUNDING": 1.0,
+   "RELEVANCE": 1.0,
+   "blocked": false,
+   "ms": 808
+  }
+ },
+ {
+  "id": 109,
+  "kind": "clean",
+  "is_error": false,
+  "verifier_flagged": false,
+  "CLASSIC": {
+   "GROUNDING": 0.99,
+   "RELEVANCE": 1.0,
+   "blocked": false,
+   "ms": 362
+  },
+  "STANDARD": {
+   "GROUNDING": 1.0,
+   "RELEVANCE": 1.0,
+   "blocked": false,
+   "ms": 551
+  }
+ },
+ {
+  "id": 109,
+  "kind": "percent",
+  "is_error": true,
+  "verifier_flagged": true,
+  "CLASSIC": {
+   "GROUNDING": 0.98,
+   "RELEVANCE": 1.0,
+   "blocked": false,
+   "ms": 429
+  },
+  "STANDARD": {
+   "GROUNDING": 0.0,
+   "RELEVANCE": 1.0,
+   "blocked": true,
+   "ms": 455
+  }
+ },
+ {
+  "id": 109,
+  "kind": "amount",
+  "is_error": true,
+  "verifier_flagged": true,
+  "CLASSIC": {
+   "GROUNDING": 0.78,
+   "RELEVANCE": 1.0,
+   "blocked": false,
+   "ms": 270
+  },
+  "STANDARD": {
+   "GROUNDING": 0.0,
+   "RELEVANCE": 1.0,
+   "blocked": true,
+   "ms": 445
+  }
+ },
+ {
+  "id": 109,
+  "kind": "plan",
+  "is_error": true,
+  "verifier_flagged": true,
+  "CLASSIC": {
+   "GROUNDING": 0.9,
+   "RELEVANCE": 1.0,
+   "blocked": false,
+   "ms": 307
+  },
+  "STANDARD": {
+   "GROUNDING": 0.0,
+   "RELEVANCE": 0.4,
+   "blocked": true,
+   "ms": 717
+  }
+ },
+ {
+  "id": 110,
+  "kind": "clean",
+  "is_error": false,
+  "verifier_flagged": false,
+  "CLASSIC": {
+   "GROUNDING": 0.82,
+   "RELEVANCE": 1.0,
+   "blocked": false,
+   "ms": 308
+  },
+  "STANDARD": {
+   "GROUNDING": 1.0,
+   "RELEVANCE": 1.0,
+   "blocked": false,
+   "ms": 718
+  }
+ },
+ {
+  "id": 110,
+  "kind": "percent",
+  "is_error": true,
+  "verifier_flagged": true,
+  "CLASSIC": {
+   "GROUNDING": 0.4,
+   "RELEVANCE": 1.0,
+   "blocked": true,
+   "ms": 300
+  },
+  "STANDARD": {
+   "GROUNDING": 0.0,
+   "RELEVANCE": 0.8,
+   "blocked": true,
+   "ms": 415
+  }
+ },
+ {
+  "id": 110,
+  "kind": "amount",
+  "is_error": true,
+  "verifier_flagged": true,
+  "CLASSIC": {
+   "GROUNDING": 0.38,
+   "RELEVANCE": 1.0,
+   "blocked": true,
+   "ms": 262
+  },
+  "STANDARD": {
+   "GROUNDING": 0.0,
+   "RELEVANCE": 0.8,
+   "blocked": true,
+   "ms": 416
+  }
+ },
+ {
+  "id": 301,
+  "kind": "clean",
+  "is_error": false,
+  "verifier_flagged": false,
+  "CLASSIC": {
+   "GROUNDING": 0.98,
+   "RELEVANCE": 1.0,
+   "blocked": false,
+   "ms": 262
+  },
+  "STANDARD": {
+   "GROUNDING": 1.0,
+   "RELEVANCE": 1.0,
+   "blocked": false,
+   "ms": 517
+  }
+ },
+ {
+  "id": 301,
+  "kind": "amount",
+  "is_error": true,
+  "verifier_flagged": true,
+  "CLASSIC": {
+   "GROUNDING": 0.87,
+   "RELEVANCE": 1.0,
+   "blocked": false,
+   "ms": 387
+  },
+  "STANDARD": {
+   "GROUNDING": 0.0,
+   "RELEVANCE": 1.0,
+   "blocked": true,
+   "ms": 614
+  }
+ },
+ {
+  "id": 302,
+  "kind": "clean",
+  "is_error": false,
+  "verifier_flagged": false,
+  "CLASSIC": {
+   "GROUNDING": 0.94,
+   "RELEVANCE": 1.0,
+   "blocked": false,
+   "ms": 307
+  },
+  "STANDARD": {
+   "GROUNDING": 1.0,
+   "RELEVANCE": 1.0,
+   "blocked": false,
+   "ms": 512
+  }
+ },
+ {
+  "id": 302,
+  "kind": "amount",
+  "is_error": true,
+  "verifier_flagged": true,
+  "CLASSIC": {
+   "GROUNDING": 0.97,
+   "RELEVANCE": 1.0,
+   "blocked": false,
+   "ms": 427
+  },
+  "STANDARD": {
+   "GROUNDING": 0.0,
+   "RELEVANCE": 1.0,
+   "blocked": true,
+   "ms": 495
+  }
+ },
+ {
+  "id": 303,
+  "kind": "clean",
+  "is_error": false,
+  "verifier_flagged": false,
+  "CLASSIC": {
+   "GROUNDING": 0.94,
+   "RELEVANCE": 1.0,
+   "blocked": false,
+   "ms": 269
+  },
+  "STANDARD": {
+   "GROUNDING": 1.0,
+   "RELEVANCE": 1.0,
+   "blocked": false,
+   "ms": 361
+  }
+ },
+ {
+  "id": 303,
+  "kind": "percent",
+  "is_error": true,
+  "verifier_flagged": true,
+  "CLASSIC": {
+   "GROUNDING": 0.19,
+   "RELEVANCE": 1.0,
+   "blocked": true,
+   "ms": 258
+  },
+  "STANDARD": {
+   "GROUNDING": 0.0,
+   "RELEVANCE": 1.0,
+   "blocked": true,
+   "ms": 445
+  }
+ },
+ {
+  "id": 303,
+  "kind": "amount",
+  "is_error": true,
+  "verifier_flagged": true,
+  "CLASSIC": {
+   "GROUNDING": 0.11,
+   "RELEVANCE": 1.0,
+   "blocked": true,
+   "ms": 307
+  },
+  "STANDARD": {
+   "GROUNDING": 0.0,
+   "RELEVANCE": 1.0,
+   "blocked": true,
+   "ms": 773
+  }
+ },
+ {
+  "id": 304,
+  "kind": "clean",
+  "is_error": false,
+  "verifier_flagged": false,
+  "CLASSIC": {
+   "GROUNDING": 1.0,
+   "RELEVANCE": 1.0,
+   "blocked": false,
+   "ms": 455
+  },
+  "STANDARD": {
+   "GROUNDING": 1.0,
+   "RELEVANCE": 1.0,
+   "blocked": false,
+   "ms": 442
+  }
+ },
+ {
+  "id": 304,
+  "kind": "amount",
+  "is_error": true,
+  "verifier_flagged": true,
+  "CLASSIC": {
+   "GROUNDING": 0.24,
+   "RELEVANCE": 0.59,
+   "blocked": true,
+   "ms": 275
+  },
+  "STANDARD": {
+   "GROUNDING": 0.0,
+   "RELEVANCE": 1.0,
+   "blocked": true,
+   "ms": 409
+  }
+ },
+ {
+  "id": 305,
+  "kind": "clean",
+  "is_error": false,
+  "verifier_flagged": false,
+  "CLASSIC": {
+   "GROUNDING": 0.96,
+   "RELEVANCE": 1.0,
+   "blocked": false,
+   "ms": 266
+  },
+  "STANDARD": {
+   "GROUNDING": 1.0,
+   "RELEVANCE": 1.0,
+   "blocked": false,
+   "ms": 451
+  }
+ },
+ {
+  "id": 305,
+  "kind": "amount",
+  "is_error": true,
+  "verifier_flagged": true,
+  "CLASSIC": {
+   "GROUNDING": 0.61,
+   "RELEVANCE": 1.0,
+   "blocked": true,
+   "ms": 308
+  },
+  "STANDARD": {
+   "GROUNDING": 1.0,
+   "RELEVANCE": 1.0,
+   "blocked": false,
+   "ms": 410
+  }
+ },
+ {
+  "id": 306,
+  "kind": "clean",
+  "is_error": false,
+  "verifier_flagged": false,
+  "CLASSIC": {
+   "GROUNDING": 0.99,
+   "RELEVANCE": 1.0,
+   "blocked": false,
+   "ms": 307
+  },
+  "STANDARD": {
+   "GROUNDING": 1.0,
+   "RELEVANCE": 1.0,
+   "blocked": false,
+   "ms": 528
+  }
+ },
+ {
+  "id": 306,
+  "kind": "percent",
+  "is_error": true,
+  "verifier_flagged": true,
+  "CLASSIC": {
+   "GROUNDING": 0.05,
+   "RELEVANCE": 1.0,
+   "blocked": true,
+   "ms": 393
+  },
+  "STANDARD": {
+   "GROUNDING": 0.0,
+   "RELEVANCE": 1.0,
+   "blocked": true,
+   "ms": 409
+  }
+ },
+ {
+  "id": 306,
+  "kind": "amount",
+  "is_error": true,
+  "verifier_flagged": true,
+  "CLASSIC": {
+   "GROUNDING": 0.96,
+   "RELEVANCE": 1.0,
+   "blocked": false,
+   "ms": 270
+  },
+  "STANDARD": {
+   "GROUNDING": 0.0,
+   "RELEVANCE": 1.0,
+   "blocked": true,
+   "ms": 652
+  }
+ },
+ {
+  "id": 306,
+  "kind": "plan",
+  "is_error": true,
+  "verifier_flagged": true,
+  "CLASSIC": {
+   "GROUNDING": 0.63,
+   "RELEVANCE": 1.0,
+   "blocked": true,
+   "ms": 307
+  },
+  "STANDARD": {
+   "GROUNDING": 0.0,
+   "RELEVANCE": 1.0,
+   "blocked": true,
+   "ms": 409
+  }
+ },
+ {
+  "id": 501,
+  "kind": "real_stored",
+  "is_error": true,
+  "verifier_flagged": null,
+  "CLASSIC": {
+   "GROUNDING": 0.96,
+   "RELEVANCE": 1.0,
+   "blocked": false,
+   "ms": 221
+  },
+  "STANDARD": {
+   "GROUNDING": 0.0,
+   "RELEVANCE": 1.0,
+   "blocked": true,
+   "ms": 444
+  }
+ },
+ {
+  "id": 501,
+  "kind": "real_new",
+  "is_error": false,
+  "verifier_flagged": null,
+  "CLASSIC": {
+   "GROUNDING": 0.97,
+   "RELEVANCE": 1.0,
+   "blocked": false,
+   "ms": 274
+  },
+  "STANDARD": {
+   "GROUNDING": 1.0,
+   "RELEVANCE": 1.0,
+   "blocked": false,
+   "ms": 346
+  }
+ },
+ {
+  "id": 506,
+  "kind": "real_stored",
+  "is_error": true,
+  "verifier_flagged": null,
+  "CLASSIC": {
+   "GROUNDING": 0.98,
+   "RELEVANCE": 1.0,
+   "blocked": false,
+   "ms": 268
+  },
+  "STANDARD": {
+   "GROUNDING": 1.0,
+   "RELEVANCE": 1.0,
+   "blocked": false,
+   "ms": 495
+  }
+ },
+ {
+  "id": 506,
+  "kind": "real_new",
+  "is_error": true,
+  "verifier_flagged": null,
+  "CLASSIC": {
+   "GROUNDING": 0.99,
+   "RELEVANCE": 1.0,
+   "blocked": false,
+   "ms": 308
+  },
+  "STANDARD": {
+   "GROUNDING": 1.0,
+   "RELEVANCE": 1.0,
+   "blocked": false,
+   "ms": 512
+  }
+ }
+]

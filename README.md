@@ -36,6 +36,8 @@ flowchart LR
 
 Not built or not run: the verifier is not wired into the agent, there is no re-ranker, no load or concurrency test, and no UI.
 
+Longer write-ups, with the evidence and what each result does not show, are on my blog: [yonglai.github.io](https://yonglai.github.io).
+
 ## Layout
 
 ```

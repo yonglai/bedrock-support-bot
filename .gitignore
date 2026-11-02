@@ -11,3 +11,4 @@ __pycache__/
 .kb.json
 .agentcore.json
 .build/
+.guardrail_tiers.json
