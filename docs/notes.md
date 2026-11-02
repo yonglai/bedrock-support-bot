@@ -308,3 +308,19 @@ Haiku model that wrote the answers checks them. Untested: real errors such as Q5
 eye exam applied to a son), which were kept out of this run on purpose.
 Decision pending: whether to add it as a second gate after the grounding check. Cost is +1.2 s and one call per answer, plus
 about 1 in 25 correct answers going to a human or a retry.
+
+### Verifier on the two real fresh-set errors (step7b; sources rebuilt by re-running the agent, KB hierarchical)
+Stored answers that had the errors: both FLAGGED, for the right reason. Q501 ("90%"): "S1 sets 80% for these services regardless
+of plan type". Q506 (son's eye exam): "sources only specify eye exam coverage for adults; none stated for children".
+New answers from the re-run (not the stored ones, so read by hand):
+- Q506: the agent again invented a child's eye exam limit ("would fall under the same coverage limits as yours") and the verifier
+  flagged it, correctly. So the agent's mistake is repeatable, and the grounding score (0.94-0.98 earlier) did not stop it.
+- Q501: the new answer said 80%, which is what the mental-health document says, and the verifier flagged it as wrong because the
+  overview says Enhanced reimburses at 90%. This is a false flag, from the same document conflict as Q10 earlier.
+Same documents, same verifier, same temperature: on the stored answer it resolved the conflict in favour of 80%, on the new one in
+favour of 90%. So on the conflicting text the verifier is not consistent, which is what to expect when the sources disagree.
+Counting both runs: real errors caught 3 of 3 (2 stored + Q506 new); clean answers flagged 2 (Q10, Q501 new), both caused by the
+overview/mental-health conflict. Fix at the source: state "psychologists, social workers, psychotherapists: 80% on both plans"
+in the overview, re-sync the KB, and re-check Q10 and Q501.
+Caveats: n = 2 questions; sources are a reconstruction; the same model writes and checks; the Q501 stored case shows the verifier
+can resolve a conflict either way, so a flag means "look", not "wrong".

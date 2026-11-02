@@ -1,0 +1,50 @@
+[
+ {
+  "id": 501,
+  "which": "STORED (had the error)",
+  "flagged": true,
+  "claims": [
+   {
+    "claim": "This coverage is reimbursed at 90%",
+    "supported": false,
+    "evidence": "S1 specifies 80% reimbursement for these services. S3 states Enhanced plan reimburses eligible expenses at 90%, but S1 explicitly sets the reimbursement rate for psychologists, registered social workers and psychotherapists at 80% regardless of plan type"
+   }
+  ]
+ },
+ {
+  "id": 501,
+  "which": "NEW run",
+  "flagged": true,
+  "claims": [
+   {
+    "claim": "Reimbursement rate is 80%",
+    "supported": false,
+    "evidence": "S1 states 80% reimbursement for these services, but S3 states Enhanced plan reimburses 'eligible expenses at 90%'. The answer claims 80% but the customer is on Enhanced plan which should be 90%"
+   }
+  ]
+ },
+ {
+  "id": 506,
+  "which": "STORED (had the error)",
+  "flagged": true,
+  "claims": [
+   {
+    "claim": "Child (age 16) eye exams: up to $100 every 24 months",
+    "supported": false,
+    "evidence": "Sources only specify eye exam coverage for adults ($100 every 24 months). No eye exam coverage amount is stated for children under 18"
+   }
+  ]
+ },
+ {
+  "id": 506,
+  "which": "NEW run",
+  "flagged": true,
+  "claims": [
+   {
+    "claim": "Your son would need his own eye exam as well, which would fall under the same coverage limits as yours",
+    "supported": false,
+    "evidence": "Sources do not specify eye exam coverage for children. S1 only states 'Eye exams: up to $100 every 24 months for adults' with no children's eye exam limit provided"
+   }
+  ]
+ }
+]
