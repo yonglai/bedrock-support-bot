@@ -74,10 +74,19 @@ def retrieve(question, k=TOP_K):
     body = {
         "size": k,
         "query": {"knn": {"embedding": {"vector": embed(question), "k": k}}},
-        "_source": ["doc", "text"],
+        "_source": ["doc", "text", "context"],
     }
     hits = _os.search(index=INDEX, body=body)["hits"]["hits"]
-    return [{"doc": h["_source"]["doc"], "text": h["_source"]["text"]} for h in hits]
+    out, seen = [], set()
+    for h in (
+        hits
+    ):  # the model reads the whole-line context; neighbouring chunks often share one
+        src = h["_source"]
+        text = src.get("context") or src["text"]
+        if (src["doc"], text) not in seen:
+            seen.add((src["doc"], text))
+            out.append({"doc": src["doc"], "text": text})
+    return out
 
 
 def _grounding_scores(resp):

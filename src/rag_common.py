@@ -2,6 +2,7 @@
 
 import hashlib
 import json
+import os
 import pathlib
 import re
 import statistics
@@ -49,7 +50,9 @@ def load_docs():
 def load_questions(types=("single", "multi_doc")):
     qs = [
         json.loads(l)
-        for l in (ROOT / "eval/questions.jsonl").read_text().splitlines()
+        for l in (ROOT / "eval" / os.environ.get("QFILE", "questions.jsonl"))
+        .read_text()
+        .splitlines()
         if l.strip()
     ]
     return [q for q in qs if q["type"] in types]
@@ -60,14 +63,38 @@ def title_of(text):
     return m.group(1).strip() if m else ""
 
 
-def build_chunks():
-    """Default strategy from step 3a: one chunk per line, prefixed with the document title."""
+CHUNKING = os.environ.get("CHUNKING", "fixed_200_ov40")
+
+
+def _fixed(text, size=200, overlap=40):
+    """Yield (chunk_text, context). The chunk is what gets embedded and scored. The context is what the model reads:
+    the whole document (each policy file is one short section, ~150 tokens). A 200-character window cuts lines in half
+    and drops the lines around it, e.g. the Standard-plan rate next to the Enhanced one, which led the model to apply
+    the wrong plan's figure. With longer documents the parent would be the section, not the file."""
+    i = 0
+    while i < len(text):
+        chunk = text[i : i + size].strip()
+        if chunk:
+            yield chunk, text.strip()
+        i += size - overlap
+
+
+def build_chunks(strategy=None):
+    """Chunking chosen in step 3c (docs/notes.md): fixed_200_ov40 (200-character windows, 40 overlap, same as the
+    experiment). 'line_with_title' (one line per chunk plus the doc title) was the earlier default and missed
+    every physiotherapy question."""
+    strategy = strategy or CHUNKING
     out = []
     for name, text in load_docs().items():
-        t = title_of(text)
-        for line in text.splitlines():
-            if line.strip() and not line.startswith("# "):
-                out.append({"doc": name, "text": f"{t}\n{line.strip()}"})
+        if strategy == "fixed_200_ov40":
+            out += [{"doc": name, "text": c, "context": ctx} for c, ctx in _fixed(text)]
+        elif strategy == "line_with_title":
+            t = title_of(text)
+            for line in text.splitlines():
+                if line.strip() and not line.startswith("# "):
+                    out.append({"doc": name, "text": f"{t}\n{line.strip()}"})
+        else:
+            raise ValueError(f"unknown chunking strategy: {strategy}")
     return out
 
 

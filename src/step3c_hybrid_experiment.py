@@ -1,26 +1,27 @@
 """Step 3c: does adding keyword (BM25) search to vector search fix the misses?
-Uses cached Titan embeddings, so it makes no AWS calls.
+Uses cached Titan embeddings; only texts not yet in the cache (e.g. a new QFILE) call Bedrock.
 Methods: vector only, BM25 only, hybrid RRF (rank fusion), hybrid weighted (min-max, alpha=0.5).
 Run:  uv run python src/step3c_hybrid_experiment.py
 """
 
-import hashlib
 import json
 import math
+import os
 import pathlib
 import re
 from collections import Counter
 
 import numpy as np
 
+from rag_common import embed, save_cache
+
 ROOT = pathlib.Path(__file__).resolve().parent.parent
 MODEL, DIMS = "amazon.titan-embed-text-v2:0", 512
-cache = json.loads((ROOT / ".cache" / "embeddings.json").read_text())
 KS = (1, 3, 5)
 
 
 def emb(t):
-    return np.array(cache[hashlib.sha1(f"{MODEL}|{DIMS}|{t}".encode()).hexdigest()])
+    return np.array(embed(t))  # cached; only new texts call Bedrock
 
 
 # ---- chunkers (same as step3a) ----
@@ -42,6 +43,13 @@ def line_title(n, t):
     ]
 
 
+def line_pairs(n, t):
+    """Whole lines only (never cut mid-line), each chunk = title + previous line + this line."""
+    ti = title_of(t)
+    lines = [x.strip() for x in t.splitlines() if x.strip() and not x.startswith("# ")]
+    return ["\n".join([ti, *lines[max(0, i - 1) : i + 1]]) for i in range(len(lines))]
+
+
 def fixed(size, ov):
     def f(n, t):
         out, i = [], 0
@@ -56,6 +64,7 @@ def fixed(size, ov):
 STRATS = {
     "whole_doc": whole,
     "line_with_title": line_title,
+    "line_pairs": line_pairs,
     "fixed_200_ov40": fixed(200, 40),
     "fixed_400_ov80": fixed(400, 80),
 }
@@ -170,7 +179,9 @@ def rank_order(method, vec, bm):
 docs = {p.name: p.read_text() for p in sorted((ROOT / "data/policies").glob("*.md"))}
 qs = [
     json.loads(l)
-    for l in (ROOT / "eval/questions.jsonl").read_text().splitlines()
+    for l in (ROOT / "eval" / os.environ.get("QFILE", "questions.jsonl"))
+    .read_text()
+    .splitlines()
     if l.strip()
 ]
 qs = [q for q in qs if q["type"] in ("single", "multi_doc")]
@@ -237,3 +248,5 @@ for (s, m), d in detail.items():
     json.dumps({f"{s}|{m}": r for (s, m), r in results.items()}, indent=2)
 )
 print("\nSaved eval/results_hybrid.json")
+
+save_cache()

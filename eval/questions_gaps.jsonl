@@ -1,0 +1,4 @@
+{"id": 401, "type": "single", "question": "Is physiotherapy covered on the Standard plan, and up to how much?", "expected_doc": "group_health_overview.md", "key_facts": ["$500"]}
+{"id": 402, "type": "single", "question": "How much does the Enhanced plan pay for chiropractor visits each year?", "expected_doc": "group_health_overview.md", "key_facts": ["$1,000"]}
+{"id": 403, "type": "single", "question": "Do I get any money back for massage therapy on the Standard plan?", "expected_doc": "group_health_overview.md", "key_facts": ["$500"]}
+{"id": 404, "type": "single", "question": "What is my yearly limit for physio?", "expected_doc": "group_health_overview.md", "key_facts": ["$500"]}
