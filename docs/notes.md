@@ -391,3 +391,24 @@ Compared the 57 clean and injected items, which have identical inputs in both ru
 - Standard: block decision changed 0/57, score changed 0/57, max change 0.00.
 Not compared: the Q501/Q506 items, because step10b re-runs the agent for them and its answers differ between runs.
 Limit: two runs minutes apart in one account and Region. Says nothing about drift across days or model updates.
+
+## Combining Standard grounding and the verifier (from saved results, no new calls)
+
+Standard blocks are a subset of the verifier's flags on every group.
+- Either flags: clean 1/26, injected 31/31, same as the verifier alone.
+- Both must agree: clean 0/26, injected 30/31, real errors 1/3 (Q501 stored only), correct Q501 re-run not flagged.
+Three real errors, so no conclusion about a gate.
+
+## Verifier with a different model (step 12)
+
+Same 57 clean/injected answers, verifier = Claude Sonnet 4.5 (us.anthropic.claude-sonnet-4-5-20250929-v1:0); Haiku flags from step 7.
+Sonnet 5.5 was listed but not available to the account (AccessDenied).
+- Injected: 31/31 for both (percent 8, amount 18, plan 5). Unparsable replies: 0.
+- Clean: 1/26 each, different items. Haiku flagged Q10 (document conflict, psychologists 80%); Sonnet flagged Q5 (disability benefits:
+  "sources do not confirm these terms apply to the Standard plan"; the document never mentions plans, so a scope-strictness false flag).
+- Real errors (fresh agent run, sources saved in eval/results_verifier_model.json): both models flagged stored Q501 and stored Q506.
+  Q501 new (correct, 80%): Haiku flagged (read S2 as 90% for Enhanced), Sonnet ok. Q506 new (this run's answer looks correct): Haiku ok,
+  Sonnet flagged because the answer included the customer's own glasses, which the question did not ask about.
+- Median latency: Sonnet 3993 ms, Haiku 1224 ms.
+- The agent's answers differ between runs: this Q506 re-run did not repeat the invented child eye exam.
+Limits: one other model, same vendor; injected errors saturate; false flags n=1-2 per model.

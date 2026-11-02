@@ -4,6 +4,7 @@ Bedrock's contextual grounding score only asks "is this text supported somewhere
 """
 
 import json
+import os
 
 from pipeline import MODEL_ID, rt
 
@@ -25,15 +26,16 @@ def parse(text):
     return json.loads(text[a : b + 1])
 
 
-def verify(question, answer, sources):
-    """Returns (ok, unsupported_claims). Raises ValueError if the reply cannot be parsed."""
+def verify(question, answer, sources, model_id=None):
+    """Returns (ok, unsupported_claims). Raises ValueError if the reply cannot be parsed.
+    The model is model_id, else $VERIFIER_MODEL_ID, else the agent's MODEL_ID."""
     prompt = (
         f"QUESTION:\n{question}\n\nSOURCES:\n"
         + "\n".join(sources)
         + f"\n\nANSWER:\n{answer}"
     )
     resp = rt.converse(
-        modelId=MODEL_ID,
+        modelId=model_id or os.environ.get("VERIFIER_MODEL_ID") or MODEL_ID,
         system=[{"text": SYSTEM}],
         messages=[{"role": "user", "content": [{"text": prompt}]}],
         inferenceConfig={"maxTokens": 1200, "temperature": 0},
