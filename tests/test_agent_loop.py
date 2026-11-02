@@ -239,7 +239,7 @@ def test_first_call_forces_a_tool_and_follow_ups_do_not(monkeypatch, tmp_path):
         guard=[OK, OK],
     )
     r = agent.run_agent("dental max?", "C1001")
-    assert fake.tool_configs[0]["toolChoice"] == {"any": {}}
+    assert fake.tool_configs[0]["toolChoice"] == {"tool": {"name": "search_policy"}}
     assert (
         "toolChoice" not in fake.tool_configs[1]
     )  # after a tool result the model is free to answer
@@ -259,3 +259,21 @@ def test_paraphrased_availability_is_not_repeated(monkeypatch, tmp_path):
     )
     r = agent.run_agent("Where is my claim?", "C1001")
     assert r["answer"].count("8am to 8pm") == 1
+
+
+def test_blocked_draft_after_a_model_handoff_opens_no_second_ticket(
+    monkeypatch, tmp_path
+):
+    setup(
+        monkeypatch,
+        tmp_path,
+        converse=[
+            tool_use("escalate_to_human", {"reason": "complaint", "summary": "x"}),
+            text("a"),
+            text("b"),
+        ],
+        guard=[GROUND_BLOCK, GROUND_BLOCK],
+    )
+    r = agent.run_agent("Where is my claim?", "C1001")
+    assert r["status"] == "escalated" and "accurate information" not in r["answer"]
+    assert len(log(tmp_path)) == 1  # one ticket, not two

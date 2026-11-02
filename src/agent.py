@@ -87,6 +87,9 @@ def run_agent(question, customer_id, history=None, max_steps=6):
             "status": status,
             "answer": text,
             "tools_called": sess.tools_called,
+            "sources": list(
+                sess.sources
+            ),  # kept for the verifier experiment (fictional data only)
             "ms_total": round((time.perf_counter() - t0) * 1000),
             "history": history
             + [
@@ -129,7 +132,8 @@ def run_agent(question, customer_id, history=None, max_steps=6):
     retries = 1
     # A reply with no tool call skips the grounding check (nothing to ground on) and the model then answers from
     # general knowledge (Q308 invented where to find an account manager). So the first call of a new conversation
-    # must use a tool; later calls and follow-up turns are free ("thanks" should not trigger a policy search).
+    # must search the policies (any tool was not enough: Q210 satisfied it with get_my_plan alone and then answered from
+    # memory); later calls and follow-up turns are free ("thanks" should not trigger a policy search).
     force_tool = not history
     rejected = []  # drafts the output check refused; kept in the eval results for debugging only
     for _ in range(max_steps):
@@ -139,7 +143,11 @@ def run_agent(question, customer_id, history=None, max_steps=6):
             messages=messages,
             toolConfig={
                 "tools": TOOL_SPECS,
-                **({"toolChoice": {"any": {}}} if force_tool else {}),
+                **(
+                    {"toolChoice": {"tool": {"name": "search_policy"}}}
+                    if force_tool
+                    else {}
+                ),
             },
             inferenceConfig={"maxTokens": 600, "temperature": 0.1},
         )
@@ -188,13 +196,19 @@ def run_agent(question, customer_id, history=None, max_steps=6):
             retries -= 1
             messages.append({"role": "user", "content": [{"text": RETRY_PROMPT}]})
             continue
-        rec = create_handoff(
-            "guardrail", f"Answer blocked by the output check ({why}).", customer_id
-        )
+        if (
+            sess.escalation
+        ):  # the model already handed off: say so, and do not open a second ticket
+            rec = sess.escalation
+            text = "I'm connecting you with a team member who can look into this. "
+        else:
+            rec = create_handoff(
+                "guardrail", f"Answer blocked by the output check ({why}).", customer_id
+            )
+            text = "I want to be sure you get accurate information, so I'm connecting you with a team member. "
         return done(
             "escalated",
-            "I want to be sure you get accurate information, so I'm connecting you with a team member. "
-            + rec["availability"],
+            text + rec["availability"],
             clean=clean,
             via=why,
             retried=retries == 0,
