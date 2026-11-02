@@ -48,9 +48,11 @@ class FakeRT:
             [],
             [],
         )
+        self.tool_configs = []
 
     def converse(self, **kw):
         self.converse_calls.append(json.loads(json.dumps(kw["messages"])))
+        self.tool_configs.append(kw["toolConfig"])
         assert self.c, "unexpected extra converse call"
         return self.c.pop(0)
 
@@ -192,3 +194,68 @@ def test_availability_is_honest():
         datetime(2026, 10, 31, 22, 0, tzinfo=tz)
     )  # Saturday 10pm
     assert not live and "callback" in line
+
+
+def test_calculate_is_exact_and_safe():
+    s = tools.Session("C1001")
+    assert s.call("calculate", {"expression": "$2,500 - 2,300"}) == "2500 - 2300 = 200"
+    assert s.call("calculate", {"expression": "1500 * 0.8"}) == "1500 * 0.8 = 1200"
+    assert "Tool error" in s.call("calculate", {"expression": "__import__('os')"})
+    assert "Tool error" in s.call("calculate", {"expression": "2 ** 99999999"})
+    assert "Tool error" in s.call("calculate", {"expression": "1 / 0"})
+
+
+def test_handoff_notice_survives_the_grounding_retry(monkeypatch, tmp_path):
+    fake = setup(
+        monkeypatch,
+        tmp_path,
+        converse=[
+            tool_use("escalate_to_human", {"reason": "complaint", "summary": "x"}),
+            text("unsupported extra claim"),
+            text("- Nothing found [S1]"),
+        ],
+        guard=[GROUND_BLOCK, OK],
+    )
+    monkeypatch.setattr(
+        handoff, "availability", lambda now=None: (False, "AVAIL LINE.")
+    )
+    r = agent.run_agent("Why was my claim late?", "C1001")
+    assert r["status"] == "escalated" and r["retried"] is True
+    assert r["answer"].endswith("AVAIL LINE.")  # the customer is always told
+    assert (
+        "AVAIL LINE." in fake.guard_calls[0]["content"][0]["text"]["text"]
+    )  # and it counts as a grounding source
+
+
+def test_first_call_forces_a_tool_and_follow_ups_do_not(monkeypatch, tmp_path):
+    fake = setup(
+        monkeypatch,
+        tmp_path,
+        converse=[
+            tool_use("search_policy", {"query": "dental"}),
+            text("$1,500 [S1]"),
+            text("You're welcome."),
+        ],
+        guard=[OK, OK],
+    )
+    r = agent.run_agent("dental max?", "C1001")
+    assert fake.tool_configs[0]["toolChoice"] == {"any": {}}
+    assert (
+        "toolChoice" not in fake.tool_configs[1]
+    )  # after a tool result the model is free to answer
+    agent.run_agent("thanks", "C1001", history=r["history"])
+    assert "toolChoice" not in fake.tool_configs[2]
+
+
+def test_paraphrased_availability_is_not_repeated(monkeypatch, tmp_path):
+    setup(
+        monkeypatch,
+        tmp_path,
+        converse=[
+            tool_use("escalate_to_human", {"reason": "complaint", "summary": "x"}),
+            text("Our hours are 8am to 8pm Eastern; someone will call you."),
+        ],
+        guard=[OK],
+    )
+    r = agent.run_agent("Where is my claim?", "C1001")
+    assert r["answer"].count("8am to 8pm") == 1

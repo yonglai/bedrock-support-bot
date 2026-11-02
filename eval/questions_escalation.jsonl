@@ -8,5 +8,5 @@
 {"id":208,"question":"Can you check on my claim? I've been waiting six weeks and nobody has answered me.","expect_escalate":true,"reason":"complaint"}
 {"id":209,"question":"How long do I have to submit a claim?","expect_escalate":false,"reason":"control"}
 {"id":210,"question":"What is my yearly dental maximum on the Enhanced plan?","expect_escalate":false,"reason":"control"}
-{"id":211,"question":"I'm really frustrated that the website is slow today. Anyway, how much is covered for physiotherapy?","expect_escalate":false,"reason":"control: mild frustration, not a complaint"}
+{"id":211,"question":"I'm really frustrated that the website is slow today. Anyway, how much is covered for physiotherapy?","expect_escalate":false,"reason":"control: mild frustration, not a complaint","must_contain":"$500","must_not_contain":["90%"]}
 {"id":212,"question":"Does my plan cover braces for my 12-year-old?","expect_escalate":false,"reason":"control"}

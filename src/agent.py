@@ -17,14 +17,16 @@ from triage import REPLIES, triage
 AGENT_SYSTEM = (
     "You are a customer-service assistant for Evergreen Life, a fictional insurer, talking to one authenticated "
     "customer. Tools: search_policy (plan rules and limits), get_my_plan (this customer's own plan, dependants and "
-    "amounts used this year) and escalate_to_human. Rules: answer ONLY from tool results and cite policy sources like "
-    "[S1]. Do arithmetic carefully and show the numbers. State only facts from the tool results: no greetings, "
+    "amounts used this year), calculate (exact arithmetic) and escalate_to_human. Rules: answer ONLY from tool results and cite policy sources like "
+    "[S1]. Plans differ: when you quote a rate or limit, use the one for the customer's own plan (from get_my_plan) and never apply the other plan's figure to them. Use calculate for every sum, difference or remainder; never calculate in your head. State only facts from the tool results: no greetings, "
     "estimates, assumptions or general advice. You can only see the current customer's data and cannot look up anyone "
-    "else; politely say so if asked. Call escalate_to_human when the customer is distressed, grieving, complaining, "
+    "else; politely say so if asked. Mild frustration or a passing remark is not a reason to escalate: answer the question. Call escalate_to_human when the customer is seriously distressed, grieving, complaining about a specific problem, "
     "appealing a decision, asks for a person, or when the tools do not contain the answer, then tell the customer what "
     "the tool said about availability. Never give legal, medical or investment advice. Never ask for or repeat SINs, "
     "card numbers or passwords. Do not mention tool names to the customer."
 )
+# a paraphrase of the availability line counts as already stated; only append when none of these appear
+AVAILABILITY_MARKERS = ("8am to 8pm", "available now")
 RETRY_PROMPT = (
     "Your previous answer included statements the tool results do not support. Rewrite it using only facts in the "
     "tool results, as short bullet points, each with a [S#] citation. No introduction or closing remarks."
@@ -125,14 +127,23 @@ def run_agent(question, customer_id, history=None, max_steps=6):
 
     messages = history + [{"role": "user", "content": [{"text": clean}]}]
     retries = 1
+    # A reply with no tool call skips the grounding check (nothing to ground on) and the model then answers from
+    # general knowledge (Q308 invented where to find an account manager). So the first call of a new conversation
+    # must use a tool; later calls and follow-up turns are free ("thanks" should not trigger a policy search).
+    force_tool = not history
+    rejected = []  # drafts the output check refused; kept in the eval results for debugging only
     for _ in range(max_steps):
         resp = rt.converse(
             modelId=MODEL_ID,
             system=[{"text": AGENT_SYSTEM}],
             messages=messages,
-            toolConfig={"tools": TOOL_SPECS},
+            toolConfig={
+                "tools": TOOL_SPECS,
+                **({"toolChoice": {"any": {}}} if force_tool else {}),
+            },
             inferenceConfig={"maxTokens": 600, "temperature": 0.1},
         )
+        force_tool = False
         msg = resp["output"]["message"]
         messages.append(msg)
         if resp["stopReason"] == "tool_use":
@@ -154,7 +165,15 @@ def run_agent(question, customer_id, history=None, max_steps=6):
 
         text = "".join(b.get("text", "") for b in msg["content"])
         ok, why, scores = check_output(text, clean, sess.sources)
+        if not ok:
+            rejected.append(text)
         if ok:
+            if sess.escalation and not any(m in text for m in AVAILABILITY_MARKERS):
+                # the grounding retry rewrites to bullets and can drop the handoff notice, so state it in code
+                text = (
+                    f"{text.rstrip()}\n\nI've also asked a team member to follow up. "
+                    f"{sess.escalation['availability']}"
+                )
             status = "escalated" if sess.escalation else "answered"
             return done(
                 status,
@@ -163,6 +182,7 @@ def run_agent(question, customer_id, history=None, max_steps=6):
                 via="tool" if sess.escalation else None,
                 retried=retries == 0,
                 grounding=scores,
+                rejected=rejected,
             )
         if why == "grounding" and retries > 0:
             retries -= 1
@@ -179,6 +199,7 @@ def run_agent(question, customer_id, history=None, max_steps=6):
             via=why,
             retried=retries == 0,
             grounding=scores,
+            rejected=rejected,
         )
 
     rec = create_handoff("cannot_answer", "Agent step limit reached.", customer_id)
@@ -194,6 +215,8 @@ def run_agent(question, customer_id, history=None, max_steps=6):
 if __name__ == "__main__":
     cid, q = sys.argv[1], " ".join(sys.argv[2:])
     r = run_agent(q, cid)
+    for d in r.get("rejected", []):
+        print(f"[rejected draft] {d}\n")
     print(r["answer"])
     print(
         f"\n[{r['status']} via={r.get('via')} tools={r['tools_called']} retried={r.get('retried')} "

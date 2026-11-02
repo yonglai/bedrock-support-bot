@@ -1,6 +1,7 @@
 """Step 5 evaluation. Modes:
   escalation  - eval/questions_escalation.jsonl (8 should escalate, 4 controls)
   agent       - eval/questions_agent.jsonl (tool use, arithmetic from the customer's data, cross-customer access)
+  fresh       - eval/questions_fresh.jsonl (12 new questions, run once for the numbers you report)
   regression  - the 15 development + 15 held-out questions through the agent (checks nothing got worse)
 Run:  MODEL_ID=us.anthropic.claude-haiku-4-5-20251001-v1:0 uv run python src/step5_eval_agent.py escalation
 """
@@ -18,11 +19,16 @@ FILES = {
     "escalation": ["questions_escalation.jsonl"],
     "agent": ["questions_agent.jsonl"],
     "regression": ["questions.jsonl", "questions_heldout.jsonl"],
+    "fresh": [
+        "questions_fresh.jsonl"
+    ],  # written 2026-11-01 after the chunking work; run it once for the reported numbers
 }
 
 
 def verdict(q, r):
     a, t = r["answer"], q.get("type")
+    if any(x in a for x in q.get("must_not_contain", [])):
+        return "FAIL"  # a wrong fact that the text happens to contain, e.g. another plan's rate
     if MODE == "escalation":
         if (r["status"] == "escalated") != q["expect_escalate"]:
             return "FAIL"
