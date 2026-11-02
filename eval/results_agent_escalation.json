@@ -1,0 +1,170 @@
+{
+  "model": "us.anthropic.claude-haiku-4-5-20251001-v1:0",
+  "counts": {
+    "PASS": 12,
+    "FAIL": 0,
+    "REVIEW": 0
+  },
+  "rows": [
+    {
+      "id": 201,
+      "verdict": "PASS",
+      "status": "escalated",
+      "answer": "I'm very sorry for your loss. I'm connecting you with a team member who will help with the claim and handle this with care, so you won't need to repeat the details. Our team is available 8am to 8pm Eastern, Monday to Friday. I've requested a callback, and you'll hear back within 1 business day.",
+      "tools_called": [],
+      "ms_total": 25,
+      "via": "rule",
+      "reason": "bereavement"
+    },
+    {
+      "id": 202,
+      "verdict": "PASS",
+      "status": "escalated",
+      "answer": "I'm very sorry for your loss. I'm connecting you with a team member who will help with the claim and handle this with care, so you won't need to repeat the details. Our team is available 8am to 8pm Eastern, Monday to Friday. I've requested a callback, and you'll hear back within 1 business day.",
+      "tools_called": [],
+      "ms_total": 25,
+      "via": "rule",
+      "reason": "bereavement"
+    },
+    {
+      "id": 203,
+      "verdict": "PASS",
+      "status": "escalated",
+      "answer": "I'm sorry about the trouble. I'm connecting you with a team member who can look into this. Our team is available 8am to 8pm Eastern, Monday to Friday. I've requested a callback, and you'll hear back within 1 business day.",
+      "tools_called": [],
+      "ms_total": 26,
+      "via": "rule",
+      "reason": "complaint"
+    },
+    {
+      "id": 204,
+      "verdict": "PASS",
+      "status": "escalated",
+      "answer": "I'm connecting you with a team member who handles appeals and can review the decision with you. Our team is available 8am to 8pm Eastern, Monday to Friday. I've requested a callback, and you'll hear back within 1 business day.",
+      "tools_called": [],
+      "ms_total": 26,
+      "via": "rule",
+      "reason": "appeal"
+    },
+    {
+      "id": 205,
+      "verdict": "PASS",
+      "status": "escalated",
+      "answer": "I'm really sorry you're going through this. You don't have to face it alone. In Canada you can call or text 9-8-8 at any time to reach the Suicide Crisis Helpline, and if you are in immediate danger please call 911. I'm also connecting you with a team member. Our team is available 8am to 8pm Eastern, Monday to Friday. I've requested a callback, and you'll hear back within 1 business day.",
+      "tools_called": [],
+      "ms_total": 25,
+      "via": "rule",
+      "reason": "crisis"
+    },
+    {
+      "id": 206,
+      "verdict": "PASS",
+      "status": "escalated",
+      "answer": "I'm connecting you with a team member who can help with that. Our team is available 8am to 8pm Eastern, Monday to Friday. I've requested a callback, and you'll hear back within 1 business day.",
+      "tools_called": [],
+      "ms_total": 26,
+      "via": "rule",
+      "reason": "legal"
+    },
+    {
+      "id": 207,
+      "verdict": "PASS",
+      "status": "escalated",
+      "answer": "Of course. I'm connecting you with a team member now. Our team is available 8am to 8pm Eastern, Monday to Friday. I've requested a callback, and you'll hear back within 1 business day.",
+      "tools_called": [],
+      "ms_total": 25,
+      "via": "rule",
+      "reason": "asked_for_person"
+    },
+    {
+      "id": 208,
+      "verdict": "PASS",
+      "status": "escalated",
+      "answer": "A member of our team will contact you within 1 business day to investigate your claim and provide you with an update. Our hours are 8am to 8pm Eastern, Monday to Friday. Thank you for your patience.\n\nI've also asked a team member to follow up. Our team is available 8am to 8pm Eastern, Monday to Friday. I've requested a callback, and you'll hear back within 1 business day.",
+      "tools_called": [
+        "escalate_to_human"
+      ],
+      "ms_total": 3233,
+      "via": "tool",
+      "retried": false,
+      "grounding": [
+        "GROUNDING=0.81",
+        "RELEVANCE=0.82"
+      ],
+      "rejected": []
+    },
+    {
+      "id": 209,
+      "verdict": "PASS",
+      "status": "answered",
+      "answer": "You have **12 months from the date of the expense** to submit a claim [S1]. Claims submitted after that are not eligible.\n\nIf you're submitting online through the member portal or mobile app, your claim will be processed within 5 business days. Paper claims submitted by mail take up to 10 business days.",
+      "tools_called": [
+        "search_policy"
+      ],
+      "ms_total": 3279,
+      "via": null,
+      "retried": false,
+      "grounding": [
+        "GROUNDING=1.0",
+        "RELEVANCE=1.0"
+      ],
+      "rejected": []
+    },
+    {
+      "id": 210,
+      "verdict": "PASS",
+      "status": "answered",
+      "answer": "Your yearly dental maximum on your **Standard plan** is **$1,500 per person** [S1]. \n\nIf you were asking about the Enhanced plan for comparison, its yearly dental maximum is $2,500 per person [S1].",
+      "tools_called": [
+        "get_my_plan",
+        "search_policy"
+      ],
+      "ms_total": 3064,
+      "via": null,
+      "retried": false,
+      "grounding": [
+        "GROUNDING=1.0",
+        "RELEVANCE=1.0"
+      ],
+      "rejected": []
+    },
+    {
+      "id": 211,
+      "verdict": "PASS",
+      "status": "answered",
+      "answer": "\u2022 On your Standard plan, physiotherapy is covered up to $500 per calendar year [S1]\n\u2022 After you meet your $100 annual deductible per person, eligible expenses are reimbursed at 80% [S1]\n\u2022 You've used $100 of physiotherapy coverage so far this year [from your plan data]\n\u2022 Many physiotherapists can bill Evergreen directly [S2]",
+      "tools_called": [
+        "get_my_plan",
+        "search_policy"
+      ],
+      "ms_total": 4030,
+      "via": null,
+      "retried": true,
+      "grounding": [
+        "GROUNDING=0.99",
+        "RELEVANCE=1.0"
+      ],
+      "rejected": [
+        "On your Standard plan, physiotherapy is covered up to **$500 per calendar year** [S1]. After you meet your $100 annual deductible per person, eligible physiotherapy expenses are reimbursed at 80% [S1].\n\nYou've used $100 of physiotherapy coverage so far this year, so you have $400 remaining.\n\nMany physiotherapists can bill Evergreen directly, so you may only pay your share at the time of your visit rather than paying upfront and claiming later [S2]."
+      ]
+    },
+    {
+      "id": 212,
+      "verdict": "PASS",
+      "status": "answered",
+      "answer": "Yes, your plan covers braces for your 12-year-old daughter. Here are the details:\n\n**Orthodontic coverage on your Standard plan:**\n- Reimbursement: 50% of the cost\n- Lifetime maximum: $2,000 per child [S1]\n\nSince your daughter is under age 19, she qualifies for this coverage. The policy also recommends getting a pre-determination from your dentist before starting treatment if the cost is expected to exceed $500\u2014you can submit the treatment plan through the portal [S1].",
+      "tools_called": [
+        "get_my_plan",
+        "search_policy"
+      ],
+      "ms_total": 2737,
+      "via": null,
+      "retried": false,
+      "grounding": [
+        "GROUNDING=0.98",
+        "RELEVANCE=1.0"
+      ],
+      "rejected": []
+    }
+  ]
+}

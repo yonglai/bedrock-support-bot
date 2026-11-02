@@ -132,3 +132,100 @@ Converse loop (search_policy, get_my_plan, escalate_to_human) -> output check (g
 - Rules are deliberately narrow (e.g. "how long do I have to appeal?" is an information question, not an appeal); anything missed
   is left to the model's escalate tool. Escalation case 208 ("waiting six weeks, nobody answered") tests that path.
 - Offline tests: 10 pass (triage over all 42 existing questions incl. no over-triggering; agent loop, retry, handoff, cross-customer).
+
+## Bedrock Knowledge Base comparison (step 6, planned)
+Reason: the JD asks for Bedrock managed services and RAG; the hand-built pipeline is the main build, a Knowledge Base is the managed
+alternative to measure against the same 11 retrieval questions. Use S3 Vectors (no standing cost), not quick-create classic OpenSearch.
+Note: the KB's default chunking (~300 tokens) should make each ~150-token policy document a single chunk, i.e. close to the
+local whole_doc strategy, so compare against whole_doc as well as line_with_title.
+
+## Step 5 first real run (Haiku 4.5, 2026-11-01)
+
+| Set | PASS | FAIL | REVIEW | Notes |
+|---|---|---|---|---|
+| escalation (12) | 11 | 1 (Q211) | 0 | 7 rule-path cases ~16 ms; model path 3-7 s |
+| agent (8) | 5 | 2 (Q302, Q305) | 1 (Q308) | |
+| regression (30) | 26 | 2 (Q101, Q107) | 2 | dev subset unchanged vs. pipeline (14 PASS, 1 REVIEW) |
+
+About 10 of 36 model-path runs needed the grounding retry, which produces terse bullets.
+
+Findings (all from the logged results, n is tiny):
+- Bug: when the model called escalate_to_human and the reply then failed grounding, the retry rewrote it to bullets and
+  dropped the handoff notice. The ticket existed but the customer was not told (Q107, Q211, Q305, Q12).
+  Fix: the handoff result is a grounding source and the availability line is appended in code if missing.
+- Derived numbers are fragile for the grounding check: Q301 passed, the same question for another customer (Q302,
+  $2,500 - $2,300) scored GROUNDING 0.52. Fix: `calculate` tool, so the sum appears in a tool result.
+- Q211 (mild frustration) escalated. Prompt tightened. This is tuned on the test case, so it needs a fresh case to confirm.
+- Q211/Q305 said physiotherapy limits are not in the documents, but group_health_overview.md has them. Retrieval or
+  query-phrasing miss; to be diagnosed with step5b_debug_search.py.
+- Q107 (appeal question) escalated AND answered: defensible, since appeals are an escalation topic. Check left as written.
+- Q210 cites [S1] for a figure that came from get_my_plan: citation labels for customer data are imprecise.
+
+## Physio gap: chunking comparison on questions_gaps.jsonl (4 questions, added after the failure)
+Vector doc@3: whole_doc 0.5, line_with_title 0.0 (all four missed), fixed_200_ov40 1.0, fixed_400_ov80 1.0.
+BM25 on line_with_title: 0.75 (misses "physio", no stemming). Hybrid RRF/weighted on fixed chunks: 1.0.
+Caveats: n=4, one document, questions written after seeing the failure. line_with_title was chosen on the dev set,
+where it scored 1.0, so this is selection on a small set coming back to bite. Cause not yet verified (hypothesis: the
+short one-line chunk's embedding is dominated by "Paramedical services"; fixed-size chunks dilute that).
+
+## Chunking decision (15 questions: 11 dev + 4 gap), vector search
+doc@3 / fact@3 / MRR: line_with_title 0.73 / 0.73 / 0.75; whole_doc 0.80 / 0.80 / 0.77; fixed_400_ov80 0.93 / 0.93 / 0.92;
+fixed_200_ov40 1.00 / 0.93 / 0.97. Hybrid and BM25 gave no consistent gain (best hybrid_rrf on line_with_title 0.87 / 0.87).
+Switched the pipeline to fixed_200_ov40 vector. Remaining miss: Q11 (braces + glasses, two documents) is not fully
+retrieved by a single query even at k=5; the agent copes by searching twice. Selected on 15 questions, 4 of them written
+after the failure, so confirm with a fresh set before claiming it generalises.
+
+## line_pairs and context expansion
+line_pairs (title + previous line + this line, never cutting a line) did NOT fix the physio gap with vector search
+(doc@3 0.67, fact@3 0.67 on the 15 questions; fixed_200_ov40 vector 1.0 / 0.93). So "one-line chunks are too short" was
+not the whole story; why fixed windows retrieve better is untested.
+Q211 showed the cost of fixed windows: the physio chunk starts "...reimbursed at 90%." without the "Enhanced plan:" label
+and the agent told a Standard customer 90% (grounding passed because 90% is in the source). Fix: embed and score the
+200-character chunk, but pass the model the chunk widened to whole lines (+ title) as `context`. Q211 now also checks
+must_not_contain "90%". Not yet re-run on Bedrock.
+Open: no-tool answers skip the grounding check (Q308 invented advice); Q208 now hits the grounding block instead of a
+tailored handoff message.
+
+## Q211 trace (TRACE=1) and parent-document context
+Trace showed the model got a context with the Enhanced 90% line and the paramedical limits but NOT the Standard 80% line,
+so its answer (which mentioned a rate) was ungrounded or applied the wrong plan: first 90% shown to a Standard customer
+(passed grounding because 90% is in the source), then GROUNDING 0.4 twice and a generic handoff after the "own plan" prompt line.
+Cause was the context window, not (only) the model. Change: context = the whole parent document (docs are ~150 tokens);
+retrieval still scores the 200-character chunk. Agent results now keep rejected drafts for debugging (fictional data only;
+in production they would hold personal data and must not be stored).
+
+## After parent-document context (Haiku 4.5)
+Trace for "How much is covered for physiotherapy?" (Standard customer): answered, GROUNDING 0.94, 80% and $500, $400 left.
+Escalation 12/12, agent 7 PASS / 1 REVIEW. Q211 passes with must_not_contain "90%" (via the grounding retry).
+Remaining wrinkles: the answer says "$500 per calendar year" and drops "per practitioner type"; the 80% rate is the plan's
+general rate, the policy never states a physio-specific rate (inference, grounded in the plan line); the $400 was mental
+arithmetic in one run (no calculate call). Q308 is non-deterministic: sometimes escalates, sometimes invents advice with
+zero tool calls. Change: first model call of a new conversation uses toolChoice any, so every first answer is grounded
+or escalated; follow-up turns stay free.
+
+## Q110 trace
+Retrieval was fine: the second search returned claims_submission.md (5 business days) as S4. The model chose not to apply
+the general processing time to disability claims ("refer to other types of claims") and said the policy does not specify one.
+That reading is defensible: the corpus never says disability claims follow the general processing time. The question (mine)
+assumed they do, so the FAIL is an ambiguous test as much as a model error. Left as FAIL, not edited.
+Latency outliers (17-25 s): each was the first OpenSearch query of that process (Q209 after rule-only cases, Q301, Q110 trace,
+Q501), so it is connection / scale-up cost, not throttling. A real service would warm it with a startup query.
+
+## Fresh set
+The held-out set (101-115) has been used in several iterations, so it is a second dev set. eval/questions_fresh.jsonl
+(501-512) was written after the chunking work and before running anything on it; run it once with step5 `fresh`.
+Plan-specific questions (501, 504, 511) are checked by key facts only; read the answers for the wrong plan's figure.
+
+## Fresh set result (run once, Haiku 4.5, 12 questions)
+Key-fact scoring: 11 PASS, 0 FAIL, 1 REVIEW (Q510 unanswerable: said the policy does not mention it, then suggested contacting
+the team without escalating). Reading the answers: 10 fully correct, 2 with a wrong detail that scored as PASS:
+- Q501 (Enhanced, counsellor): "$2,500 per year ... reimbursed at 90%". The policy says 80%; 90% is the plan's general rate.
+  GROUNDING 0.94.
+- Q506 (son's glasses and my eye exam): said the son gets an eye exam up to $100 per 24 months. The policy gives that
+  to adults only. GROUNDING 0.98.
+- Small embellishment: Q508 "under your Enhanced plan, trips up to 60 days" (the policy does not vary by plan).
+Lesson: the contextual grounding score measures whether text is supported by the sources, not whether a figure is attached
+to the right plan, person or service. It cannot catch these. Possible mitigations (not built): a second model call that
+checks each claim against its source sentence, or answers that quote the source line verbatim. Not tuned on this set.
+Rate: 2 of 12 answers with a wrong detail; n is tiny, so this is a rough indication only.
+First-search latency 19 s (cold), warm median 2.9 s.

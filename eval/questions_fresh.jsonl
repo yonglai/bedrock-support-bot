@@ -1,0 +1,12 @@
+{"id": 501, "customer_id": "C1002", "type": "agent", "question": "How much will my plan pay toward a counsellor each year?", "key_facts": ["$2,500"]}
+{"id": 502, "customer_id": "C1001", "type": "agent", "question": "I need a crown on a tooth. What percentage do I get back?", "key_facts": ["50%"]}
+{"id": 503, "customer_id": "C1003", "type": "agent", "question": "How often can my 16-year-old get a dental cleaning covered?", "key_facts": ["6 months"]}
+{"id": 504, "customer_id": "C1002", "type": "agent", "question": "What percentage of eligible expenses does my plan reimburse?", "key_facts": ["90%"]}
+{"id": 505, "customer_id": "C1001", "type": "multi_doc", "question": "If I leave my job, how long do I have to convert my life insurance? And who do I call if I'm hospitalised abroad?", "key_facts": ["31 days", "1-800-555-0142"]}
+{"id": 506, "customer_id": "C1003", "type": "multi_doc", "question": "My son needs new glasses and I need an eye exam. What can we claim?", "key_facts": ["$150", "$100"]}
+{"id": 507, "customer_id": "C1001", "type": "agent", "question": "Can my spouse call in and get my plan details?", "key_facts": ["authorization"]}
+{"id": 508, "customer_id": "C1002", "type": "agent", "question": "How long can a trip be and still be covered by the travel emergency plan?", "key_facts": ["60 days"]}
+{"id": 509, "customer_id": "C1001", "type": "multi_doc", "question": "How much physio coverage do I have left this year, and how fast is an online claim paid?", "key_facts": ["$400", "5 business days"]}
+{"id": 510, "customer_id": "C1003", "type": "unanswerable", "question": "Does my plan cover cosmetic teeth whitening?", "key_facts": []}
+{"id": 511, "customer_id": "C1001", "type": "agent", "question": "Is laser eye surgery covered for me?", "key_facts": ["Enhanced"]}
+{"id": 512, "customer_id": "C1003", "type": "agent", "question": "What is the most my son's braces could be covered for?", "key_facts": ["$2,000", "50%"]}

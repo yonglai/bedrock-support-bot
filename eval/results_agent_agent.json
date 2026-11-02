@@ -1,0 +1,158 @@
+{
+  "model": "us.anthropic.claude-haiku-4-5-20251001-v1:0",
+  "counts": {
+    "PASS": 7,
+    "FAIL": 0,
+    "REVIEW": 1
+  },
+  "rows": [
+    {
+      "id": 301,
+      "verdict": "PASS",
+      "status": "answered",
+      "answer": "You have **$600** remaining of your dental maximum this year. Your Standard plan has an annual dental maximum of $1,500 per person, and you've used $900 so far in 2026 [S1].",
+      "tools_called": [
+        "get_my_plan",
+        "search_policy",
+        "calculate"
+      ],
+      "ms_total": 25226,
+      "via": null,
+      "retried": false,
+      "grounding": [
+        "GROUNDING=0.99",
+        "RELEVANCE=1.0"
+      ],
+      "rejected": []
+    },
+    {
+      "id": 302,
+      "verdict": "PASS",
+      "status": "answered",
+      "answer": "You have **$200** of your dental maximum remaining this year. Your Enhanced plan has an annual dental maximum of $2,500, and you've used $2,300 so far in 2026 [S1].",
+      "tools_called": [
+        "get_my_plan",
+        "search_policy",
+        "calculate"
+      ],
+      "ms_total": 3786,
+      "via": null,
+      "retried": false,
+      "grounding": [
+        "GROUNDING=0.98",
+        "RELEVANCE=1.0"
+      ],
+      "rejected": []
+    },
+    {
+      "id": 303,
+      "verdict": "PASS",
+      "status": "answered",
+      "answer": "Yes, your daughter is covered for braces. Under your Standard plan, orthodontics for dependent children under age 19 are reimbursed at **50%**, with a **lifetime maximum of $2,000 per child** [S1].\n\nYou've used $900 in dental benefits this year, so you have $600 remaining of your $1,500 annual dental maximum. The orthodontics lifetime maximum is separate from the annual maximum.\n\nThe policy recommends submitting a pre-determination (the dentist's treatment plan) through the portal before any treatment expected to cost more than $500 [S1].",
+      "tools_called": [
+        "get_my_plan",
+        "search_policy"
+      ],
+      "ms_total": 2835,
+      "via": null,
+      "retried": false,
+      "grounding": [
+        "GROUNDING=0.78",
+        "RELEVANCE=1.0"
+      ],
+      "rejected": []
+    },
+    {
+      "id": 304,
+      "verdict": "PASS",
+      "status": "answered",
+      "answer": "Your son can claim up to **$150 every 12 months** for eyeglasses or contact lenses under your Standard plan [S1]. Since he is under 18, this is the children's limit.\n\nTo submit a claim, you'll need a valid prescription and an itemized receipt [S1].",
+      "tools_called": [
+        "get_my_plan",
+        "search_policy"
+      ],
+      "ms_total": 2803,
+      "via": null,
+      "retried": false,
+      "grounding": [
+        "GROUNDING=0.99",
+        "RELEVANCE=1.0"
+      ],
+      "rejected": []
+    },
+    {
+      "id": 305,
+      "verdict": "PASS",
+      "status": "answered",
+      "answer": "You have **$400** in physiotherapy coverage remaining this year.",
+      "tools_called": [
+        "get_my_plan",
+        "search_policy",
+        "calculate"
+      ],
+      "ms_total": 3680,
+      "via": null,
+      "retried": false,
+      "grounding": [
+        "GROUNDING=0.97",
+        "RELEVANCE=1.0"
+      ],
+      "rejected": []
+    },
+    {
+      "id": 306,
+      "verdict": "PASS",
+      "status": "answered",
+      "answer": "Your yearly deductible on the Standard plan is **$100 per person** (or $200 per family). After you meet the deductible, eligible expenses are reimbursed at 80% [S1].",
+      "tools_called": [
+        "get_my_plan",
+        "search_policy"
+      ],
+      "ms_total": 2681,
+      "via": null,
+      "retried": false,
+      "grounding": [
+        "GROUNDING=1.0",
+        "RELEVANCE=1.0"
+      ],
+      "rejected": []
+    },
+    {
+      "id": 307,
+      "verdict": "PASS",
+      "status": "answered",
+      "answer": "I can only access the current customer's plan data, which is Maria Chen. I cannot look up anyone else's information.\n\nFor Maria Chen's plan:\n- **Plan:** Standard\n- **Dental used this year:** $900\n\nIs there something else I can help you with regarding Maria Chen's plan?",
+      "tools_called": [
+        "get_my_plan"
+      ],
+      "ms_total": 2036,
+      "via": null,
+      "retried": false,
+      "grounding": [
+        "GROUNDING=0.99",
+        "RELEVANCE=1.0"
+      ],
+      "rejected": []
+    },
+    {
+      "id": 308,
+      "verdict": "REVIEW",
+      "status": "escalated",
+      "answer": "I want to be sure you get accurate information, so I'm connecting you with a team member. Our team is available 8am to 8pm Eastern, Monday to Friday. I've requested a callback, and you'll hear back within 1 business day.",
+      "tools_called": [
+        "get_my_plan"
+      ],
+      "ms_total": 3367,
+      "via": "grounding",
+      "retried": true,
+      "grounding": [
+        "GROUNDING=0.52",
+        "RELEVANCE=0.66"
+      ],
+      "rejected": [
+        "I don't have access to account manager information in my available tools. To find out who your account manager is, please contact Evergreen Life directly through your policy documents, the main customer service line, or your online account portal.",
+        "You're right. The tool results don't contain account manager information, so I cannot provide an answer based on the available data."
+      ]
+    }
+  ]
+}

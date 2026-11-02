@@ -1,0 +1,225 @@
+{
+  "model": "us.anthropic.claude-haiku-4-5-20251001-v1:0",
+  "counts": {
+    "PASS": 11,
+    "FAIL": 0,
+    "REVIEW": 1
+  },
+  "rows": [
+    {
+      "id": 501,
+      "verdict": "PASS",
+      "status": "answered",
+      "answer": "Based on your Enhanced plan, your plan will pay up to **$2,500 per calendar year** toward psychologists, registered social workers, and psychotherapists, reimbursed at 90% after eligible expenses are covered [S1].\n\nNote that this covers psychologists, registered social workers, and psychotherapists specifically. If you're looking for other types of counselling support, your plan also includes an Employee Assistance Program (EAP) with up to 6 free counselling sessions per issue, available 24/7 at 1-800-555-0177 [S1].",
+      "tools_called": [
+        "get_my_plan",
+        "search_policy"
+      ],
+      "ms_total": 18974,
+      "via": null,
+      "retried": false,
+      "grounding": [
+        "GROUNDING=0.94",
+        "RELEVANCE=1.0"
+      ],
+      "rejected": []
+    },
+    {
+      "id": 502,
+      "verdict": "PASS",
+      "status": "answered",
+      "answer": "You're on the Standard plan. Crowns are classified as a major service and are reimbursed at **50%** [S1].\n\nYou've used $900 in dental benefits so far this year. Your annual dental maximum on the Standard plan is $1,500, so you have $600 remaining available [S1].\n\nIf your crown is expected to cost more than $500, it's recommended to submit a pre-determination request through the portal before treatment, so your dentist can confirm the exact coverage [S1].",
+      "tools_called": [
+        "get_my_plan",
+        "search_policy"
+      ],
+      "ms_total": 3701,
+      "via": null,
+      "retried": false,
+      "grounding": [
+        "GROUNDING=0.96",
+        "RELEVANCE=1.0"
+      ],
+      "rejected": []
+    },
+    {
+      "id": 503,
+      "verdict": "PASS",
+      "status": "answered",
+      "answer": "Your 16-year-old can get a dental cleaning covered once every 6 months. This is the recall exam frequency for children under your Standard plan [S1].\n\nCleanings are classified as basic services and are reimbursed at 80% on your Standard plan, up to your annual dental maximum of $1,500 per person [S1].",
+      "tools_called": [
+        "get_my_plan",
+        "search_policy"
+      ],
+      "ms_total": 2683,
+      "via": null,
+      "retried": false,
+      "grounding": [
+        "GROUNDING=1.0",
+        "RELEVANCE=1.0"
+      ],
+      "rejected": []
+    },
+    {
+      "id": 504,
+      "verdict": "PASS",
+      "status": "answered",
+      "answer": "Your Enhanced plan reimburses eligible expenses at **90%** [S1]. This applies to most health services. However, reimbursement rates vary by service type:\n\n- **Basic dental services** (exams, cleanings, fillings, extractions): 100% [S2]\n- **Major dental services** (crowns, bridges, dentures): 50% [S2]\n- **Prescription drugs**: 90% [S3]",
+      "tools_called": [
+        "get_my_plan",
+        "search_policy"
+      ],
+      "ms_total": 3543,
+      "via": null,
+      "retried": false,
+      "grounding": [
+        "GROUNDING=0.9",
+        "RELEVANCE=1.0"
+      ],
+      "rejected": []
+    },
+    {
+      "id": 505,
+      "verdict": "PASS",
+      "status": "answered",
+      "answer": "**Life insurance conversion:** If your employment ends, you have **31 days** to convert your group coverage to an individual policy without a medical exam [S1].\n\n**Hospitalised abroad:** Call the assistance line at **1-800-555-0142 within 24 hours** of any emergency hospital admission. The assistance team arranges direct payment and can coordinate care [S2].",
+      "tools_called": [
+        "search_policy",
+        "search_policy"
+      ],
+      "ms_total": 2787,
+      "via": null,
+      "retried": false,
+      "grounding": [
+        "GROUNDING=1.0",
+        "RELEVANCE=1.0"
+      ],
+      "rejected": []
+    },
+    {
+      "id": 506,
+      "verdict": "PASS",
+      "status": "answered",
+      "answer": "Based on your Standard plan, here's what you can claim:\n\n**For you (adult):**\n- Eye exam: up to $100 every 24 months [S1]\n- Eyeglasses or contact lenses: up to $250 every 24 months [S1]\n\n**For your son (age 16, under 18):**\n- Eyeglasses or contact lenses: up to $150 every 12 months [S1]\n- Eye exams: up to $100 every 24 months [S1]\n\nFor all vision claims, you'll need a valid prescription and an itemized receipt [S1].",
+      "tools_called": [
+        "get_my_plan",
+        "search_policy"
+      ],
+      "ms_total": 2781,
+      "via": null,
+      "retried": false,
+      "grounding": [
+        "GROUNDING=0.98",
+        "RELEVANCE=1.0"
+      ],
+      "rejected": []
+    },
+    {
+      "id": 507,
+      "verdict": "PASS",
+      "status": "answered",
+      "answer": "No, your spouse cannot call in and get your plan details unless you have provided written authorization. Plan information is only shared with you or with a third party if you have given written authorization [S1].\n\nIf you'd like your spouse to have access to your plan information, you would need to provide written authorization to Evergreen Life.",
+      "tools_called": [
+        "search_policy"
+      ],
+      "ms_total": 2467,
+      "via": null,
+      "retried": false,
+      "grounding": [
+        "GROUNDING=0.94",
+        "RELEVANCE=1.0"
+      ],
+      "rejected": []
+    },
+    {
+      "id": 508,
+      "verdict": "PASS",
+      "status": "answered",
+      "answer": "Under your Enhanced plan, the travel emergency plan covers trips of up to 60 days [S1].",
+      "tools_called": [
+        "get_my_plan",
+        "search_policy"
+      ],
+      "ms_total": 2326,
+      "via": null,
+      "retried": false,
+      "grounding": [
+        "GROUNDING=1.0",
+        "RELEVANCE=1.0"
+      ],
+      "rejected": []
+    },
+    {
+      "id": 509,
+      "verdict": "PASS",
+      "status": "answered",
+      "answer": "**Physiotherapy coverage left:** You're on the Standard plan with a $500 annual limit for physiotherapy. You've used $100 this year, so you have $400 remaining [S2].\n\n**Online claim payment time:** Online claims are processed within 5 business days, and reimbursement is paid by direct deposit [S1].",
+      "tools_called": [
+        "get_my_plan",
+        "search_policy",
+        "search_policy"
+      ],
+      "ms_total": 3920,
+      "via": null,
+      "retried": false,
+      "grounding": [
+        "GROUNDING=0.95",
+        "RELEVANCE=1.0"
+      ],
+      "rejected": []
+    },
+    {
+      "id": 510,
+      "verdict": "REVIEW",
+      "status": "answered",
+      "answer": "The policy documents do not mention cosmetic teeth whitening. Based on the dental coverage information available, the plan covers basic services (exams, cleanings, fillings, extractions), major services (crowns, bridges, dentures), and orthodontics for dependent children. Cosmetic procedures like teeth whitening are not listed as covered benefits [S1].\n\nTo confirm whether cosmetic teeth whitening might be covered under any circumstances or to discuss alternatives, I'd recommend contacting our team directly.",
+      "tools_called": [
+        "search_policy"
+      ],
+      "ms_total": 3146,
+      "via": null,
+      "retried": false,
+      "grounding": [
+        "GROUNDING=0.78",
+        "RELEVANCE=1.0"
+      ],
+      "rejected": []
+    },
+    {
+      "id": 511,
+      "verdict": "PASS",
+      "status": "answered",
+      "answer": "Laser eye surgery is not covered under your Standard plan. According to the policy, laser eye surgery coverage of up to $500 per eye as a lifetime maximum is available on the Enhanced plan only [S1].",
+      "tools_called": [
+        "get_my_plan",
+        "search_policy"
+      ],
+      "ms_total": 2333,
+      "via": null,
+      "retried": false,
+      "grounding": [
+        "GROUNDING=0.91",
+        "RELEVANCE=1.0"
+      ],
+      "rejected": []
+    },
+    {
+      "id": 512,
+      "verdict": "PASS",
+      "status": "answered",
+      "answer": "Based on your plan, your son's braces have a **lifetime maximum of $2,000 per child**, reimbursed at 50% [S1]. This means Evergreen Life will cover up to $2,000 of the total orthodontic treatment cost over his lifetime as a dependent under age 19.\n\nSince you haven't used any dental benefits this year, your son has the full $2,000 lifetime orthodontic maximum available.\n\nThe policy recommends getting a pre-determination before treatment if the cost is expected to exceed $500\u2014you can submit your dentist's treatment plan through the portal.",
+      "tools_called": [
+        "get_my_plan",
+        "search_policy"
+      ],
+      "ms_total": 2967,
+      "via": null,
+      "retried": false,
+      "grounding": [
+        "GROUNDING=0.86",
+        "RELEVANCE=1.0"
+      ],
+      "rejected": []
+    }
+  ]
+}

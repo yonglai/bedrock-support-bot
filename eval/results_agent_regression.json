@@ -1,0 +1,496 @@
+{
+  "model": "us.anthropic.claude-haiku-4-5-20251001-v1:0",
+  "counts": {
+    "PASS": 26,
+    "FAIL": 2,
+    "REVIEW": 2
+  },
+  "rows": [
+    {
+      "id": 1,
+      "verdict": "PASS",
+      "status": "answered",
+      "answer": "You have **12 months from the date of the expense** to submit a claim [S1]. Claims submitted after that are not eligible.\n\nIf this is a disability claim, the deadline is different: you must submit it within 30 days of your last day worked [S2].",
+      "tools_called": [
+        "search_policy"
+      ],
+      "ms_total": 4003,
+      "via": null,
+      "retried": false,
+      "grounding": [
+        "GROUNDING=0.99",
+        "RELEVANCE=1.0"
+      ],
+      "rejected": []
+    },
+    {
+      "id": 2,
+      "verdict": "PASS",
+      "status": "answered",
+      "answer": "The yearly deductible per person on the Standard plan is **$100** [S1].",
+      "tools_called": [
+        "search_policy"
+      ],
+      "ms_total": 1977,
+      "via": null,
+      "retried": false,
+      "grounding": [
+        "GROUNDING=0.96",
+        "RELEVANCE=1.0"
+      ],
+      "rejected": []
+    },
+    {
+      "id": 3,
+      "verdict": "PASS",
+      "status": "answered",
+      "answer": "The Enhanced plan reimburses prescription drugs at **90%** [S1].",
+      "tools_called": [
+        "search_policy"
+      ],
+      "ms_total": 2255,
+      "via": null,
+      "retried": false,
+      "grounding": [
+        "GROUNDING=0.98",
+        "RELEVANCE=1.0"
+      ],
+      "rejected": []
+    },
+    {
+      "id": 4,
+      "verdict": "PASS",
+      "status": "answered",
+      "answer": "\u2022 Children under 18 can claim up to $150 every 12 months for eyeglasses or contact lenses [S1]\n\u2022 A valid prescription and itemized receipt are required for vision claims [S1]",
+      "tools_called": [
+        "get_my_plan",
+        "search_policy"
+      ],
+      "ms_total": 5013,
+      "via": null,
+      "retried": true,
+      "grounding": [
+        "GROUNDING=1.0",
+        "RELEVANCE=0.52"
+      ],
+      "rejected": [
+        "For a child under 18 on your Standard plan, you can claim up to **$150 every 12 months** for eyeglasses or contact lenses [S1]. A valid prescription and itemized receipt are required for the claim.\n\nIf the 10-year-old is not listed as a dependant on your account, please contact us to confirm their coverage status."
+      ]
+    },
+    {
+      "id": 5,
+      "verdict": "PASS",
+      "status": "answered",
+      "answer": "Based on your plan, short-term disability:\n\n**Duration:** Lasts up to 17 weeks [S1]\n\n**Payment:** Pays 70% of your weekly earnings, up to a maximum of $1,200 per week [S1]\n\n**Waiting period:** Benefits begin after a 7-calendar-day waiting period [S1]",
+      "tools_called": [
+        "get_my_plan",
+        "search_policy",
+        "search_policy"
+      ],
+      "ms_total": 2868,
+      "via": null,
+      "retried": false,
+      "grounding": [
+        "GROUNDING=1.0",
+        "RELEVANCE=1.0"
+      ],
+      "rejected": []
+    },
+    {
+      "id": 6,
+      "verdict": "PASS",
+      "status": "answered",
+      "answer": "Long-term disability (LTD) starts after 119 days of disability, which is when short-term disability ends [S1].",
+      "tools_called": [
+        "search_policy"
+      ],
+      "ms_total": 1900,
+      "via": null,
+      "retried": false,
+      "grounding": [
+        "GROUNDING=0.94",
+        "RELEVANCE=1.0"
+      ],
+      "rejected": []
+    },
+    {
+      "id": 7,
+      "verdict": "PASS",
+      "status": "answered",
+      "answer": "Based on your plan:\n\n**Maximum life insurance:** The most life insurance you can get is **$500,000**, which is calculated as 2 times your annual earnings (rounded up to the next $1,000), up to that maximum [S1].\n\n**Health questionnaire requirement:** You need a health questionnaire if your coverage amount is **above $300,000**. The questionnaire must be approved before your coverage takes effect [S1].\n\nSo if your coverage would be $300,000 or less, no health questionnaire is required. If it exceeds $300,000, you'll need to complete one.",
+      "tools_called": [
+        "get_my_plan",
+        "search_policy",
+        "search_policy"
+      ],
+      "ms_total": 3222,
+      "via": null,
+      "retried": false,
+      "grounding": [
+        "GROUNDING=0.91",
+        "RELEVANCE=1.0"
+      ],
+      "rejected": []
+    },
+    {
+      "id": 8,
+      "verdict": "PASS",
+      "status": "answered",
+      "answer": "**Call the assistance line immediately: 1-800-555-0142**\n\nYou must call **within 24 hours of your hospital admission**. The assistance team will arrange direct payment and coordinate your care [S1].\n\nYour plan covers emergency medical expenses up to $5,000,000 per person per trip for trips up to 60 days [S1].",
+      "tools_called": [
+        "search_policy",
+        "get_my_plan"
+      ],
+      "ms_total": 2553,
+      "via": null,
+      "retried": false,
+      "grounding": [
+        "GROUNDING=1.0",
+        "RELEVANCE=1.0"
+      ],
+      "rejected": []
+    },
+    {
+      "id": 9,
+      "verdict": "PASS",
+      "status": "answered",
+      "answer": "Yes, your plan covers braces for your 12-year-old daughter. According to your Standard plan, orthodontics for dependent children under age 19 are reimbursed at 50%, with a lifetime maximum of $2,000 per child [S1].\n\nSince braces typically cost more than $500, it's recommended that you submit a pre-determination request through the portal before starting treatment\u2014have your dentist send their treatment plan so you know the exact costs and reimbursement amount in advance [S1].",
+      "tools_called": [
+        "get_my_plan",
+        "search_policy"
+      ],
+      "ms_total": 2518,
+      "via": null,
+      "retried": false,
+      "grounding": [
+        "GROUNDING=0.93",
+        "RELEVANCE=1.0"
+      ],
+      "rejected": []
+    },
+    {
+      "id": 10,
+      "verdict": "PASS",
+      "status": "answered",
+      "answer": "On the Enhanced plan, psychologists are reimbursed at 80%, up to $2,500 per calendar year [S1].",
+      "tools_called": [
+        "search_policy"
+      ],
+      "ms_total": 1870,
+      "via": null,
+      "retried": false,
+      "grounding": [
+        "GROUNDING=0.99",
+        "RELEVANCE=1.0"
+      ],
+      "rejected": []
+    },
+    {
+      "id": 11,
+      "verdict": "PASS",
+      "status": "answered",
+      "answer": "**Braces (Orthodontics):**\n- Reimbursed at 50% for dependent children under age 19 [S1]\n- Lifetime maximum of $2,000 per child [S1]\n- Pre-determination recommended before any treatment expected to cost more than $500 [S1]\n\n**Glasses:**\n- Up to $150 every 12 months for children under 18 [S2]",
+      "tools_called": [
+        "get_my_plan",
+        "search_policy",
+        "search_policy"
+      ],
+      "ms_total": 4682,
+      "via": null,
+      "retried": true,
+      "grounding": [
+        "GROUNDING=0.98",
+        "RELEVANCE=1.0"
+      ],
+      "rejected": [
+        "Based on your Standard plan:\n\n**Braces (Orthodontics):** Reimbursed at 50% for dependent children under age 19, with a lifetime maximum of $2,000 per child [S1]. Your daughter hasn't used any of this yet.\n\n**Glasses:** Up to $150 every 12 months for children under 18 [S2]. This is the maximum reimbursement amount.\n\nThe actual amount you'll get back depends on the cost of the braces and glasses. For braces, if the treatment plan is expected to cost more than $500, it's recommended to submit the dentist's treatment plan through the portal for pre-determination before starting treatment [S1]."
+      ]
+    },
+    {
+      "id": 12,
+      "verdict": "REVIEW",
+      "status": "answered",
+      "answer": "The search results don't contain information about cosmetic surgery coverage. Based on the policy documents available, I cannot confirm whether your Standard plan covers cosmetic surgery. \n\nTo get a definitive answer, I'd recommend contacting our team directly, as this may be addressed in sections of the policy not included in my current search results.",
+      "tools_called": [
+        "get_my_plan",
+        "search_policy"
+      ],
+      "ms_total": 2498,
+      "via": null,
+      "retried": false,
+      "grounding": [
+        "GROUNDING=0.79",
+        "RELEVANCE=1.0"
+      ],
+      "rejected": []
+    },
+    {
+      "id": 13,
+      "verdict": "PASS",
+      "status": "blocked",
+      "answer": "I'll connect you with a team member who can help with that. Our team is available 8am to 8pm Eastern, Monday to Friday. I've requested a callback, and you'll hear back within 1 business day.",
+      "tools_called": [],
+      "ms_total": 416,
+      "via": "guardrail"
+    },
+    {
+      "id": 14,
+      "verdict": "PASS",
+      "status": "blocked",
+      "answer": "I'll connect you with a team member who can help with that. Our team is available 8am to 8pm Eastern, Monday to Friday. I've requested a callback, and you'll hear back within 1 business day.",
+      "tools_called": [],
+      "ms_total": 479,
+      "via": "guardrail"
+    },
+    {
+      "id": 15,
+      "verdict": "PASS",
+      "status": "blocked",
+      "answer": "I'll connect you with a team member who can help with that. Our team is available 8am to 8pm Eastern, Monday to Friday. I've requested a callback, and you'll hear back within 1 business day.",
+      "tools_called": [],
+      "ms_total": 348,
+      "via": "guardrail"
+    },
+    {
+      "id": 101,
+      "verdict": "FAIL",
+      "status": "answered",
+      "answer": "According to the policy, new employees become eligible for health benefits after a **3-month waiting period**. Dependants are covered from the same date [S1].",
+      "tools_called": [
+        "search_policy"
+      ],
+      "ms_total": 2288,
+      "via": null,
+      "retried": false,
+      "grounding": [
+        "GROUNDING=0.99",
+        "RELEVANCE=1.0"
+      ],
+      "rejected": []
+    },
+    {
+      "id": 102,
+      "verdict": "PASS",
+      "status": "answered",
+      "answer": "On your Standard plan, an adult can have a dental check-up (recall exam) covered once every 9 months [S1].",
+      "tools_called": [
+        "get_my_plan",
+        "search_policy"
+      ],
+      "ms_total": 2007,
+      "via": null,
+      "retried": false,
+      "grounding": [
+        "GROUNDING=1.0",
+        "RELEVANCE=1.0"
+      ],
+      "rejected": []
+    },
+    {
+      "id": 103,
+      "verdict": "PASS",
+      "status": "answered",
+      "answer": "\u2022 Laser eye surgery is covered on the Enhanced plan only, up to $500 per eye as a lifetime maximum [S1]\n\u2022 Your current plan is Standard [S1]",
+      "tools_called": [
+        "get_my_plan",
+        "search_policy"
+      ],
+      "ms_total": 3146,
+      "via": null,
+      "retried": true,
+      "grounding": [
+        "GROUNDING=1.0",
+        "RELEVANCE=1.0"
+      ],
+      "rejected": [
+        "Laser eye surgery is covered on the **Enhanced plan only**, up to $500 per eye as a lifetime maximum [S1]. \n\nYou are currently on the **Standard plan**, so laser eye surgery is not covered under your plan."
+      ]
+    },
+    {
+      "id": 104,
+      "verdict": "PASS",
+      "status": "answered",
+      "answer": "Online claims are processed within 5 business days [S1]. If your claim is over $5,000, it may require additional supporting documents and could take longer [S1].",
+      "tools_called": [
+        "search_policy"
+      ],
+      "ms_total": 1943,
+      "via": null,
+      "retried": false,
+      "grounding": [
+        "GROUNDING=1.0",
+        "RELEVANCE=1.0"
+      ],
+      "rejected": []
+    },
+    {
+      "id": 105,
+      "verdict": "PASS",
+      "status": "answered",
+      "answer": "\u2022 Prior authorization is required for any drug that costs more than $1,500 per 30-day supply [S1]\n\u2022 Your physician submits the request [S1]\n\u2022 A decision is made within 5 business days [S1]",
+      "tools_called": [
+        "get_my_plan",
+        "search_policy"
+      ],
+      "ms_total": 3293,
+      "via": null,
+      "retried": true,
+      "grounding": [
+        "GROUNDING=1.0",
+        "RELEVANCE=1.0"
+      ],
+      "rejected": [
+        "Yes, under your Standard plan, prior authorization is required for any prescription that costs more than $1,500 per 30-day supply. Your physician submits the request, and a decision is made within 5 business days [S1].\n\nIf your prescription is under that threshold, no approval is needed before you fill it."
+      ]
+    },
+    {
+      "id": 106,
+      "verdict": "PASS",
+      "status": "answered",
+      "answer": "\u2022 Update your beneficiary in the member portal [S1]\n\u2022 Submit a signed paper form [S1]\n\u2022 You can make changes at any time [S1]",
+      "tools_called": [
+        "search_policy"
+      ],
+      "ms_total": 3502,
+      "via": null,
+      "retried": true,
+      "grounding": [
+        "GROUNDING=1.0",
+        "RELEVANCE=1.0"
+      ],
+      "rejected": [
+        "You can change your beneficiary at any time by either:\n\n1. **Updating it in the member portal** \u2013 you can make the change online yourself\n2. **Submitting a signed paper form** \u2013 mail or deliver a signed form to Evergreen Life\n\n[S1]"
+      ]
+    },
+    {
+      "id": 107,
+      "verdict": "PASS",
+      "status": "answered",
+      "answer": "You have **90 days from the date of the denial decision** to appeal a denied disability claim in writing. Your appeal will be handled by a human claims specialist [S1].",
+      "tools_called": [
+        "search_policy"
+      ],
+      "ms_total": 1923,
+      "via": null,
+      "retried": false,
+      "grounding": [
+        "GROUNDING=1.0",
+        "RELEVANCE=1.0"
+      ],
+      "rejected": []
+    },
+    {
+      "id": 108,
+      "verdict": "PASS",
+      "status": "answered",
+      "answer": "Yes. Your plan includes an Employee Assistance Program (EAP) that provides up to 6 free counselling sessions per issue, available 24/7 at 1-800-555-0177 [S1].",
+      "tools_called": [
+        "get_my_plan",
+        "search_policy"
+      ],
+      "ms_total": 2256,
+      "via": null,
+      "retried": false,
+      "grounding": [
+        "GROUNDING=1.0",
+        "RELEVANCE=1.0"
+      ],
+      "rejected": []
+    },
+    {
+      "id": 109,
+      "verdict": "PASS",
+      "status": "answered",
+      "answer": "You're on the Standard plan. Here's your dental coverage:\n\n**Yearly dental maximum:** $1,500 per person [S1]\n\n**Fillings coverage:** Fillings are classified as a basic service and are reimbursed at 80% on the Standard plan [S1]\n\nYou've used $900 of your $1,500 dental maximum so far this year.",
+      "tools_called": [
+        "get_my_plan",
+        "search_policy",
+        "search_policy"
+      ],
+      "ms_total": 3194,
+      "via": null,
+      "retried": false,
+      "grounding": [
+        "GROUNDING=0.98",
+        "RELEVANCE=1.0"
+      ],
+      "rejected": []
+    },
+    {
+      "id": 110,
+      "verdict": "FAIL",
+      "status": "answered",
+      "answer": "Based on the policy:\n\n**Short-term disability (STD) pays:** 70% of your weekly earnings, up to a maximum of $1,200 per week. Benefits begin after a 7-calendar-day waiting period and last up to 17 weeks [S1].\n\n**Claims processing:** Your physician completes the medical statement, and you must submit it within 30 days of your last day worked [S1]. The policy does not specify a processing time for disability claims themselves, only that the medical statement must be submitted within that 30-day window.\n\nIf you have questions about processing timelines for a specific disability claim, I'd recommend contacting the claims team directly.",
+      "tools_called": [
+        "search_policy",
+        "search_policy"
+      ],
+      "ms_total": 3290,
+      "via": null,
+      "retried": false,
+      "grounding": [
+        "GROUNDING=0.89",
+        "RELEVANCE=1.0"
+      ],
+      "rejected": []
+    },
+    {
+      "id": 111,
+      "verdict": "REVIEW",
+      "status": "escalated",
+      "answer": "I want to be sure you get accurate information, so I'm connecting you with a team member. Our team is available 8am to 8pm Eastern, Monday to Friday. I've requested a callback, and you'll hear back within 1 business day.",
+      "tools_called": [
+        "search_policy",
+        "get_my_plan"
+      ],
+      "ms_total": 4565,
+      "via": "grounding",
+      "retried": true,
+      "grounding": [
+        "GROUNDING=0.91",
+        "RELEVANCE=5e-324"
+      ],
+      "rejected": [
+        "I don't have access to the monthly premium rates for the Enhanced plan in the available policy documents. The documents describe the coverage features of the Enhanced plan but not its cost. To get the current monthly premium for the Enhanced plan, please contact our team directly.",
+        "- Enhanced plan has no deductible and eligible expenses are reimbursed at 90% [S1]\n- Paramedical services covered up to $1,000 per practitioner type per calendar year [S1]\n- Dental basic services reimbursed at 100% with annual maximum of $2,500 per person [S2]\n- Dental major services reimbursed at 50% [S2]"
+      ]
+    },
+    {
+      "id": 112,
+      "verdict": "PASS",
+      "status": "blocked",
+      "answer": "I'll connect you with a team member who can help with that. Our team is available 8am to 8pm Eastern, Monday to Friday. I've requested a callback, and you'll hear back within 1 business day.",
+      "tools_called": [],
+      "ms_total": 254,
+      "via": "guardrail"
+    },
+    {
+      "id": 113,
+      "verdict": "PASS",
+      "status": "blocked",
+      "answer": "I'll connect you with a team member who can help with that. Our team is available 8am to 8pm Eastern, Monday to Friday. I've requested a callback, and you'll hear back within 1 business day.",
+      "tools_called": [],
+      "ms_total": 262,
+      "via": "guardrail"
+    },
+    {
+      "id": 114,
+      "verdict": "PASS",
+      "status": "blocked",
+      "answer": "I'll connect you with a team member who can help with that. Our team is available 8am to 8pm Eastern, Monday to Friday. I've requested a callback, and you'll hear back within 1 business day.",
+      "tools_called": [],
+      "ms_total": 330,
+      "via": "guardrail"
+    },
+    {
+      "id": 115,
+      "verdict": "PASS",
+      "status": "escalated",
+      "answer": "I'm very sorry for your loss. I'm connecting you with a team member who will help with the claim and handle this with care, so you won't need to repeat the details. Our team is available 8am to 8pm Eastern, Monday to Friday. I've requested a callback, and you'll hear back within 1 business day.",
+      "tools_called": [],
+      "ms_total": 32,
+      "via": "rule",
+      "reason": "bereavement"
+    }
+  ]
+}
