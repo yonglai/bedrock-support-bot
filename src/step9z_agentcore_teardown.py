@@ -53,6 +53,15 @@ if rid:
         except ClientError:
             break
         time.sleep(5)
+if rid:  # the runtime writes its logs to CloudWatch; deleting the runtime does not remove them
+    logs = boto3.client("logs", region_name=REGION)
+    prefix = f"/aws/bedrock-agentcore/runtimes/{rid}"
+    for g in logs.describe_log_groups(logGroupNamePrefix=prefix).get("logGroups", []):
+        attempt(
+            f"log group {g['logGroupName']}",
+            logs.delete_log_group,
+            logGroupName=g["logGroupName"],
+        )
 if state.get("bucket"):
     attempt(
         "code zip",
