@@ -260,3 +260,33 @@ agent: 7 PASS / 0 FAIL / 1 REVIEW (same as OpenSearch). escalation: 11 / 1: Q210
 get_my_plan, never search_policy, then answered from memory; the grounding check blocked it twice and handed off. Not a retrieval
 problem. My forced first tool call was satisfied by any tool; it is now search_policy specifically.
 KB retrieval is a drop-in behind retrieve(): RETRIEVER=kb.
+
+## Strands vs hand-written loop (same model, prompt, tools, retriever KB hierarchical, safety layers)
+agent set: hand-written 7 PASS / 0 FAIL / 1 REVIEW, median 3.2 s; Strands 7 / 0 / 1, median 3.4 s.
+escalation set: hand-written 12 PASS; Strands 12 PASS. Parity at this sample size; differences within sampling noise.
+Code: the hand loop is a 35-line class (ConverseDriver); the Strands file is about 100 lines because tool definitions are
+still needed (as decorated functions with docstrings) and per-call tool_choice needed a model subclass. Strands removed
+message bookkeeping and gives the tool schema from the function signature; it did not make this agent smaller.
+Bug found while porting: a docstring built by string concatenation is not a docstring, so one tool had no description.
+Q308 (both drivers): the reply said "I can connect you with a team member" while no ticket existed. Fix: a reply that
+offers or promises a handoff now creates one (reason cannot_answer), matching the escalation policy. Regex, so it can
+over-trigger on phrases like "callback"; it is logged as a ticket reason to review.
+Grounding for the Strands smoke test was 0.78 against a 0.75 threshold: the physio answer is near the edge.
+
+## Bedrock Agents (managed) is closed to new accounts
+CreateAgent returned AccessDeniedException: "Bedrock Agents is in Maintenance Mode". Since 30 Jul 2026 only accounts with
+Agents activity in the past 12 months can create agents, and there is no exception process. AWS points to AgentCore. I removed
+the port I had written rather than ship code that cannot run for a new account. Lesson: check a service's lifecycle status
+before building on it; model and API names in older tutorials may be stale.
+
+## AgentCore Runtime (code-zip deployment, no Docker)
+Same run_agent, Strands driver, KB retriever, deployed with step9a_agentcore_deploy.py (build Linux arm64 zip 38 MB, S3 bucket,
+IAM role, runtime; about 1 minute to READY) and removed with step9z. Worked on the first run: the guessed entry point
+["app.py"], arm64 wheels and the IAM policy were all accepted.
+Results through the runtime (AGENT_REMOTE=agentcore): escalation 12 PASS; agent 7 PASS / 0 FAIL / 1 REVIEW (Q308), the same as
+locally, as expected because the code is identical. The ms figures are measured inside the runtime, so they exclude the network
+round trip and any cold start; they are not comparable with local numbers.
+What it adds: a deployed, isolated (one microVM per session) endpoint that the app calls with invoke_agent_runtime; what it does
+not change: behaviour. Cost choices: zip not container, PUBLIC network (no NAT gateway), no AgentCore Memory/Gateway/Identity,
+idle timeout 60 s because memory bills while a session idles.
+Caveat: nothing here tests concurrency, cold start or auth (the endpoint uses IAM/SigV4 only).
