@@ -348,3 +348,37 @@ re-run answers for those two (Q501 new = correct, Q506 new = wrong, labelled by 
   but flags more correct answers and costs a model call. A guardrail first, verifier second combination was not tested.
 - Caveats: three real errors; errors injected by me; one scoring pass each (scores may vary between calls); all sources sent
   as one combined grounding_source block, per the agent; same text for both tiers, scores not comparable across tiers.
+
+## Citation-only check (step11, ALCE-style): is each cited statement entailed by only the passages it cites?
+Same answers as steps 7/10 (26 clean, 31 injected with original sources; Q501/Q506 stored wrong answers against rebuilt sources;
+fresh re-runs of both questions, answers labelled by hand). Judge: Haiku 4.5, temperature 0, one call per answer.
+Predictions written before running: plan swaps caught well; percent/amount caught less often than by the claim-level verifier;
+a few false flags on clean answers.
+
+| | n | flagged |
+|---|---|---|
+| clean | 26 | 2 (8%) |
+| injected percent | 8 | 7 |
+| injected amount | 18 | 14 |
+| injected plan name | 5 | 4 |
+| real wrong answers (stored Q501, Q506) | 2 | 2 (Q506 for a doubtful reason, see below) |
+| correct re-run answers (Q501, Q506) | 2 | 1 (Q501, a false flag) |
+
+Injected overall: 25 of 31 (81%) against 31 of 31 for the verifier, 30 for Standard grounding, 18 for Classic.
+- Coverage is the main limit: of 77 statements in the clean answers, 39 (51%) carry no citation and are never checked; 19 of the
+  26 clean answers contain at least one uncited statement. A wrong claim in an uncited sentence is invisible to this check.
+- Clean flags: Q106 (the judge objected that the passage does not say "two ways") and Q109 ($1,500 "presented as if it applies to
+  all plans" although the customer is on Standard). The check never sees the customer's record, so a figure for the customer's own
+  plan can look under-qualified.
+- Q501 stored ("90%"): flagged for the right reason (passage says 80%).
+- Q506 stored: flagged, but the reasons were that the adult lines "omit 'for adults'"; the son's eye-exam line is textually
+  identical to the adult's after splitting by bullet, so the heading ("For your son") is lost. I cannot credit this as a clean catch.
+- Q501 re-run (correct, 80%): flagged, because the sentence says "your plan" and the plan name sits in the previous sentence.
+  Splitting into sentences loses that context. Same pattern as the Q506 heading problem.
+- Q506 re-run (this time correct: the agent did NOT repeat the invented child's eye exam): not flagged. The agent's answer differs
+  between runs, so earlier re-run answers are not reproducible.
+- Reading: the hypothesis (cited-passage entailment catches errors the grounding score missed) is partly supported on the two
+  stored errors, but the check misses a fifth of injected errors, cannot see uncited text, and loses context at the sentence
+  and bullet level. It is a weaker signal than the claim-level verifier, not a replacement.
+- Caveats: same model family as the answers; one pass; the stored answers' [S#] numbers may not match the rebuilt sources;
+  two real errors.

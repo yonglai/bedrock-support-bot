@@ -1,0 +1,896 @@
+[
+ {
+  "id": 1,
+  "kind": "clean",
+  "is_error": false,
+  "answer": "You have **12 months from the date of the expense** to submit a claim [S1]. Claims submitted after that deadline are not eligible.",
+  "cited": 1,
+  "uncited": 1,
+  "unsupported": [],
+  "missing": [],
+  "error": null,
+  "flagged": false
+ },
+ {
+  "id": 2,
+  "kind": "clean",
+  "is_error": false,
+  "answer": "According to the policy, the Standard plan has an annual deductible of **$100 per person** ($200 per family) [S2].",
+  "cited": 1,
+  "uncited": 0,
+  "unsupported": [],
+  "missing": [],
+  "error": null,
+  "flagged": false
+ },
+ {
+  "id": 2,
+  "kind": "amount",
+  "is_error": true,
+  "answer": "According to the policy, the Standard plan has an annual deductible of **$150 per person** ($200 per family) [S2].",
+  "cited": 1,
+  "uncited": 0,
+  "unsupported": [
+   [
+    "According to the policy, the Standard plan has an annual deductible of **$150 per person** ($200 per family) [S2].",
+    "The passage states the Standard plan has an annual deductible of $100 per person ($200 per family), not $150 per person as claimed in the statement."
+   ]
+  ],
+  "missing": [],
+  "error": null,
+  "flagged": true
+ },
+ {
+  "id": 2,
+  "kind": "plan",
+  "is_error": true,
+  "answer": "According to the policy, the Enhanced plan has an annual deductible of **$100 per person** ($200 per family) [S2].",
+  "cited": 1,
+  "uncited": 0,
+  "unsupported": [
+   [
+    "According to the policy, the Enhanced plan has an annual deductible of **$100 per person** ($200 per family) [S2].",
+    "The passage states the Enhanced plan has 'no deductible,' not an annual deductible of $100 per person ($200 per family). That deductible amount applies to the Standard plan, not the Enhanced plan."
+   ]
+  ],
+  "missing": [],
+  "error": null,
+  "flagged": true
+ },
+ {
+  "id": 3,
+  "kind": "clean",
+  "is_error": false,
+  "answer": "The Enhanced plan reimburses prescription drugs at **90%** [S1].",
+  "cited": 1,
+  "uncited": 0,
+  "unsupported": [],
+  "missing": [],
+  "error": null,
+  "flagged": false
+ },
+ {
+  "id": 3,
+  "kind": "percent",
+  "is_error": true,
+  "answer": "The Enhanced plan reimburses prescription drugs at **50%** [S1].",
+  "cited": 1,
+  "uncited": 0,
+  "unsupported": [
+   [
+    "The Enhanced plan reimburses prescription drugs at **50%** [S1].",
+    "The passage states that prescription drugs are reimbursed at 90% on Enhanced, not 50%."
+   ]
+  ],
+  "missing": [],
+  "error": null,
+  "flagged": true
+ },
+ {
+  "id": 3,
+  "kind": "plan",
+  "is_error": true,
+  "answer": "The Standard plan reimburses prescription drugs at **90%** [S1].",
+  "cited": 1,
+  "uncited": 0,
+  "unsupported": [
+   [
+    "The Standard plan reimburses prescription drugs at **90%** [S1].",
+    "The passage states 'Prescription drugs are reimbursed at 80% on Standard and 90% on Enhanced.' The Standard plan reimburses at 80%, not 90%. The 90% reimbursement rate applies to the Enhanced plan."
+   ]
+  ],
+  "missing": [],
+  "error": null,
+  "flagged": true
+ },
+ {
+  "id": 4,
+  "kind": "clean",
+  "is_error": false,
+  "answer": "For children under 18, you can claim up to $150 every 12 months for eyeglasses or contact lenses [S2]. A valid prescription and an itemized receipt are required for the claim.\n\nNote: Your plan shows a 12-year-old daughter as a dependant. If the 10-year-old is also your dependant, the same $150 per 12 months limit would apply to them as well.",
+  "cited": 1,
+  "uncited": 3,
+  "unsupported": [],
+  "missing": [],
+  "error": null,
+  "flagged": false
+ },
+ {
+  "id": 4,
+  "kind": "amount",
+  "is_error": true,
+  "answer": "For children under 18, you can claim up to $100 every 12 months for eyeglasses or contact lenses [S2]. A valid prescription and an itemized receipt are required for the claim.\n\nNote: Your plan shows a 12-year-old daughter as a dependant. If the 10-year-old is also your dependant, the same $150 per 12 months limit would apply to them as well.",
+  "cited": 1,
+  "uncited": 3,
+  "unsupported": [
+   [
+    "For children under 18, you can claim up to $100 every 12 months for eyeglasses or contact lenses [S2].",
+    "The passage states 'For children under 18, up to $150 every 12 months' for eyeglasses or contact lenses, not $100. The statement claims $100 but the passage specifies $150."
+   ]
+  ],
+  "missing": [],
+  "error": null,
+  "flagged": true
+ },
+ {
+  "id": 5,
+  "kind": "clean",
+  "is_error": false,
+  "answer": "Based on your plan, short-term disability:\n\n**Duration:** Lasts up to 17 weeks [S1]\n\n**Payment:** Pays 70% of your weekly earnings, up to a maximum of $1,200 per week [S1]\n\n**Waiting period:** Benefits begin after a 7-calendar-day waiting period [S1]",
+  "cited": 3,
+  "uncited": 1,
+  "unsupported": [],
+  "missing": [],
+  "error": null,
+  "flagged": false
+ },
+ {
+  "id": 5,
+  "kind": "percent",
+  "is_error": true,
+  "answer": "Based on your plan, short-term disability:\n\n**Duration:** Lasts up to 17 weeks [S1]\n\n**Payment:** Pays 50% of your weekly earnings, up to a maximum of $1,200 per week [S1]\n\n**Waiting period:** Benefits begin after a 7-calendar-day waiting period [S1]",
+  "cited": 3,
+  "uncited": 1,
+  "unsupported": [
+   [
+    "**Payment:** Pays 50% of your weekly earnings, up to a maximum of $1,200 per week [S1]",
+    "S1 states STD 'pays 70% of weekly earnings up to $1,200 per week', not 50%"
+   ]
+  ],
+  "missing": [],
+  "error": null,
+  "flagged": true
+ },
+ {
+  "id": 5,
+  "kind": "amount",
+  "is_error": true,
+  "answer": "Based on your plan, short-term disability:\n\n**Duration:** Lasts up to 17 weeks [S1]\n\n**Payment:** Pays 70% of your weekly earnings, up to a maximum of $100 per week [S1]\n\n**Waiting period:** Benefits begin after a 7-calendar-day waiting period [S1]",
+  "cited": 3,
+  "uncited": 1,
+  "unsupported": [
+   [
+    "**Payment:** Pays 70% of your weekly earnings, up to a maximum of $100 per week [S1]",
+    "S1 states the maximum is '$1,200 per week', not '$100 per week'"
+   ]
+  ],
+  "missing": [],
+  "error": null,
+  "flagged": true
+ },
+ {
+  "id": 6,
+  "kind": "clean",
+  "is_error": false,
+  "answer": "Long-term disability (LTD) starts after 119 days of disability, which is the end of the short-term disability (STD) period [S1]. \n\nShort-term disability begins after a 7-calendar-day waiting period and lasts up to 17 weeks. Once that period ends, long-term disability coverage takes over.",
+  "cited": 1,
+  "uncited": 2,
+  "unsupported": [],
+  "missing": [],
+  "error": null,
+  "flagged": false
+ },
+ {
+  "id": 7,
+  "kind": "clean",
+  "is_error": false,
+  "answer": "Based on the policy:\n\n**Maximum life insurance:** The most you can get is **$500,000** [S1]. Your coverage is calculated as 2 times your annual earnings (rounded up to the next $1,000), but it cannot exceed this $500,000 maximum.\n\n**Health questionnaire requirement:** You need a health questionnaire if your coverage amount is **above $300,000**. The questionnaire must be approved before your coverage takes effect [S1].",
+  "cited": 2,
+  "uncited": 3,
+  "unsupported": [],
+  "missing": [],
+  "error": null,
+  "flagged": false
+ },
+ {
+  "id": 7,
+  "kind": "amount",
+  "is_error": true,
+  "answer": "Based on the policy:\n\n**Maximum life insurance:** The most you can get is **$100** [S1]. Your coverage is calculated as 2 times your annual earnings (rounded up to the next $1,000), but it cannot exceed this $500,000 maximum.\n\n**Health questionnaire requirement:** You need a health questionnaire if your coverage amount is **above $300,000**. The questionnaire must be approved before your coverage takes effect [S1].",
+  "cited": 2,
+  "uncited": 3,
+  "unsupported": [
+   [
+    "**Maximum life insurance:** The most you can get is **$100** [S1].",
+    "The passage states the maximum is $500,000, not $100. The statement misrepresents the cited passage."
+   ]
+  ],
+  "missing": [],
+  "error": null,
+  "flagged": true
+ },
+ {
+  "id": 8,
+  "kind": "clean",
+  "is_error": false,
+  "answer": "**Call the assistance line immediately: 1-800-555-0142**\n\nYou must call within 24 hours of your hospital admission. The assistance team will arrange direct payment and coordinate your care [S1].\n\nYour plan covers emergency medical expenses up to $5,000,000 per person per trip for trips up to 60 days [S1].",
+  "cited": 2,
+  "uncited": 2,
+  "unsupported": [],
+  "missing": [],
+  "error": null,
+  "flagged": false
+ },
+ {
+  "id": 8,
+  "kind": "amount",
+  "is_error": true,
+  "answer": "**Call the assistance line immediately: 1-800-555-0142**\n\nYou must call within 24 hours of your hospital admission. The assistance team will arrange direct payment and coordinate your care [S1].\n\nYour plan covers emergency medical expenses up to $100 per person per trip for trips up to 60 days [S1].",
+  "cited": 2,
+  "uncited": 2,
+  "unsupported": [
+   [
+    "Your plan covers emergency medical expenses up to $100 per person per trip for trips up to 60 days [S1].",
+    "The passage states coverage is 'up to $5,000,000 per person per trip,' not '$100 per person per trip' as claimed in the statement."
+   ]
+  ],
+  "missing": [],
+  "error": null,
+  "flagged": true
+ },
+ {
+  "id": 10,
+  "kind": "clean",
+  "is_error": false,
+  "answer": "On the Enhanced plan, psychologists are reimbursed at 80%, up to $2,500 per calendar year [S1].",
+  "cited": 1,
+  "uncited": 0,
+  "unsupported": [],
+  "missing": [],
+  "error": null,
+  "flagged": false
+ },
+ {
+  "id": 10,
+  "kind": "percent",
+  "is_error": true,
+  "answer": "On the Enhanced plan, psychologists are reimbursed at 50%, up to $2,500 per calendar year [S1].",
+  "cited": 1,
+  "uncited": 0,
+  "unsupported": [
+   [
+    "On the Enhanced plan, psychologists are reimbursed at 50%, up to $2,500 per calendar year [S1].",
+    "The passage states psychologists are reimbursed at 80% on Enhanced, not 50%. The $2,500 per calendar year limit on Enhanced is correct."
+   ]
+  ],
+  "missing": [],
+  "error": null,
+  "flagged": true
+ },
+ {
+  "id": 10,
+  "kind": "amount",
+  "is_error": true,
+  "answer": "On the Enhanced plan, psychologists are reimbursed at 80%, up to $100 per calendar year [S1].",
+  "cited": 1,
+  "uncited": 0,
+  "unsupported": [
+   [
+    "On the Enhanced plan, psychologists are reimbursed at 80%, up to $100 per calendar year [S1].",
+    "The passage states psychologists are reimbursed at 80% up to $2,500 per calendar year on Enhanced, not $100. The statement has the correct percentage and plan but an incorrect dollar amount."
+   ]
+  ],
+  "missing": [],
+  "error": null,
+  "flagged": true
+ },
+ {
+  "id": 10,
+  "kind": "plan",
+  "is_error": true,
+  "answer": "On the Standard plan, psychologists are reimbursed at 80%, up to $2,500 per calendar year [S1].",
+  "cited": 1,
+  "uncited": 0,
+  "unsupported": [
+   [
+    "On the Standard plan, psychologists are reimbursed at 80%, up to $2,500 per calendar year [S1].",
+    "The passage states psychologists are reimbursed at 80% up to $1,500 per calendar year on Standard, not $2,500. The $2,500 limit applies to the Enhanced plan."
+   ]
+  ],
+  "missing": [],
+  "error": null,
+  "flagged": true
+ },
+ {
+  "id": 11,
+  "kind": "clean",
+  "is_error": false,
+  "answer": "**Braces (Orthodontics):**\n- Reimbursed at 50% for dependent children under age 19 [S1]\n- Lifetime maximum of $2,000 per child [S1]\n- Pre-determination recommended before treatment expected to cost more than $500 [S1]\n\n**Glasses:**\n- Up to $150 every 12 months for children under 18 [S3]\n- Valid prescription and itemized receipt required [S3]",
+  "cited": 5,
+  "uncited": 2,
+  "unsupported": [],
+  "missing": [],
+  "error": null,
+  "flagged": false
+ },
+ {
+  "id": 11,
+  "kind": "percent",
+  "is_error": true,
+  "answer": "**Braces (Orthodontics):**\n- Reimbursed at 80% for dependent children under age 19 [S1]\n- Lifetime maximum of $2,000 per child [S1]\n- Pre-determination recommended before treatment expected to cost more than $500 [S1]\n\n**Glasses:**\n- Up to $150 every 12 months for children under 18 [S3]\n- Valid prescription and itemized receipt required [S3]",
+  "cited": 5,
+  "uncited": 2,
+  "unsupported": [
+   [
+    "- Reimbursed at 80% for dependent children under age 19 [S1]",
+    "The passage states orthodontics are 'reimbursed at 50% for dependent children under age 19', not 80%. The 80% reimbursement applies only to basic services, not dependent children specifically."
+   ]
+  ],
+  "missing": [],
+  "error": null,
+  "flagged": true
+ },
+ {
+  "id": 11,
+  "kind": "amount",
+  "is_error": true,
+  "answer": "**Braces (Orthodontics):**\n- Reimbursed at 50% for dependent children under age 19 [S1]\n- Lifetime maximum of $100 per child [S1]\n- Pre-determination recommended before treatment expected to cost more than $500 [S1]\n\n**Glasses:**\n- Up to $150 every 12 months for children under 18 [S3]\n- Valid prescription and itemized receipt required [S3]",
+  "cited": 5,
+  "uncited": 2,
+  "unsupported": [
+   [
+    "- Lifetime maximum of $100 per child [S1]",
+    "S1 states the lifetime maximum for orthodontics is $2,000 per child, not $100"
+   ]
+  ],
+  "missing": [],
+  "error": null,
+  "flagged": true
+ },
+ {
+  "id": 101,
+  "kind": "clean",
+  "is_error": false,
+  "answer": "According to the policy, new employees become eligible for health benefits after a **3-month waiting period**. Dependants are covered from the same date [S1].",
+  "cited": 1,
+  "uncited": 1,
+  "unsupported": [],
+  "missing": [],
+  "error": null,
+  "flagged": false
+ },
+ {
+  "id": 102,
+  "kind": "clean",
+  "is_error": false,
+  "answer": "According to the policy, an adult can have a dental check-up (recall exam) covered once every 9 months [S1].",
+  "cited": 1,
+  "uncited": 0,
+  "unsupported": [],
+  "missing": [],
+  "error": null,
+  "flagged": false
+ },
+ {
+  "id": 103,
+  "kind": "clean",
+  "is_error": false,
+  "answer": "Laser eye surgery is covered on the **Enhanced plan only**, up to $500 per eye as a lifetime maximum [S1]. You are currently on the Standard plan, so laser eye surgery is not covered under your plan.",
+  "cited": 1,
+  "uncited": 1,
+  "unsupported": [],
+  "missing": [],
+  "error": null,
+  "flagged": false
+ },
+ {
+  "id": 103,
+  "kind": "amount",
+  "is_error": true,
+  "answer": "Laser eye surgery is covered on the **Enhanced plan only**, up to $100 per eye as a lifetime maximum [S1]. You are currently on the Standard plan, so laser eye surgery is not covered under your plan.",
+  "cited": 1,
+  "uncited": 1,
+  "unsupported": [
+   [
+    "Laser eye surgery is covered on the **Enhanced plan only**, up to $100 per eye as a lifetime maximum [S1].",
+    "The passage states laser eye surgery is covered 'up to $500 per eye as a lifetime maximum,' not $100 per eye as the statement claims. The plan restriction (Enhanced plan only) is correct, but the dollar amount is incorrect."
+   ]
+  ],
+  "missing": [],
+  "error": null,
+  "flagged": true
+ },
+ {
+  "id": 104,
+  "kind": "clean",
+  "is_error": false,
+  "answer": "Online claims are processed within 5 business days [S1]. \n\nIf your claim is over $5,000, it may require additional supporting documents and can take longer [S1].",
+  "cited": 2,
+  "uncited": 0,
+  "unsupported": [],
+  "missing": [],
+  "error": null,
+  "flagged": false
+ },
+ {
+  "id": 104,
+  "kind": "amount",
+  "is_error": true,
+  "answer": "Online claims are processed within 5 business days [S1]. \n\nIf your claim is over $100 it may require additional supporting documents and can take longer [S1].",
+  "cited": 2,
+  "uncited": 0,
+  "unsupported": [
+   [
+    "If your claim is over $100 it may require additional supporting documents and can take longer [S1].",
+    "The passage states the threshold is $5,000, not $100. It says 'claims over $5,000 may require additional supporting documents and can take longer.'"
+   ]
+  ],
+  "missing": [],
+  "error": null,
+  "flagged": true
+ },
+ {
+  "id": 105,
+  "kind": "clean",
+  "is_error": false,
+  "answer": "Yes. According to your plan, prior authorization is required for any prescription drug that costs more than $1,500 per 30-day supply. Your physician submits the request, and a decision is made within 5 business days [S1].",
+  "cited": 1,
+  "uncited": 2,
+  "unsupported": [],
+  "missing": [],
+  "error": null,
+  "flagged": false
+ },
+ {
+  "id": 105,
+  "kind": "amount",
+  "is_error": true,
+  "answer": "Yes. According to your plan, prior authorization is required for any prescription drug that costs more than $100 per 30-day supply. Your physician submits the request, and a decision is made within 5 business days [S1].",
+  "cited": 1,
+  "uncited": 2,
+  "unsupported": [],
+  "missing": [],
+  "error": null,
+  "flagged": false
+ },
+ {
+  "id": 106,
+  "kind": "clean",
+  "is_error": false,
+  "answer": "You can change your beneficiary in two ways [S1]:\n\n1. **Update in the member portal** \u2013 log in and make the change yourself\n2. **Submit a signed paper form** \u2013 send it to Evergreen Life\n\nYou can make this change at any time.",
+  "cited": 1,
+  "uncited": 5,
+  "unsupported": [
+   [
+    "You can change your beneficiary in two ways [S1]:",
+    "The passage states you can update your beneficiary 'in the member portal or by submitting a signed paper form' but does not explicitly state there are 'two ways' to change your beneficiary. While two methods are mentioned, the passage does not use the phrase 'two ways' or directly state this as a count."
+   ]
+  ],
+  "missing": [],
+  "error": null,
+  "flagged": true
+ },
+ {
+  "id": 107,
+  "kind": "clean",
+  "is_error": false,
+  "answer": "You have **90 days from the date of the denial decision** to appeal a denied disability claim in writing. The appeal will be handled by a human claims specialist [S1].\n\nIf you'd like to proceed with an appeal, I can escalate your case to our team for assistance.",
+  "cited": 1,
+  "uncited": 2,
+  "unsupported": [],
+  "missing": [],
+  "error": null,
+  "flagged": false
+ },
+ {
+  "id": 108,
+  "kind": "clean",
+  "is_error": false,
+  "answer": "Yes. Your employer provides an Employee Assistance Program (EAP) that offers up to 6 free counselling sessions per issue, available 24/7. You can reach it at 1-800-555-0177 [S1].\n\nIf you're in crisis, you can also call or text 9-8-8 for the Suicide Crisis Helpline at any time [S1].",
+  "cited": 2,
+  "uncited": 2,
+  "unsupported": [],
+  "missing": [],
+  "error": null,
+  "flagged": false
+ },
+ {
+  "id": 109,
+  "kind": "clean",
+  "is_error": false,
+  "answer": "On the Standard plan:\n\n- **Yearly dental maximum:** $1,500 per person [S1]\n- **Fillings coverage:** Fillings are a basic service and are reimbursed at 80% on the Standard plan [S1]",
+  "cited": 2,
+  "uncited": 1,
+  "unsupported": [
+   [
+    "- **Yearly dental maximum:** $1,500 per person [S1]",
+    "The passage states $1,500 per person on Standard plan, but also mentions $2,500 per person on Enhanced plan. The statement presents only the Standard amount as if it applies universally to all plans."
+   ]
+  ],
+  "missing": [],
+  "error": null,
+  "flagged": true
+ },
+ {
+  "id": 109,
+  "kind": "percent",
+  "is_error": true,
+  "answer": "On the Standard plan:\n\n- **Yearly dental maximum:** $1,500 per person [S1]\n- **Fillings coverage:** Fillings are a basic service and are reimbursed at 50% on the Standard plan [S1]",
+  "cited": 2,
+  "uncited": 1,
+  "unsupported": [
+   [
+    "- **Yearly dental maximum:** $1,500 per person [S1]",
+    "The passage states $1,500 per person on Standard plan, but does not state this is the yearly maximum for all people universally. It specifies the amount varies by plan ($1,500 Standard vs $2,500 Enhanced), so stating '$1,500 per person' without qualification is incomplete."
+   ],
+   [
+    "- **Fillings coverage:** Fillings are a basic service and are reimbursed at 50% on the Standard plan [S1]",
+    "The passage states fillings are reimbursed at 80% on Standard, not 50%. The 50% reimbursement rate applies to major services (crowns, bridges, dentures), not basic services like fillings."
+   ]
+  ],
+  "missing": [],
+  "error": null,
+  "flagged": true
+ },
+ {
+  "id": 109,
+  "kind": "amount",
+  "is_error": true,
+  "answer": "On the Standard plan:\n\n- **Yearly dental maximum:** $100 per person [S1]\n- **Fillings coverage:** Fillings are a basic service and are reimbursed at 80% on the Standard plan [S1]",
+  "cited": 2,
+  "uncited": 1,
+  "unsupported": [
+   [
+    "- **Yearly dental maximum:** $100 per person [S1]",
+    "The passage states the annual dental maximum is $1,500 per person on Standard and $2,500 per person on Enhanced, not $100 per person."
+   ]
+  ],
+  "missing": [],
+  "error": null,
+  "flagged": true
+ },
+ {
+  "id": 109,
+  "kind": "plan",
+  "is_error": true,
+  "answer": "On the Enhanced plan:\n\n- **Yearly dental maximum:** $1,500 per person [S1]\n- **Fillings coverage:** Fillings are a basic service and are reimbursed at 80% on the Enhanced plan [S1]",
+  "cited": 2,
+  "uncited": 1,
+  "unsupported": [
+   [
+    "- **Yearly dental maximum:** $1,500 per person [S1]",
+    "The passage states $1,500 per person on Standard plan, but the statement omits this qualification. The statement presents $1,500 as if it applies universally, when the passage shows it only applies to Standard (Enhanced is $2,500)."
+   ],
+   [
+    "- **Fillings coverage:** Fillings are a basic service and are reimbursed at 80% on the Enhanced plan [S1]",
+    "The passage states fillings are reimbursed at '80% on Standard and 100% on Enhanced.' The statement claims 80% on Enhanced, which contradicts the passage."
+   ]
+  ],
+  "missing": [],
+  "error": null,
+  "flagged": true
+ },
+ {
+  "id": 110,
+  "kind": "clean",
+  "is_error": false,
+  "answer": "Based on the policy:\n\n**What short-term disability pays:**\nShort-term disability (STD) pays 70% of your weekly earnings, up to a maximum of $1,200 per week [S1]. Benefits begin after a 7-calendar-day waiting period and last up to 17 weeks.\n\n**Claims processing time:**\nThe policy states that you must submit your physician's medical statement within 30 days of your last day worked [S1], but it does not specify how long Evergreen Life takes to process and approve the claim after submission. For details on the actual processing timeline, I'd recommend contacting our claims team directly.",
+  "cited": 2,
+  "uncited": 5,
+  "unsupported": [],
+  "missing": [],
+  "error": null,
+  "flagged": false
+ },
+ {
+  "id": 110,
+  "kind": "percent",
+  "is_error": true,
+  "answer": "Based on the policy:\n\n**What short-term disability pays:**\nShort-term disability (STD) pays 50% of your weekly earnings, up to a maximum of $1,200 per week [S1]. Benefits begin after a 7-calendar-day waiting period and last up to 17 weeks.\n\n**Claims processing time:**\nThe policy states that you must submit your physician's medical statement within 30 days of your last day worked [S1], but it does not specify how long Evergreen Life takes to process and approve the claim after submission. For details on the actual processing timeline, I'd recommend contacting our claims team directly.",
+  "cited": 2,
+  "uncited": 5,
+  "unsupported": [
+   [
+    "Short-term disability (STD) pays 50% of your weekly earnings, up to a maximum of $1,200 per week [S1].",
+    "The passage states STD 'pays 70% of weekly earnings up to $1,200 per week,' not 50% as claimed in the statement."
+   ]
+  ],
+  "missing": [],
+  "error": null,
+  "flagged": true
+ },
+ {
+  "id": 110,
+  "kind": "amount",
+  "is_error": true,
+  "answer": "Based on the policy:\n\n**What short-term disability pays:**\nShort-term disability (STD) pays 70% of your weekly earnings, up to a maximum of $100 per week [S1]. Benefits begin after a 7-calendar-day waiting period and last up to 17 weeks.\n\n**Claims processing time:**\nThe policy states that you must submit your physician's medical statement within 30 days of your last day worked [S1], but it does not specify how long Evergreen Life takes to process and approve the claim after submission. For details on the actual processing timeline, I'd recommend contacting our claims team directly.",
+  "cited": 2,
+  "uncited": 5,
+  "unsupported": [
+   [
+    "Short-term disability (STD) pays 70% of your weekly earnings, up to a maximum of $100 per week [S1].",
+    "The passage states STD 'pays 70% of weekly earnings up to $1,200 per week,' not '$100 per week.' The maximum is $1,200, not $100."
+   ]
+  ],
+  "missing": [],
+  "error": null,
+  "flagged": true
+ },
+ {
+  "id": 301,
+  "kind": "clean",
+  "is_error": false,
+  "answer": "You have **$600** of your dental maximum remaining this year.",
+  "cited": 0,
+  "uncited": 1,
+  "unsupported": [],
+  "missing": [],
+  "error": null,
+  "flagged": false
+ },
+ {
+  "id": 301,
+  "kind": "amount",
+  "is_error": true,
+  "answer": "You have **$100** of your dental maximum remaining this year.",
+  "cited": 0,
+  "uncited": 1,
+  "unsupported": [],
+  "missing": [],
+  "error": null,
+  "flagged": false
+ },
+ {
+  "id": 302,
+  "kind": "clean",
+  "is_error": false,
+  "answer": "You have **$200 remaining** of your dental maximum for 2026 [S1].",
+  "cited": 1,
+  "uncited": 0,
+  "unsupported": [],
+  "missing": [],
+  "error": null,
+  "flagged": false
+ },
+ {
+  "id": 302,
+  "kind": "amount",
+  "is_error": true,
+  "answer": "You have **$100 remaining** of your dental maximum for 2026 [S1].",
+  "cited": 1,
+  "uncited": 0,
+  "unsupported": [
+   [
+    "You have **$100 remaining** of your dental maximum for 2026 [S1].",
+    "The passage shows $2,500 annual maximum for Enhanced plan and $2,300 used, which equals $200 remaining, not $100. The statement claims $100 remaining, which contradicts the calculation shown in the passage."
+   ]
+  ],
+  "missing": [],
+  "error": null,
+  "flagged": true
+ },
+ {
+  "id": 303,
+  "kind": "clean",
+  "is_error": false,
+  "answer": "Yes, your daughter is covered for braces. According to your plan, orthodontics for dependent children under age 19 are reimbursed at **50%**, with a **lifetime maximum of $2,000 per child** [S1].\n\nSince your daughter is 12 years old, she qualifies for this coverage. The policy also recommends submitting a pre-determination (the dentist's treatment plan) through the portal before any treatment expected to cost more than $500 [S1].",
+  "cited": 2,
+  "uncited": 2,
+  "unsupported": [],
+  "missing": [],
+  "error": null,
+  "flagged": false
+ },
+ {
+  "id": 303,
+  "kind": "percent",
+  "is_error": true,
+  "answer": "Yes, your daughter is covered for braces. According to your plan, orthodontics for dependent children under age 19 are reimbursed at **80%**, with a **lifetime maximum of $2,000 per child** [S1].\n\nSince your daughter is 12 years old, she qualifies for this coverage. The policy also recommends submitting a pre-determination (the dentist's treatment plan) through the portal before any treatment expected to cost more than $500 [S1].",
+  "cited": 2,
+  "uncited": 2,
+  "unsupported": [
+   [
+    "According to your plan, orthodontics for dependent children under age 19 are reimbursed at **80%**, with a **lifetime maximum of $2,000 per child** [S1].",
+    "The passage states orthodontics are reimbursed at 50%, not 80%. The 80% reimbursement rate applies to basic services, not orthodontics."
+   ]
+  ],
+  "missing": [],
+  "error": null,
+  "flagged": true
+ },
+ {
+  "id": 303,
+  "kind": "amount",
+  "is_error": true,
+  "answer": "Yes, your daughter is covered for braces. According to your plan, orthodontics for dependent children under age 19 are reimbursed at **50%**, with a **lifetime maximum of $100 per child** [S1].\n\nSince your daughter is 12 years old, she qualifies for this coverage. The policy also recommends submitting a pre-determination (the dentist's treatment plan) through the portal before any treatment expected to cost more than $500 [S1].",
+  "cited": 2,
+  "uncited": 2,
+  "unsupported": [
+   [
+    "According to your plan, orthodontics for dependent children under age 19 are reimbursed at **50%**, with a **lifetime maximum of $100 per child** [S1].",
+    "The passage states the lifetime maximum for orthodontics is $2,000 per child, not $100 per child as claimed in the statement."
+   ]
+  ],
+  "missing": [],
+  "error": null,
+  "flagged": true
+ },
+ {
+  "id": 304,
+  "kind": "clean",
+  "is_error": false,
+  "answer": "Your son is under 18, so he's eligible for up to $150 every 12 months for eyeglasses or contact lenses [S1]. \n\nA valid prescription and an itemized receipt are required for the claim [S1].",
+  "cited": 2,
+  "uncited": 0,
+  "unsupported": [],
+  "missing": [],
+  "error": null,
+  "flagged": false
+ },
+ {
+  "id": 304,
+  "kind": "amount",
+  "is_error": true,
+  "answer": "Your son is under 18, so he's eligible for up to $100 every 12 months for eyeglasses or contact lenses [S1]. \n\nA valid prescription and an itemized receipt are required for the claim [S1].",
+  "cited": 2,
+  "uncited": 0,
+  "unsupported": [
+   [
+    "Your son is under 18, so he's eligible for up to $100 every 12 months for eyeglasses or contact lenses [S1].",
+    "The passage states children under 18 are eligible for 'up to $150 every 12 months', not $100. The statement incorrectly cites $100."
+   ]
+  ],
+  "missing": [],
+  "error": null,
+  "flagged": true
+ },
+ {
+  "id": 305,
+  "kind": "clean",
+  "is_error": false,
+  "answer": "You have **$400** in physiotherapy coverage remaining this year.",
+  "cited": 0,
+  "uncited": 1,
+  "unsupported": [],
+  "missing": [],
+  "error": null,
+  "flagged": false
+ },
+ {
+  "id": 305,
+  "kind": "amount",
+  "is_error": true,
+  "answer": "You have **$100** in physiotherapy coverage remaining this year.",
+  "cited": 0,
+  "uncited": 1,
+  "unsupported": [],
+  "missing": [],
+  "error": null,
+  "flagged": false
+ },
+ {
+  "id": 306,
+  "kind": "clean",
+  "is_error": false,
+  "answer": "Your yearly deductible is **$100 per person** on your Standard plan. Since you have a dependent (your daughter), the family deductible is **$200 per family** [S1].\n\nAfter you meet your deductible, eligible expenses are reimbursed at 80%.",
+  "cited": 1,
+  "uncited": 2,
+  "unsupported": [],
+  "missing": [],
+  "error": null,
+  "flagged": false
+ },
+ {
+  "id": 306,
+  "kind": "percent",
+  "is_error": true,
+  "answer": "Your yearly deductible is **$100 per person** on your Standard plan. Since you have a dependent (your daughter), the family deductible is **$200 per family** [S1].\n\nAfter you meet your deductible, eligible expenses are reimbursed at 50%.",
+  "cited": 1,
+  "uncited": 2,
+  "unsupported": [],
+  "missing": [],
+  "error": null,
+  "flagged": false
+ },
+ {
+  "id": 306,
+  "kind": "amount",
+  "is_error": true,
+  "answer": "Your yearly deductible is **$150 per person** on your Standard plan. Since you have a dependent (your daughter), the family deductible is **$200 per family** [S1].\n\nAfter you meet your deductible, eligible expenses are reimbursed at 80%.",
+  "cited": 1,
+  "uncited": 2,
+  "unsupported": [],
+  "missing": [],
+  "error": null,
+  "flagged": false
+ },
+ {
+  "id": 306,
+  "kind": "plan",
+  "is_error": true,
+  "answer": "Your yearly deductible is **$100 per person** on your Enhanced plan. Since you have a dependent (your daughter), the family deductible is **$200 per family** [S1].\n\nAfter you meet your deductible, eligible expenses are reimbursed at 80%.",
+  "cited": 1,
+  "uncited": 2,
+  "unsupported": [],
+  "missing": [],
+  "error": null,
+  "flagged": false
+ },
+ {
+  "id": 501,
+  "kind": "real_stored",
+  "is_error": true,
+  "answer": "Based on your Enhanced plan, your plan will pay up to **$2,500 per calendar year** toward psychologists, registered social workers, and psychotherapists, reimbursed at 90% after eligible expenses are covered [S1].\n\nNote that this covers psychologists, registered social workers, and psychotherapists specifically. If you're looking for other types of counselling support, your plan also includes an Employee Assistance Program (EAP) with up to 6 free counselling sessions per issue, available 24/7 at 1-800-555-0177 [S1].",
+  "cited": 2,
+  "uncited": 1,
+  "unsupported": [
+   [
+    "Based on your Enhanced plan, your plan will pay up to **$2,500 per calendar year** toward psychologists, registered social workers, and psychotherapists, reimbursed at 90% after eligible expenses are covered [S1].",
+    "The passage states reimbursement is at 80%, not 90%. The statement claims '90% after eligible expenses are covered' but the source says 'reimbursed at 80%'."
+   ]
+  ],
+  "missing": [],
+  "error": null,
+  "flagged": true
+ },
+ {
+  "id": 501,
+  "kind": "real_new",
+  "is_error": null,
+  "answer": "Based on your Enhanced plan, counsellor coverage depends on the type of provider:\n\n**For psychologists, registered social workers, and psychotherapists:** your plan reimburses at 80%, up to **$2,500 per calendar year** [S1].\n\n**For general counselling through your Employee Assistance Program (EAP):** you get up to **6 free counselling sessions per issue**, available 24/7 at 1-800-555-0177 [S1].\n\nNote that the policy specifies coverage for psychologists, registered social workers, and psychotherapists\u2014you may want to confirm your counsellor's credentials to determine which benefit applies.",
+  "cited": 2,
+  "uncited": 2,
+  "unsupported": [
+   [
+    "**For psychologists, registered social workers, and psychotherapists:** your plan reimburses at 80%, up to **$2,500 per calendar year** [S1].",
+    "The passage states the $2,500 limit applies to the 'Enhanced' plan specifically, not universally to 'your plan'. The Standard plan has a $1,500 limit. The statement omits this distinction."
+   ]
+  ],
+  "missing": [],
+  "error": null,
+  "flagged": true
+ },
+ {
+  "id": 506,
+  "kind": "real_stored",
+  "is_error": true,
+  "answer": "Based on your Standard plan, here's what you can claim:\n\n**For you (adult):**\n- Eye exam: up to $100 every 24 months [S1]\n- Eyeglasses or contact lenses: up to $250 every 24 months [S1]\n\n**For your son (age 16, under 18):**\n- Eyeglasses or contact lenses: up to $150 every 12 months [S1]\n- Eye exams: up to $100 every 24 months [S1]\n\nFor all vision claims, you'll need a valid prescription and an itemized receipt [S1].",
+  "cited": 5,
+  "uncited": 3,
+  "unsupported": [
+   [
+    "- Eyeglasses or contact lenses: up to $250 every 24 months [S1]",
+    "Statement omits 'for adults' qualifier. Passage specifies this applies to adults, while children under 18 have different coverage ($150 every 12 months)"
+   ],
+   [
+    "- Eye exams: up to $100 every 24 months [S1]",
+    "Statement omits 'for adults' qualifier. Passage specifies 'Eye exams: up to $100 every 24 months for adults'"
+   ]
+  ],
+  "missing": [],
+  "error": null,
+  "flagged": true
+ },
+ {
+  "id": 506,
+  "kind": "real_new",
+  "is_error": null,
+  "answer": "Based on your plan, here's what you can claim:\n\n**For your eye exam:** up to $100 every 24 months [S1]\n\n**For your glasses:** up to $250 every 24 months [S1]\n\n**For your son's glasses:** up to $150 every 12 months (he's under 18) [S1]\n\nA valid prescription and an itemized receipt are required for all vision claims [S1].",
+  "cited": 4,
+  "uncited": 1,
+  "unsupported": [],
+  "missing": [],
+  "error": null,
+  "flagged": false
+ }
+]
