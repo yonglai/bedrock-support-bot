@@ -290,3 +290,21 @@ What it adds: a deployed, isolated (one microVM per session) endpoint that the a
 not change: behaviour. Cost choices: zip not container, PUBLIC network (no NAT gateway), no AgentCore Memory/Gateway/Identity,
 idle timeout 60 s because memory bills while a session idles.
 Caveat: nothing here tests concurrency, cold start or auth (the endpoint uses IAM/SigV4 only).
+
+## Claim-level verifier (step7; Haiku 4.5, 26 answers from dev, held-out and agent sets)
+Clean answers (assumed correct): 1 of 26 flagged (4%). Injected errors (swap a percentage, an amount, or the plan name):
+caught 31 of 31 (percent 8/8, amount 18/18, plan 5/5); no unparsable replies; verifier latency median 1.2 s, max 1.9 s
+(one extra model call per answer).
+The one clean flag (Q10, "psychologists on the Enhanced plan are reimbursed at 80%"): the mental-health document gives 80% for
+psychologists on both plans and varies only the dollar cap, but the overview says the Enhanced plan reimburses eligible expenses
+at 90%. The verifier chose the 90% and said the 80% belongs to Standard, which misreads the mental-health line. So it is a
+false flag caused by a real ambiguity in the documents: a policy-text problem to fix at the source, not only a verifier problem.
+Check on the check: a trivial rule "the answer contains a number that appears nowhere in the sources" would catch only 14 of the
+26 numeric injections, because the wrong value usually appears elsewhere in the sources. The verifier caught all 26, so it is
+checking context (which plan, which service), as intended, and not just string presence.
+Caveats: errors were injected by me, one per answer, and are blunter than the model's real mistakes; n is small (31/31 means
+the true catch rate is plausibly 90% or higher, not 100%); 26 clean answers say little about the false-flag rate; the same
+Haiku model that wrote the answers checks them. Untested: real errors such as Q501 (90% where 80% applied) and Q506 (adult
+eye exam applied to a son), which were kept out of this run on purpose.
+Decision pending: whether to add it as a second gate after the grounding check. Cost is +1.2 s and one call per answer, plus
+about 1 in 25 correct answers going to a human or a retry.

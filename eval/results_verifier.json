@@ -1,0 +1,732 @@
+[
+ {
+  "id": 1,
+  "kind": "clean",
+  "answer": "You have **12 months from the date of the expense** to submit a claim [S1]. Claims submitted after that deadline are not eligible.",
+  "flagged": false,
+  "claims": [],
+  "error": null,
+  "ms": 765
+ },
+ {
+  "id": 2,
+  "kind": "clean",
+  "answer": "According to the policy, the Standard plan has an annual deductible of **$100 per person** ($200 per family) [S2].",
+  "flagged": false,
+  "claims": [],
+  "error": null,
+  "ms": 852
+ },
+ {
+  "id": 2,
+  "kind": "amount",
+  "answer": "According to the policy, the Standard plan has an annual deductible of **$150 per person** ($200 per family) [S2].",
+  "flagged": true,
+  "claims": [
+   {
+    "claim": "The Standard plan has an annual deductible of $150 per person",
+    "supported": false,
+    "evidence": "S2 states 'Standard plan: annual deductible of $100 per person ($200 per family)' - the answer claims $150 but the source states $100"
+   }
+  ],
+  "error": null,
+  "ms": 980
+ },
+ {
+  "id": 2,
+  "kind": "plan",
+  "answer": "According to the policy, the Enhanced plan has an annual deductible of **$100 per person** ($200 per family) [S2].",
+  "flagged": true,
+  "claims": [
+   {
+    "claim": "The Enhanced plan has an annual deductible of $100 per person ($200 per family)",
+    "supported": false,
+    "evidence": "S2 states 'Enhanced plan: no deductible.' The $100 per person ($200 per family) deductible applies to the Standard plan, not the Enhanced plan."
+   }
+  ],
+  "error": null,
+  "ms": 841
+ },
+ {
+  "id": 3,
+  "kind": "clean",
+  "answer": "The Enhanced plan reimburses prescription drugs at **90%** [S1].",
+  "flagged": false,
+  "claims": [],
+  "error": null,
+  "ms": 798
+ },
+ {
+  "id": 3,
+  "kind": "percent",
+  "answer": "The Enhanced plan reimburses prescription drugs at **50%** [S1].",
+  "flagged": true,
+  "claims": [
+   {
+    "claim": "The Enhanced plan reimburses prescription drugs at 50%",
+    "supported": false,
+    "evidence": "S1 states 'Prescription drugs are reimbursed at 80% on Standard and 90% on Enhanced.' The correct reimbursement rate for Enhanced is 90%, not 50%."
+   }
+  ],
+  "error": null,
+  "ms": 934
+ },
+ {
+  "id": 3,
+  "kind": "plan",
+  "answer": "The Standard plan reimburses prescription drugs at **90%** [S1].",
+  "flagged": true,
+  "claims": [
+   {
+    "claim": "The Standard plan reimburses prescription drugs at 90%",
+    "supported": false,
+    "evidence": "S1 states 'Prescription drugs are reimbursed at 80% on Standard and 90% on Enhanced.' The answer incorrectly attributes the 90% reimbursement rate to the Standard plan when it actually applies to the Enhanced plan."
+   }
+  ],
+  "error": null,
+  "ms": 1007
+ },
+ {
+  "id": 4,
+  "kind": "clean",
+  "answer": "For children under 18, you can claim up to $150 every 12 months for eyeglasses or contact lenses [S2]. A valid prescription and an itemized receipt are required for the claim.\n\nNote: Your plan shows a 12-year-old daughter as a dependant. If the 10-year-old is also your dependant, the same $150 per 12 months limit would apply to them as well.",
+  "flagged": false,
+  "claims": [],
+  "error": null,
+  "ms": 1564
+ },
+ {
+  "id": 4,
+  "kind": "amount",
+  "answer": "For children under 18, you can claim up to $100 every 12 months for eyeglasses or contact lenses [S2]. A valid prescription and an itemized receipt are required for the claim.\n\nNote: Your plan shows a 12-year-old daughter as a dependant. If the 10-year-old is also your dependant, the same $150 per 12 months limit would apply to them as well.",
+  "flagged": true,
+  "claims": [
+   {
+    "claim": "Children under 18 can claim up to $100 every 12 months for eyeglasses or contact lenses",
+    "supported": false,
+    "evidence": "S2 states 'For children under 18, up to $150 every 12 months' for eyeglasses or contact lenses. The answer incorrectly states $100 instead of $150."
+   }
+  ],
+  "error": null,
+  "ms": 1525
+ },
+ {
+  "id": 5,
+  "kind": "clean",
+  "answer": "Based on your plan, short-term disability:\n\n**Duration:** Lasts up to 17 weeks [S1]\n\n**Payment:** Pays 70% of your weekly earnings, up to a maximum of $1,200 per week [S1]\n\n**Waiting period:** Benefits begin after a 7-calendar-day waiting period [S1]",
+  "flagged": false,
+  "claims": [],
+  "error": null,
+  "ms": 1224
+ },
+ {
+  "id": 5,
+  "kind": "percent",
+  "answer": "Based on your plan, short-term disability:\n\n**Duration:** Lasts up to 17 weeks [S1]\n\n**Payment:** Pays 50% of your weekly earnings, up to a maximum of $1,200 per week [S1]\n\n**Waiting period:** Benefits begin after a 7-calendar-day waiting period [S1]",
+  "flagged": true,
+  "claims": [
+   {
+    "claim": "Short-term disability pays 50% of weekly earnings",
+    "supported": false,
+    "evidence": "Sources state it pays 70% of weekly earnings, not 50%"
+   }
+  ],
+  "error": null,
+  "ms": 1208
+ },
+ {
+  "id": 5,
+  "kind": "amount",
+  "answer": "Based on your plan, short-term disability:\n\n**Duration:** Lasts up to 17 weeks [S1]\n\n**Payment:** Pays 70% of your weekly earnings, up to a maximum of $100 per week [S1]\n\n**Waiting period:** Benefits begin after a 7-calendar-day waiting period [S1]",
+  "flagged": true,
+  "claims": [
+   {
+    "claim": "Short-term disability pays up to a maximum of $100 per week",
+    "supported": false,
+    "evidence": "The sources state the maximum is $1,200 per week, not $100 per week"
+   }
+  ],
+  "error": null,
+  "ms": 1182
+ },
+ {
+  "id": 6,
+  "kind": "clean",
+  "answer": "Long-term disability (LTD) starts after 119 days of disability, which is the end of the short-term disability (STD) period [S1]. \n\nShort-term disability begins after a 7-calendar-day waiting period and lasts up to 17 weeks. Once that period ends, long-term disability coverage takes over.",
+  "flagged": false,
+  "claims": [],
+  "error": null,
+  "ms": 1230
+ },
+ {
+  "id": 7,
+  "kind": "clean",
+  "answer": "Based on the policy:\n\n**Maximum life insurance:** The most you can get is **$500,000** [S1]. Your coverage is calculated as 2 times your annual earnings (rounded up to the next $1,000), but it cannot exceed this $500,000 maximum.\n\n**Health questionnaire requirement:** You need a health questionnaire if your coverage amount is **above $300,000**. The questionnaire must be approved before your coverage takes effect [S1].",
+  "flagged": false,
+  "claims": [],
+  "error": null,
+  "ms": 1171
+ },
+ {
+  "id": 7,
+  "kind": "amount",
+  "answer": "Based on the policy:\n\n**Maximum life insurance:** The most you can get is **$100** [S1]. Your coverage is calculated as 2 times your annual earnings (rounded up to the next $1,000), but it cannot exceed this $500,000 maximum.\n\n**Health questionnaire requirement:** You need a health questionnaire if your coverage amount is **above $300,000**. The questionnaire must be approved before your coverage takes effect [S1].",
+  "flagged": true,
+  "claims": [
+   {
+    "claim": "The most life insurance you can get is $100",
+    "supported": false,
+    "evidence": "S1 states the maximum is $500,000, not $100. This appears to be a typo or error in the answer."
+   }
+  ],
+  "error": null,
+  "ms": 1653
+ },
+ {
+  "id": 8,
+  "kind": "clean",
+  "answer": "**Call the assistance line immediately: 1-800-555-0142**\n\nYou must call within 24 hours of your hospital admission. The assistance team will arrange direct payment and coordinate your care [S1].\n\nYour plan covers emergency medical expenses up to $5,000,000 per person per trip for trips up to 60 days [S1].",
+  "flagged": false,
+  "claims": [],
+  "error": null,
+  "ms": 1443
+ },
+ {
+  "id": 8,
+  "kind": "amount",
+  "answer": "**Call the assistance line immediately: 1-800-555-0142**\n\nYou must call within 24 hours of your hospital admission. The assistance team will arrange direct payment and coordinate your care [S1].\n\nYour plan covers emergency medical expenses up to $100 per person per trip for trips up to 60 days [S1].",
+  "flagged": true,
+  "claims": [
+   {
+    "claim": "Your plan covers emergency medical expenses up to $100 per person per trip for trips up to 60 days",
+    "supported": false,
+    "evidence": "S1 states the coverage is 'up to $5,000,000 per person per trip', not $100. The answer contains an incorrect figure."
+   }
+  ],
+  "error": null,
+  "ms": 1436
+ },
+ {
+  "id": 10,
+  "kind": "clean",
+  "answer": "On the Enhanced plan, psychologists are reimbursed at 80%, up to $2,500 per calendar year [S1].",
+  "flagged": true,
+  "claims": [
+   {
+    "claim": "On the Enhanced plan, psychologists are reimbursed at 80%",
+    "supported": false,
+    "evidence": "S1 states psychologists are 'reimbursed at 80%, up to $1,500 per calendar year on Standard and $2,500 on Enhanced.' S2 states the Enhanced plan reimburses eligible expenses at 90%, not 80%. The 80% reimbursement rate applies to the Standard plan, not Enhanced."
+   }
+  ],
+  "error": null,
+  "ms": 1279
+ },
+ {
+  "id": 10,
+  "kind": "percent",
+  "answer": "On the Enhanced plan, psychologists are reimbursed at 50%, up to $2,500 per calendar year [S1].",
+  "flagged": true,
+  "claims": [
+   {
+    "claim": "psychologists are reimbursed at 50% on the Enhanced plan",
+    "supported": false,
+    "evidence": "S1 states psychologists are 'reimbursed at 80%' on both Standard and Enhanced plans, not 50%"
+   }
+  ],
+  "error": null,
+  "ms": 1124
+ },
+ {
+  "id": 10,
+  "kind": "amount",
+  "answer": "On the Enhanced plan, psychologists are reimbursed at 80%, up to $100 per calendar year [S1].",
+  "flagged": true,
+  "claims": [
+   {
+    "claim": "On the Enhanced plan, psychologists are reimbursed at 80%",
+    "supported": false,
+    "evidence": "S1 states psychologists are 'reimbursed at 80%' but S2 indicates the Enhanced plan reimburses eligible expenses at 90%, not 80%. The 80% reimbursement rate applies to the Standard plan."
+   },
+   {
+    "claim": "up to $100 per calendar year",
+    "supported": false,
+    "evidence": "S1 states the Enhanced plan covers psychologists 'up to $2,500 per calendar year on Enhanced', not $100"
+   }
+  ],
+  "error": null,
+  "ms": 1377
+ },
+ {
+  "id": 10,
+  "kind": "plan",
+  "answer": "On the Standard plan, psychologists are reimbursed at 80%, up to $2,500 per calendar year [S1].",
+  "flagged": true,
+  "claims": [
+   {
+    "claim": "On the Standard plan, psychologists are reimbursed at 80%",
+    "supported": false,
+    "evidence": "S1 states psychologists are reimbursed at 80% on both Standard and Enhanced plans, but the answer incorrectly attributes the $2,500 limit to Standard when S1 clearly states '$1,500 per calendar year on Standard and $2,500 on Enhanced'"
+   },
+   {
+    "claim": "up to $2,500 per calendar year on the Standard plan",
+    "supported": false,
+    "evidence": "S1 states the $2,500 limit applies to Enhanced plan only: 'up to $1,500 per calendar year on Standard and $2,500 on Enhanced'"
+   }
+  ],
+  "error": null,
+  "ms": 1385
+ },
+ {
+  "id": 11,
+  "kind": "clean",
+  "answer": "**Braces (Orthodontics):**\n- Reimbursed at 50% for dependent children under age 19 [S1]\n- Lifetime maximum of $2,000 per child [S1]\n- Pre-determination recommended before treatment expected to cost more than $500 [S1]\n\n**Glasses:**\n- Up to $150 every 12 months for children under 18 [S3]\n- Valid prescription and itemized receipt required [S3]",
+  "flagged": false,
+  "claims": [],
+  "error": null,
+  "ms": 1491
+ },
+ {
+  "id": 11,
+  "kind": "percent",
+  "answer": "**Braces (Orthodontics):**\n- Reimbursed at 80% for dependent children under age 19 [S1]\n- Lifetime maximum of $2,000 per child [S1]\n- Pre-determination recommended before treatment expected to cost more than $500 [S1]\n\n**Glasses:**\n- Up to $150 every 12 months for children under 18 [S3]\n- Valid prescription and itemized receipt required [S3]",
+  "flagged": true,
+  "claims": [
+   {
+    "claim": "Braces are reimbursed at 80% for dependent children under age 19",
+    "supported": false,
+    "evidence": "Sources state orthodontics are 'reimbursed at 50% for dependent children under age 19', not 80%"
+   }
+  ],
+  "error": null,
+  "ms": 1638
+ },
+ {
+  "id": 11,
+  "kind": "amount",
+  "answer": "**Braces (Orthodontics):**\n- Reimbursed at 50% for dependent children under age 19 [S1]\n- Lifetime maximum of $100 per child [S1]\n- Pre-determination recommended before treatment expected to cost more than $500 [S1]\n\n**Glasses:**\n- Up to $150 every 12 months for children under 18 [S3]\n- Valid prescription and itemized receipt required [S3]",
+  "flagged": true,
+  "claims": [
+   {
+    "claim": "Lifetime maximum of $100 per child for braces",
+    "supported": false,
+    "evidence": "Sources state lifetime maximum of $2,000 per child, not $100"
+   }
+  ],
+  "error": null,
+  "ms": 1401
+ },
+ {
+  "id": 101,
+  "kind": "clean",
+  "answer": "According to the policy, new employees become eligible for health benefits after a **3-month waiting period**. Dependants are covered from the same date [S1].",
+  "flagged": false,
+  "claims": [],
+  "error": null,
+  "ms": 915
+ },
+ {
+  "id": 102,
+  "kind": "clean",
+  "answer": "According to the policy, an adult can have a dental check-up (recall exam) covered once every 9 months [S1].",
+  "flagged": false,
+  "claims": [],
+  "error": null,
+  "ms": 725
+ },
+ {
+  "id": 103,
+  "kind": "clean",
+  "answer": "Laser eye surgery is covered on the **Enhanced plan only**, up to $500 per eye as a lifetime maximum [S1]. You are currently on the Standard plan, so laser eye surgery is not covered under your plan.",
+  "flagged": false,
+  "claims": [],
+  "error": null,
+  "ms": 1362
+ },
+ {
+  "id": 103,
+  "kind": "amount",
+  "answer": "Laser eye surgery is covered on the **Enhanced plan only**, up to $100 per eye as a lifetime maximum [S1]. You are currently on the Standard plan, so laser eye surgery is not covered under your plan.",
+  "flagged": true,
+  "claims": [
+   {
+    "claim": "Laser eye surgery coverage is up to $100 per eye as a lifetime maximum",
+    "supported": false,
+    "evidence": "S1 states the limit is '$500 per eye as a lifetime maximum', not $100 per eye"
+   }
+  ],
+  "error": null,
+  "ms": 1433
+ },
+ {
+  "id": 104,
+  "kind": "clean",
+  "answer": "Online claims are processed within 5 business days [S1]. \n\nIf your claim is over $5,000, it may require additional supporting documents and can take longer [S1].",
+  "flagged": false,
+  "claims": [],
+  "error": null,
+  "ms": 783
+ },
+ {
+  "id": 104,
+  "kind": "amount",
+  "answer": "Online claims are processed within 5 business days [S1]. \n\nIf your claim is over $100 it may require additional supporting documents and can take longer [S1].",
+  "flagged": true,
+  "claims": [
+   {
+    "claim": "If your claim is over $100 it may require additional supporting documents and can take longer",
+    "supported": false,
+    "evidence": "S1 specifies the threshold as $5,000, not $100: 'claims over $5,000 may require additional supporting documents and can take longer'"
+   }
+  ],
+  "error": null,
+  "ms": 1060
+ },
+ {
+  "id": 105,
+  "kind": "clean",
+  "answer": "Yes. According to your plan, prior authorization is required for any prescription drug that costs more than $1,500 per 30-day supply. Your physician submits the request, and a decision is made within 5 business days [S1].",
+  "flagged": false,
+  "claims": [],
+  "error": null,
+  "ms": 1024
+ },
+ {
+  "id": 105,
+  "kind": "amount",
+  "answer": "Yes. According to your plan, prior authorization is required for any prescription drug that costs more than $100 per 30-day supply. Your physician submits the request, and a decision is made within 5 business days [S1].",
+  "flagged": true,
+  "claims": [
+   {
+    "claim": "Prior authorization is required for prescriptions costing more than $100 per 30-day supply",
+    "supported": false,
+    "evidence": "S1 states the threshold is $1,500 per 30-day supply, not $100"
+   }
+  ],
+  "error": null,
+  "ms": 1024
+ },
+ {
+  "id": 106,
+  "kind": "clean",
+  "answer": "You can change your beneficiary in two ways [S1]:\n\n1. **Update in the member portal** \u2013 log in and make the change yourself\n2. **Submit a signed paper form** \u2013 send it to Evergreen Life\n\nYou can make this change at any time.",
+  "flagged": false,
+  "claims": [],
+  "error": null,
+  "ms": 1043
+ },
+ {
+  "id": 107,
+  "kind": "clean",
+  "answer": "You have **90 days from the date of the denial decision** to appeal a denied disability claim in writing. The appeal will be handled by a human claims specialist [S1].\n\nIf you'd like to proceed with an appeal, I can escalate your case to our team for assistance.",
+  "flagged": false,
+  "claims": [],
+  "error": null,
+  "ms": 1005
+ },
+ {
+  "id": 108,
+  "kind": "clean",
+  "answer": "Yes. Your employer provides an Employee Assistance Program (EAP) that offers up to 6 free counselling sessions per issue, available 24/7. You can reach it at 1-800-555-0177 [S1].\n\nIf you're in crisis, you can also call or text 9-8-8 for the Suicide Crisis Helpline at any time [S1].",
+  "flagged": false,
+  "claims": [],
+  "error": null,
+  "ms": 1535
+ },
+ {
+  "id": 109,
+  "kind": "clean",
+  "answer": "On the Standard plan:\n\n- **Yearly dental maximum:** $1,500 per person [S1]\n- **Fillings coverage:** Fillings are a basic service and are reimbursed at 80% on the Standard plan [S1]",
+  "flagged": false,
+  "claims": [],
+  "error": null,
+  "ms": 1129
+ },
+ {
+  "id": 109,
+  "kind": "percent",
+  "answer": "On the Standard plan:\n\n- **Yearly dental maximum:** $1,500 per person [S1]\n- **Fillings coverage:** Fillings are a basic service and are reimbursed at 50% on the Standard plan [S1]",
+  "flagged": true,
+  "claims": [
+   {
+    "claim": "Fillings are reimbursed at 50% on the Standard plan",
+    "supported": false,
+    "evidence": "Sources state fillings are basic services reimbursed at 80% on Standard and 100% on Enhanced, not 50%"
+   }
+  ],
+  "error": null,
+  "ms": 955
+ },
+ {
+  "id": 109,
+  "kind": "amount",
+  "answer": "On the Standard plan:\n\n- **Yearly dental maximum:** $100 per person [S1]\n- **Fillings coverage:** Fillings are a basic service and are reimbursed at 80% on the Standard plan [S1]",
+  "flagged": true,
+  "claims": [
+   {
+    "claim": "Yearly dental maximum is $100 per person on Standard plan",
+    "supported": false,
+    "evidence": "S1 states 'Annual dental maximum: $1,500 per person on Standard' - the answer incorrectly states $100 instead of $1,500"
+   }
+  ],
+  "error": null,
+  "ms": 1092
+ },
+ {
+  "id": 109,
+  "kind": "plan",
+  "answer": "On the Enhanced plan:\n\n- **Yearly dental maximum:** $1,500 per person [S1]\n- **Fillings coverage:** Fillings are a basic service and are reimbursed at 80% on the Enhanced plan [S1]",
+  "flagged": true,
+  "claims": [
+   {
+    "claim": "On the Enhanced plan, yearly dental maximum is $1,500 per person",
+    "supported": false,
+    "evidence": "The sources state the Enhanced plan has a $2,500 annual dental maximum, not $1,500. The $1,500 maximum applies to the Standard plan."
+   },
+   {
+    "claim": "On the Enhanced plan, fillings are reimbursed at 80%",
+    "supported": false,
+    "evidence": "The sources state fillings are reimbursed at 80% on Standard and 100% on Enhanced. The answer incorrectly applies the Standard plan rate to the Enhanced plan."
+   }
+  ],
+  "error": null,
+  "ms": 1259
+ },
+ {
+  "id": 110,
+  "kind": "clean",
+  "answer": "Based on the policy:\n\n**What short-term disability pays:**\nShort-term disability (STD) pays 70% of your weekly earnings, up to a maximum of $1,200 per week [S1]. Benefits begin after a 7-calendar-day waiting period and last up to 17 weeks.\n\n**Claims processing time:**\nThe policy states that you must submit your physician's medical statement within 30 days of your last day worked [S1], but it does not specify how long Evergreen Life takes to process and approve the claim after submission. For details on the actual processing timeline, I'd recommend contacting our claims team directly.",
+  "flagged": false,
+  "claims": [],
+  "error": null,
+  "ms": 1813
+ },
+ {
+  "id": 110,
+  "kind": "percent",
+  "answer": "Based on the policy:\n\n**What short-term disability pays:**\nShort-term disability (STD) pays 50% of your weekly earnings, up to a maximum of $1,200 per week [S1]. Benefits begin after a 7-calendar-day waiting period and last up to 17 weeks.\n\n**Claims processing time:**\nThe policy states that you must submit your physician's medical statement within 30 days of your last day worked [S1], but it does not specify how long Evergreen Life takes to process and approve the claim after submission. For details on the actual processing timeline, I'd recommend contacting our claims team directly.",
+  "flagged": true,
+  "claims": [
+   {
+    "claim": "Short-term disability pays 50% of weekly earnings",
+    "supported": false,
+    "evidence": "Sources state STD 'pays 70% of weekly earnings up to $1,200 per week' [S1, S3]. The answer incorrectly states 50%."
+   }
+  ],
+  "error": null,
+  "ms": 1948
+ },
+ {
+  "id": 110,
+  "kind": "amount",
+  "answer": "Based on the policy:\n\n**What short-term disability pays:**\nShort-term disability (STD) pays 70% of your weekly earnings, up to a maximum of $100 per week [S1]. Benefits begin after a 7-calendar-day waiting period and last up to 17 weeks.\n\n**Claims processing time:**\nThe policy states that you must submit your physician's medical statement within 30 days of your last day worked [S1], but it does not specify how long Evergreen Life takes to process and approve the claim after submission. For details on the actual processing timeline, I'd recommend contacting our claims team directly.",
+  "flagged": true,
+  "claims": [
+   {
+    "claim": "Maximum of $100 per week",
+    "supported": false,
+    "evidence": "S1 and S3 state the maximum is '$1,200 per week', not $100 per week"
+   }
+  ],
+  "error": null,
+  "ms": 1785
+ },
+ {
+  "id": 301,
+  "kind": "clean",
+  "answer": "You have **$600** of your dental maximum remaining this year.",
+  "flagged": false,
+  "claims": [],
+  "error": null,
+  "ms": 1093
+ },
+ {
+  "id": 301,
+  "kind": "amount",
+  "answer": "You have **$100** of your dental maximum remaining this year.",
+  "flagged": true,
+  "claims": [
+   {
+    "claim": "You have $100 of your dental maximum remaining this year",
+    "supported": false,
+    "evidence": "Customer is on Standard plan with $1,500 annual maximum. Customer data shows $900 used this year. Correct calculation: $1,500 - $900 = $600 remaining, not $100. The answer appears to confuse dental maximum with physiotherapy used ($100)."
+   }
+  ],
+  "error": null,
+  "ms": 969
+ },
+ {
+  "id": 302,
+  "kind": "clean",
+  "answer": "You have **$200 remaining** of your dental maximum for 2026 [S1].",
+  "flagged": false,
+  "claims": [],
+  "error": null,
+  "ms": 1166
+ },
+ {
+  "id": 302,
+  "kind": "amount",
+  "answer": "You have **$100 remaining** of your dental maximum for 2026 [S1].",
+  "flagged": true,
+  "claims": [
+   {
+    "claim": "You have $100 remaining of your dental maximum for 2026",
+    "supported": false,
+    "evidence": "Customer is on Enhanced plan with $2,500 annual maximum (S1). Customer has used $2,300 this year. $2,500 - $2,300 = $200 remaining, not $100. The arithmetic in the answer is incorrect."
+   }
+  ],
+  "error": null,
+  "ms": 921
+ },
+ {
+  "id": 303,
+  "kind": "clean",
+  "answer": "Yes, your daughter is covered for braces. According to your plan, orthodontics for dependent children under age 19 are reimbursed at **50%**, with a **lifetime maximum of $2,000 per child** [S1].\n\nSince your daughter is 12 years old, she qualifies for this coverage. The policy also recommends submitting a pre-determination (the dentist's treatment plan) through the portal before any treatment expected to cost more than $500 [S1].",
+  "flagged": false,
+  "claims": [],
+  "error": null,
+  "ms": 1639
+ },
+ {
+  "id": 303,
+  "kind": "percent",
+  "answer": "Yes, your daughter is covered for braces. According to your plan, orthodontics for dependent children under age 19 are reimbursed at **80%**, with a **lifetime maximum of $2,000 per child** [S1].\n\nSince your daughter is 12 years old, she qualifies for this coverage. The policy also recommends submitting a pre-determination (the dentist's treatment plan) through the portal before any treatment expected to cost more than $500 [S1].",
+  "flagged": true,
+  "claims": [
+   {
+    "claim": "Orthodontics are reimbursed at 80%",
+    "supported": false,
+    "evidence": "S1 explicitly states orthodontics are 'reimbursed at 50% for dependent children under age 19', not 80%"
+   }
+  ],
+  "error": null,
+  "ms": 1844
+ },
+ {
+  "id": 303,
+  "kind": "amount",
+  "answer": "Yes, your daughter is covered for braces. According to your plan, orthodontics for dependent children under age 19 are reimbursed at **50%**, with a **lifetime maximum of $100 per child** [S1].\n\nSince your daughter is 12 years old, she qualifies for this coverage. The policy also recommends submitting a pre-determination (the dentist's treatment plan) through the portal before any treatment expected to cost more than $500 [S1].",
+  "flagged": true,
+  "claims": [
+   {
+    "claim": "Lifetime maximum of $100 per child",
+    "supported": false,
+    "evidence": "S1 states the lifetime maximum is '$2,000 per child', not $100. The answer contains an incorrect figure."
+   }
+  ],
+  "error": null,
+  "ms": 1739
+ },
+ {
+  "id": 304,
+  "kind": "clean",
+  "answer": "Your son is under 18, so he's eligible for up to $150 every 12 months for eyeglasses or contact lenses [S1]. \n\nA valid prescription and an itemized receipt are required for the claim [S1].",
+  "flagged": false,
+  "claims": [],
+  "error": null,
+  "ms": 1229
+ },
+ {
+  "id": 304,
+  "kind": "amount",
+  "answer": "Your son is under 18, so he's eligible for up to $100 every 12 months for eyeglasses or contact lenses [S1]. \n\nA valid prescription and an itemized receipt are required for the claim [S1].",
+  "flagged": true,
+  "claims": [
+   {
+    "claim": "Eligible for up to $100 every 12 months for eyeglasses or contact lenses",
+    "supported": false,
+    "evidence": "S1 states children under 18 are eligible for 'up to $150 every 12 months' for eyeglasses or contact lenses, not $100"
+   }
+  ],
+  "error": null,
+  "ms": 1231
+ },
+ {
+  "id": 305,
+  "kind": "clean",
+  "answer": "You have **$400** in physiotherapy coverage remaining this year.",
+  "flagged": false,
+  "claims": [],
+  "error": null,
+  "ms": 1124
+ },
+ {
+  "id": 305,
+  "kind": "amount",
+  "answer": "You have **$100** in physiotherapy coverage remaining this year.",
+  "flagged": true,
+  "claims": [
+   {
+    "claim": "You have $100 in physiotherapy coverage remaining this year",
+    "supported": false,
+    "evidence": "Customer is on Enhanced plan with $1,000 annual physiotherapy coverage (S1). Customer has used $600 this year (customer data). Remaining should be $1,000 - $600 = $400, not $100. The answer's arithmetic is incorrect."
+   }
+  ],
+  "error": null,
+  "ms": 1203
+ },
+ {
+  "id": 306,
+  "kind": "clean",
+  "answer": "Your yearly deductible is **$100 per person** on your Standard plan. Since you have a dependent (your daughter), the family deductible is **$200 per family** [S1].\n\nAfter you meet your deductible, eligible expenses are reimbursed at 80%.",
+  "flagged": false,
+  "claims": [],
+  "error": null,
+  "ms": 1459
+ },
+ {
+  "id": 306,
+  "kind": "percent",
+  "answer": "Your yearly deductible is **$100 per person** on your Standard plan. Since you have a dependent (your daughter), the family deductible is **$200 per family** [S1].\n\nAfter you meet your deductible, eligible expenses are reimbursed at 50%.",
+  "flagged": true,
+  "claims": [
+   {
+    "claim": "After meeting deductible, eligible expenses are reimbursed at 50%",
+    "supported": false,
+    "evidence": "Sources state Standard plan reimburses at 80% after deductible, not 50%. The 50% reimbursement rate applies only to major dental services (crowns, bridges, dentures), not to general eligible expenses"
+   }
+  ],
+  "error": null,
+  "ms": 1332
+ },
+ {
+  "id": 306,
+  "kind": "amount",
+  "answer": "Your yearly deductible is **$150 per person** on your Standard plan. Since you have a dependent (your daughter), the family deductible is **$200 per family** [S1].\n\nAfter you meet your deductible, eligible expenses are reimbursed at 80%.",
+  "flagged": true,
+  "claims": [
+   {
+    "claim": "Yearly deductible is $150 per person on Standard plan",
+    "supported": false,
+    "evidence": "S1 states Standard plan has 'annual deductible of $100 per person ($200 per family)'. The answer claims $150 per person, which contradicts the source."
+   }
+  ],
+  "error": null,
+  "ms": 1433
+ },
+ {
+  "id": 306,
+  "kind": "plan",
+  "answer": "Your yearly deductible is **$100 per person** on your Enhanced plan. Since you have a dependent (your daughter), the family deductible is **$200 per family** [S1].\n\nAfter you meet your deductible, eligible expenses are reimbursed at 80%.",
+  "flagged": true,
+  "claims": [
+   {
+    "claim": "Yearly deductible is $100 per person on Enhanced plan",
+    "supported": false,
+    "evidence": "Customer data shows Maria Chen is on 'Standard' plan, not Enhanced. S1 states Enhanced plan has 'no deductible', so this claim is incorrect for both the plan type and the plan details."
+   },
+   {
+    "claim": "Family deductible is $200 per family",
+    "supported": false,
+    "evidence": "While S1 does state '$200 per family' for the Standard plan, this applies to the Standard plan. The answer incorrectly attributes this to the Enhanced plan, which has no deductible."
+   },
+   {
+    "claim": "Eligible expenses are reimbursed at 80% after deductible",
+    "supported": false,
+    "evidence": "S1 states this applies to the Standard plan ('After the deductible, eligible expenses are reimbursed at 80%'), but the answer claims the customer is on the Enhanced plan, which has 90% reimbursement and no deductible."
+   }
+  ],
+  "error": null,
+  "ms": 1842
+ }
+]
