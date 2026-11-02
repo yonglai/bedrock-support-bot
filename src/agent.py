@@ -5,6 +5,8 @@
 Run a question:  MODEL_ID=... uv run python src/agent.py C1001 "How much dental do I have left this year?"
 """
 
+import os
+import re
 import sys
 import time
 
@@ -27,6 +29,12 @@ AGENT_SYSTEM = (
 )
 # a paraphrase of the availability line counts as already stated; only append when none of these appear
 AVAILABILITY_MARKERS = ("8am to 8pm", "available now")
+# A reply that offers or promises a handoff must be backed by one (Q308: "I can connect you with a team member" while
+# no ticket existed). The escalation policy says to transfer when the documents cannot answer.
+PROMISE = re.compile(
+    r"connect(?:ing)? you (?:with|to)|callback|team member (?:will|can) (?:contact|call|follow|help)",
+    re.IGNORECASE,
+)
 RETRY_PROMPT = (
     "Your previous answer included statements the tool results do not support. Rewrite it using only facts in the "
     "tool results, as short bullet points, each with a [S#] citation. No introduction or closing remarks."
@@ -76,7 +84,71 @@ def check_output(text, question, sources):
     return True, None, _scores(assessments)
 
 
-def run_agent(question, customer_id, history=None, max_steps=6):
+class StepLimit(Exception):
+    """The driver used all its model calls without producing a final answer."""
+
+
+class ConverseDriver:
+    """The hand-written tool loop on the Bedrock Converse API. A framework driver replaces only this class: triage,
+    input guardrail, output check, retry and handoff stay in run_agent."""
+
+    def __init__(self, sess, history, max_steps=6):
+        self.sess, self.messages, self.max_steps = sess, list(history), max_steps
+
+    def reply(self, prompt, force_tool=False):
+        self.messages.append({"role": "user", "content": [{"text": prompt}]})
+        for _ in range(self.max_steps):
+            resp = rt.converse(
+                modelId=MODEL_ID,
+                system=[{"text": AGENT_SYSTEM}],
+                messages=self.messages,
+                toolConfig={
+                    "tools": TOOL_SPECS,
+                    **(
+                        {"toolChoice": {"tool": {"name": "search_policy"}}}
+                        if force_tool
+                        else {}
+                    ),
+                },
+                inferenceConfig={"maxTokens": 600, "temperature": 0.1},
+            )
+            force_tool = False
+            msg = resp["output"]["message"]
+            self.messages.append(msg)
+            if resp["stopReason"] != "tool_use":
+                return "".join(b.get("text", "") for b in msg["content"])
+            results = []
+            for block in msg["content"]:
+                if "toolUse" in block:
+                    use = block["toolUse"]
+                    out = self.sess.call(use["name"], use["input"])
+                    results.append(
+                        {
+                            "toolResult": {
+                                "toolUseId": use["toolUseId"],
+                                "content": [{"text": out}],
+                            }
+                        }
+                    )
+            self.messages.append({"role": "user", "content": results})
+        raise StepLimit
+
+
+def default_driver():
+    """AGENT_DRIVER=strands runs the loop on the Strands SDK; AGENT_DRIVER=bedrock on a managed Bedrock Agent."""
+    driver = os.environ.get("AGENT_DRIVER")
+    if driver == "strands":
+        from agent_strands import StrandsDriver
+
+        return StrandsDriver
+    if driver == "bedrock":
+        from agent_bedrock import AgentsDriver
+
+        return AgentsDriver
+    return ConverseDriver
+
+
+def run_agent(question, customer_id, history=None, max_steps=6, driver=None):
     t0 = time.perf_counter()
     sess = Session(customer_id)
     history = list(history or [])
@@ -128,54 +200,35 @@ def run_agent(question, customer_id, history=None, max_steps=6):
             via="guardrail",
         )
 
-    messages = history + [{"role": "user", "content": [{"text": clean}]}]
-    retries = 1
+    driver = (driver or default_driver())(sess, history, max_steps)
     # A reply with no tool call skips the grounding check (nothing to ground on) and the model then answers from
     # general knowledge (Q308 invented where to find an account manager). So the first call of a new conversation
     # must search the policies (any tool was not enough: Q210 satisfied it with get_my_plan alone and then answered from
     # memory); later calls and follow-up turns are free ("thanks" should not trigger a policy search).
-    force_tool = not history
+    prompt, force_tool, retries = clean, not history, 1
     rejected = []  # drafts the output check refused; kept in the eval results for debugging only
-    for _ in range(max_steps):
-        resp = rt.converse(
-            modelId=MODEL_ID,
-            system=[{"text": AGENT_SYSTEM}],
-            messages=messages,
-            toolConfig={
-                "tools": TOOL_SPECS,
-                **(
-                    {"toolChoice": {"tool": {"name": "search_policy"}}}
-                    if force_tool
-                    else {}
-                ),
-            },
-            inferenceConfig={"maxTokens": 600, "temperature": 0.1},
-        )
-        force_tool = False
-        msg = resp["output"]["message"]
-        messages.append(msg)
-        if resp["stopReason"] == "tool_use":
-            results = []
-            for block in msg["content"]:
-                if "toolUse" in block:
-                    use = block["toolUse"]
-                    out = sess.call(use["name"], use["input"])
-                    results.append(
-                        {
-                            "toolResult": {
-                                "toolUseId": use["toolUseId"],
-                                "content": [{"text": out}],
-                            }
-                        }
-                    )
-            messages.append({"role": "user", "content": results})
-            continue
-
-        text = "".join(b.get("text", "") for b in msg["content"])
+    while True:
+        try:
+            text = driver.reply(prompt, force_tool)
+        except StepLimit:
+            rec = create_handoff(
+                "cannot_answer", "Agent step limit reached.", customer_id
+            )
+            return done(
+                "escalated",
+                "I wasn't able to complete that, so I'm connecting you with a team member. "
+                + rec["availability"],
+                clean=clean,
+                via="step_limit",
+            )
         ok, why, scores = check_output(text, clean, sess.sources)
-        if not ok:
-            rejected.append(text)
         if ok:
+            if not sess.escalation and PROMISE.search(text):
+                sess.escalation = create_handoff(
+                    "cannot_answer",
+                    "The reply offered a handoff without calling the tool.",
+                    customer_id,
+                )
             if sess.escalation and not any(m in text for m in AVAILABILITY_MARKERS):
                 # the grounding retry rewrites to bullets and can drop the handoff notice, so state it in code
                 text = (
@@ -192,9 +245,10 @@ def run_agent(question, customer_id, history=None, max_steps=6):
                 grounding=scores,
                 rejected=rejected,
             )
+        rejected.append(text)
         if why == "grounding" and retries > 0:
             retries -= 1
-            messages.append({"role": "user", "content": [{"text": RETRY_PROMPT}]})
+            prompt, force_tool = RETRY_PROMPT, False
             continue
         if (
             sess.escalation
@@ -215,15 +269,6 @@ def run_agent(question, customer_id, history=None, max_steps=6):
             grounding=scores,
             rejected=rejected,
         )
-
-    rec = create_handoff("cannot_answer", "Agent step limit reached.", customer_id)
-    return done(
-        "escalated",
-        "I wasn't able to complete that, so I'm connecting you with a team member. "
-        + rec["availability"],
-        clean=clean,
-        via="step_limit",
-    )
 
 
 if __name__ == "__main__":

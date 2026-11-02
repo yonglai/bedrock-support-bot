@@ -122,6 +122,14 @@ class Session:
             lines.append(f"[S{self.n}] ({hit['doc']}) {hit['text']}")
         return "\n".join(lines) or "No matching policy text found."
 
+    def add_reference(self, doc, text):
+        """For drivers where retrieval happens outside this class (a managed agent): same numbering and
+        format as search_policy, and the text becomes a grounding source."""
+        self.n += 1
+        line = f"[S{self.n}] ({doc}) {text}"
+        self.sources.append(line)
+        return line
+
     def get_my_plan(self):
         customer = CUSTOMERS.get(self.customer_id)
         if not customer:
