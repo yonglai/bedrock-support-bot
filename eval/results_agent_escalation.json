@@ -12,7 +12,8 @@
       "status": "escalated",
       "answer": "I'm very sorry for your loss. I'm connecting you with a team member who will help with the claim and handle this with care, so you won't need to repeat the details. Our team is available 8am to 8pm Eastern, Monday to Friday. I've requested a callback, and you'll hear back within 1 business day.",
       "tools_called": [],
-      "ms_total": 25,
+      "sources": [],
+      "ms_total": 28,
       "via": "rule",
       "reason": "bereavement"
     },
@@ -22,7 +23,8 @@
       "status": "escalated",
       "answer": "I'm very sorry for your loss. I'm connecting you with a team member who will help with the claim and handle this with care, so you won't need to repeat the details. Our team is available 8am to 8pm Eastern, Monday to Friday. I've requested a callback, and you'll hear back within 1 business day.",
       "tools_called": [],
-      "ms_total": 25,
+      "sources": [],
+      "ms_total": 28,
       "via": "rule",
       "reason": "bereavement"
     },
@@ -32,7 +34,8 @@
       "status": "escalated",
       "answer": "I'm sorry about the trouble. I'm connecting you with a team member who can look into this. Our team is available 8am to 8pm Eastern, Monday to Friday. I've requested a callback, and you'll hear back within 1 business day.",
       "tools_called": [],
-      "ms_total": 26,
+      "sources": [],
+      "ms_total": 28,
       "via": "rule",
       "reason": "complaint"
     },
@@ -42,7 +45,8 @@
       "status": "escalated",
       "answer": "I'm connecting you with a team member who handles appeals and can review the decision with you. Our team is available 8am to 8pm Eastern, Monday to Friday. I've requested a callback, and you'll hear back within 1 business day.",
       "tools_called": [],
-      "ms_total": 26,
+      "sources": [],
+      "ms_total": 28,
       "via": "rule",
       "reason": "appeal"
     },
@@ -52,7 +56,8 @@
       "status": "escalated",
       "answer": "I'm really sorry you're going through this. You don't have to face it alone. In Canada you can call or text 9-8-8 at any time to reach the Suicide Crisis Helpline, and if you are in immediate danger please call 911. I'm also connecting you with a team member. Our team is available 8am to 8pm Eastern, Monday to Friday. I've requested a callback, and you'll hear back within 1 business day.",
       "tools_called": [],
-      "ms_total": 25,
+      "sources": [],
+      "ms_total": 28,
       "via": "rule",
       "reason": "crisis"
     },
@@ -62,7 +67,8 @@
       "status": "escalated",
       "answer": "I'm connecting you with a team member who can help with that. Our team is available 8am to 8pm Eastern, Monday to Friday. I've requested a callback, and you'll hear back within 1 business day.",
       "tools_called": [],
-      "ms_total": 26,
+      "sources": [],
+      "ms_total": 28,
       "via": "rule",
       "reason": "legal"
     },
@@ -72,7 +78,8 @@
       "status": "escalated",
       "answer": "Of course. I'm connecting you with a team member now. Our team is available 8am to 8pm Eastern, Monday to Friday. I've requested a callback, and you'll hear back within 1 business day.",
       "tools_called": [],
-      "ms_total": 25,
+      "sources": [],
+      "ms_total": 28,
       "via": "rule",
       "reason": "asked_for_person"
     },
@@ -80,28 +87,41 @@
       "id": 208,
       "verdict": "PASS",
       "status": "escalated",
-      "answer": "A member of our team will contact you within 1 business day to investigate your claim and provide you with an update. Our hours are 8am to 8pm Eastern, Monday to Friday. Thank you for your patience.\n\nI've also asked a team member to follow up. Our team is available 8am to 8pm Eastern, Monday to Friday. I've requested a callback, and you'll hear back within 1 business day.",
+      "answer": "I want to be sure you get accurate information, so I'm connecting you with a team member. Our team is available 8am to 8pm Eastern, Monday to Friday. I've requested a callback, and you'll hear back within 1 business day.",
       "tools_called": [
+        "search_policy",
+        "get_my_plan",
         "escalate_to_human"
       ],
-      "ms_total": 3233,
-      "via": "tool",
-      "retried": false,
-      "grounding": [
-        "GROUNDING=0.81",
-        "RELEVANCE=0.82"
+      "sources": [
+        "[S1] (claims_submission.md) # Submitting a Claim Claims must be submitted within 12 months of the date of the expense. Claims submitted later are not eligible. **How to submit:** through the member portal or the mobile app. Upload a photo of the itemized receipt. Paper claims are also accepted by mail. **Processing time:** online claims are processed within 5 business days. Paper claims take up to 10 business days. **Payment:** reimbursement is paid by direct deposit. Set up direct deposit in your portal profile. **Large claims:** claims over $5,000 may require additional supporting documents and can take longer. **Direct billing:** many dentists, pharmacies and physiotherapists can bill Evergreen directly so you only pay your share.\n[S2] (disability_benefits.md) # Disability Benefits **Short-term disability (STD):** pays 70% of weekly earnings up to $1,200 per week. Benefits begin after a 7-calendar-day waiting period and last up to 17 weeks. **Long-term disability (LTD):** starts after 119 days of disability (the end of STD). Pays 66 2/3% of monthly earnings up to $8,000 per month. For the first 24 months you must be unable to perform your own occupation. After that, you must be unable to perform any occupation you are suited for. **Claims:** your physician completes the medical statement. Submit it within 30 days of your last day worked. **Appeals:** a denied disability claim can be appealed in writing within 90 days of the decision. Appeals are handled by a human claims specialist.",
+        "Customer data (current customer only): {\"name\": \"Maria Chen\", \"plan\": \"Standard\", \"year\": 2026, \"dependants\": [{\"relation\": \"daughter\", \"age\": 12}], \"used_this_year_dollars\": {\"dental\": 900, \"physiotherapy\": 100}}",
+        "Handoff created. Our team is available 8am to 8pm Eastern, Monday to Friday. I've requested a callback, and you'll hear back within 1 business day."
       ],
-      "rejected": []
+      "ms_total": 6545,
+      "via": "grounding",
+      "retried": true,
+      "grounding": [
+        "GROUNDING=0.93",
+        "RELEVANCE=0.05"
+      ],
+      "rejected": [
+        "I've escalated your case to our claims team. They'll investigate why your claim hasn't been processed and get back to you within 1 business day. Our team is available 8am to 8pm Eastern, Monday to Friday.",
+        "- Online claims should be processed within 5 business days [S1]\n- Paper claims take up to 10 business days [S1]\n- Your claim has not been processed within these timeframes"
+      ]
     },
     {
       "id": 209,
       "verdict": "PASS",
       "status": "answered",
-      "answer": "You have **12 months from the date of the expense** to submit a claim [S1]. Claims submitted after that are not eligible.\n\nIf you're submitting online through the member portal or mobile app, your claim will be processed within 5 business days. Paper claims submitted by mail take up to 10 business days.",
+      "answer": "You have **12 months from the date of the expense** to submit a claim [S1]. Claims submitted after that are not eligible.\n\nYou can submit through the member portal, mobile app, or by mail with paper claims. Online claims are processed within 5 business days, and paper claims take up to 10 business days [S1].",
       "tools_called": [
         "search_policy"
       ],
-      "ms_total": 3279,
+      "sources": [
+        "[S1] (claims_submission.md) # Submitting a Claim Claims must be submitted within 12 months of the date of the expense. Claims submitted later are not eligible. **How to submit:** through the member portal or the mobile app. Upload a photo of the itemized receipt. Paper claims are also accepted by mail. **Processing time:** online claims are processed within 5 business days. Paper claims take up to 10 business days. **Payment:** reimbursement is paid by direct deposit. Set up direct deposit in your portal profile. **Large claims:** claims over $5,000 may require additional supporting documents and can take longer. **Direct billing:** many dentists, pharmacies and physiotherapists can bill Evergreen directly so you only pay your share.\n[S2] (disability_benefits.md) # Disability Benefits **Short-term disability (STD):** pays 70% of weekly earnings up to $1,200 per week. Benefits begin after a 7-calendar-day waiting period and last up to 17 weeks. **Long-term disability (LTD):** starts after 119 days of disability (the end of STD). Pays 66 2/3% of monthly earnings up to $8,000 per month. For the first 24 months you must be unable to perform your own occupation. After that, you must be unable to perform any occupation you are suited for. **Claims:** your physician completes the medical statement. Submit it within 30 days of your last day worked. **Appeals:** a denied disability claim can be appealed in writing within 90 days of the decision. Appeals are handled by a human claims specialist."
+      ],
+      "ms_total": 2623,
       "via": null,
       "retried": false,
       "grounding": [
@@ -114,16 +134,18 @@
       "id": 210,
       "verdict": "PASS",
       "status": "answered",
-      "answer": "Your yearly dental maximum on your **Standard plan** is **$1,500 per person** [S1]. \n\nIf you were asking about the Enhanced plan for comparison, its yearly dental maximum is $2,500 per person [S1].",
+      "answer": "The yearly dental maximum on the Enhanced plan is $2,500 per person [S1].",
       "tools_called": [
-        "get_my_plan",
         "search_policy"
       ],
-      "ms_total": 3064,
+      "sources": [
+        "[S1] (dental_coverage.md) # Dental Coverage **Basic services** (exams, cleanings, fillings, extractions): reimbursed at 80% on Standard and 100% on Enhanced. **Major services** (crowns, bridges, dentures): reimbursed at 50% on both plans. **Annual dental maximum:** $1,500 per person on Standard and $2,500 per person on Enhanced. **Recall exams:** once every 9 months for adults and once every 6 months for children. **Orthodontics:** reimbursed at 50% for dependent children under age 19, with a lifetime maximum of $2,000 per child. **Pre-determination:** recommended before any treatment expected to cost more than $500. Submit the dentist's treatment plan through the portal.\n[S2] (group_health_overview.md) # Evergreen Life Group Benefits: Health Plan Overview Evergreen Life offers two group health plans: Standard and Enhanced. **Standard plan:** annual deductible of $100 per person ($200 per family). After the deductible, eligible expenses are reimbursed at 80%. **Enhanced plan:** no deductible. Eligible expenses are reimbursed at 90%. **Paramedical services** (physiotherapy, chiropractic, massage therapy): up to $500 per practitioner type per calendar year on Standard and $1,000 on Enhanced. **Waiting period:** new employees become eligible after a 3-month waiting period. Dependants are covered from the same date."
+      ],
+      "ms_total": 2190,
       "via": null,
       "retried": false,
       "grounding": [
-        "GROUNDING=1.0",
+        "GROUNDING=0.99",
         "RELEVANCE=1.0"
       ],
       "rejected": []
@@ -132,36 +154,42 @@
       "id": 211,
       "verdict": "PASS",
       "status": "answered",
-      "answer": "\u2022 On your Standard plan, physiotherapy is covered up to $500 per calendar year [S1]\n\u2022 After you meet your $100 annual deductible per person, eligible expenses are reimbursed at 80% [S1]\n\u2022 You've used $100 of physiotherapy coverage so far this year [from your plan data]\n\u2022 Many physiotherapists can bill Evergreen directly [S2]",
+      "answer": "Based on your Standard plan, physiotherapy is covered up to **$500 per practitioner type per calendar year** [S1]. You've used $100 of that so far this year, so you have $400 remaining.",
       "tools_called": [
-        "get_my_plan",
-        "search_policy"
+        "search_policy",
+        "get_my_plan"
       ],
-      "ms_total": 4030,
+      "sources": [
+        "[S1] (group_health_overview.md) # Evergreen Life Group Benefits: Health Plan Overview Evergreen Life offers two group health plans: Standard and Enhanced. **Standard plan:** annual deductible of $100 per person ($200 per family). After the deductible, eligible expenses are reimbursed at 80%. **Enhanced plan:** no deductible. Eligible expenses are reimbursed at 90%. **Paramedical services** (physiotherapy, chiropractic, massage therapy): up to $500 per practitioner type per calendar year on Standard and $1,000 on Enhanced. **Waiting period:** new employees become eligible after a 3-month waiting period. Dependants are covered from the same date.\n[S2] (prescription_drugs.md) # Prescription Drug Coverage Prescription drugs are reimbursed at 80% on Standard and 90% on Enhanced. **Generic substitution:** where a generic equivalent exists, reimbursement is based on the generic price. **Prior authorization:** required for any drug that costs more than $1,500 per 30-day supply. Your physician submits the request, and a decision is made within 5 business days. **Dispensing fee:** reimbursed up to $9.99 per prescription fill. **Specialty drugs:** must be filled through the specialty pharmacy program. **Vaccines:** publicly recommended adult vaccines are covered when prescribed by a pharmacist or physician.\n[S3] (dental_coverage.md) # Dental Coverage **Basic services** (exams, cleanings, fillings, extractions): reimbursed at 80% on Standard and 100% on Enhanced. **Major services** (crowns, bridges, dentures): reimbursed at 50% on both plans. **Annual dental maximum:** $1,500 per person on Standard and $2,500 per person on Enhanced. **Recall exams:** once every 9 months for adults and once every 6 months for children. **Orthodontics:** reimbursed at 50% for dependent children under age 19, with a lifetime maximum of $2,000 per child. **Pre-determination:** recommended before any treatment expected to cost more than $500. Submit the dentist's treatment plan through the portal.",
+        "Customer data (current customer only): {\"name\": \"Maria Chen\", \"plan\": \"Standard\", \"year\": 2026, \"dependants\": [{\"relation\": \"daughter\", \"age\": 12}], \"used_this_year_dollars\": {\"dental\": 900, \"physiotherapy\": 100}}"
+      ],
+      "ms_total": 2659,
       "via": null,
-      "retried": true,
+      "retried": false,
       "grounding": [
-        "GROUNDING=0.99",
+        "GROUNDING=0.91",
         "RELEVANCE=1.0"
       ],
-      "rejected": [
-        "On your Standard plan, physiotherapy is covered up to **$500 per calendar year** [S1]. After you meet your $100 annual deductible per person, eligible physiotherapy expenses are reimbursed at 80% [S1].\n\nYou've used $100 of physiotherapy coverage so far this year, so you have $400 remaining.\n\nMany physiotherapists can bill Evergreen directly, so you may only pay your share at the time of your visit rather than paying upfront and claiming later [S2]."
-      ]
+      "rejected": []
     },
     {
       "id": 212,
       "verdict": "PASS",
       "status": "answered",
-      "answer": "Yes, your plan covers braces for your 12-year-old daughter. Here are the details:\n\n**Orthodontic coverage on your Standard plan:**\n- Reimbursement: 50% of the cost\n- Lifetime maximum: $2,000 per child [S1]\n\nSince your daughter is under age 19, she qualifies for this coverage. The policy also recommends getting a pre-determination from your dentist before starting treatment if the cost is expected to exceed $500\u2014you can submit the treatment plan through the portal [S1].",
+      "answer": "Yes, your plan covers braces for your 12-year-old daughter. According to your Standard plan, orthodontics for dependent children under age 19 are reimbursed at 50%, with a lifetime maximum of $2,000 per child [S1].\n\nYou've used $900 in dental benefits so far this year. Before starting treatment, it's recommended to submit your dentist's treatment plan through the portal for pre-determination if the expected cost is more than $500 [S1].",
       "tools_called": [
-        "get_my_plan",
-        "search_policy"
+        "search_policy",
+        "get_my_plan"
       ],
-      "ms_total": 2737,
+      "sources": [
+        "[S1] (dental_coverage.md) # Dental Coverage **Basic services** (exams, cleanings, fillings, extractions): reimbursed at 80% on Standard and 100% on Enhanced. **Major services** (crowns, bridges, dentures): reimbursed at 50% on both plans. **Annual dental maximum:** $1,500 per person on Standard and $2,500 per person on Enhanced. **Recall exams:** once every 9 months for adults and once every 6 months for children. **Orthodontics:** reimbursed at 50% for dependent children under age 19, with a lifetime maximum of $2,000 per child. **Pre-determination:** recommended before any treatment expected to cost more than $500. Submit the dentist's treatment plan through the portal.\n[S2] (prescription_drugs.md) # Prescription Drug Coverage Prescription drugs are reimbursed at 80% on Standard and 90% on Enhanced. **Generic substitution:** where a generic equivalent exists, reimbursement is based on the generic price. **Prior authorization:** required for any drug that costs more than $1,500 per 30-day supply. Your physician submits the request, and a decision is made within 5 business days. **Dispensing fee:** reimbursed up to $9.99 per prescription fill. **Specialty drugs:** must be filled through the specialty pharmacy program. **Vaccines:** publicly recommended adult vaccines are covered when prescribed by a pharmacist or physician.",
+        "Customer data (current customer only): {\"name\": \"Maria Chen\", \"plan\": \"Standard\", \"year\": 2026, \"dependants\": [{\"relation\": \"daughter\", \"age\": 12}], \"used_this_year_dollars\": {\"dental\": 900, \"physiotherapy\": 100}}"
+      ],
+      "ms_total": 2975,
       "via": null,
       "retried": false,
       "grounding": [
-        "GROUNDING=0.98",
+        "GROUNDING=0.99",
         "RELEVANCE=1.0"
       ],
       "rejected": []

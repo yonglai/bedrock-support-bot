@@ -229,3 +229,34 @@ to the right plan, person or service. It cannot catch these. Possible mitigation
 checks each claim against its source sentence, or answers that quote the source line verbatim. Not tuned on this set.
 Rate: 2 of 12 answers with a wrong detail; n is tiny, so this is a rough indication only.
 First-search latency 19 s (cold), warm median 2.9 s.
+
+## Bedrock Knowledge Base vs hand-built (15 questions: 11 dev + 4 physio gap; all created from code, S3 Vectors)
+| | doc@1 | doc@3 | fact@3 | MRR@10 | median ms |
+|---|---|---|---|---|---|
+| KB none (no chunking) | 0.67 | 0.80 | 0.80 | 0.77 | 416 |
+| KB default (about 300 tokens) | 0.73 | 1.00 | 1.00 | 0.84 | 436 |
+| KB hierarchical (parent 300 / child 60 tokens) | 0.93 | 1.00 | 1.00 | 0.97 | 426 |
+| hand-built whole_doc (local) | 0.67 | 0.80 | 0.80 | 0.77 | |
+| hand-built line_with_title (local) | 0.67 | 0.73 | 0.73 | 0.75 | |
+| hand-built fixed_200_ov40 (OpenSearch) | 0.93 | 1.00 | 0.93 | 0.97 | 96-164 |
+- KB "none" reproduces my local whole_doc numbers exactly (misses Q2, Q401, Q404): a useful check that the harness agrees.
+- Hierarchical matched the best hand-built result on ranking (MRR 0.97) and found Q11. But it returns the larger parent, so
+  fact@k is easier to satisfy than with a small chunk; doc@k is the fairer comparison.
+- step6b_kb_inspect: default chunks have the same lengths as 'none' (whole documents, 635 / 654 chars), so my granularity guess
+  was right; the text differs only in whitespace (newlines removed), and that alone moved the ranking (0.80 -> 1.00 doc@3).
+  Small embedding changes can reorder results.
+- Latency is not comparable like for like: the KB path goes through the Bedrock Agent Runtime API (about 430 ms) against a
+  direct OpenSearch query (about 100-160 ms), both from Toronto.
+- Setup: everything scripted (step6a_kb_create.py); first run succeeded after one retry waiting for IAM propagation.
+- Caveat: the 15 questions already chose my chunking, so none of this is independent confirmation; n is small.
+
+### Same query, three variants (step6b_kb_inspect, "physiotherapy coverage limits")
+Only hierarchical returns group_health_overview.md (the document with the physio limits) in its top 3; default and none do not,
+although default scores doc@3 1.0 on the 15 questions (the gap questions are phrased differently). A 1.0 on 15 questions is not
+robustness to rephrasing. The hierarchical result is the parent document (620 chars), the same pattern as the hand-built context.
+
+### Agent on the Knowledge Base retriever (RETRIEVER=kb VARIANT=hierarchical)
+agent: 7 PASS / 0 FAIL / 1 REVIEW (same as OpenSearch). escalation: 11 / 1: Q210 failed because the model called only
+get_my_plan, never search_policy, then answered from memory; the grounding check blocked it twice and handed off. Not a retrieval
+problem. My forced first tool call was satisfied by any tool; it is now search_policy specifically.
+KB retrieval is a drop-in behind retrieve(): RETRIEVER=kb.

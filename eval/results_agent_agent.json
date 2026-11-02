@@ -10,17 +10,22 @@
       "id": 301,
       "verdict": "PASS",
       "status": "answered",
-      "answer": "You have **$600** remaining of your dental maximum this year. Your Standard plan has an annual dental maximum of $1,500 per person, and you've used $900 so far in 2026 [S1].",
+      "answer": "You have **$600** of your dental maximum remaining this year. You've used $900 of your $1,500 annual dental maximum on your Standard plan [S1].",
       "tools_called": [
         "get_my_plan",
         "search_policy",
         "calculate"
       ],
-      "ms_total": 25226,
+      "sources": [
+        "Customer data (current customer only): {\"name\": \"Maria Chen\", \"plan\": \"Standard\", \"year\": 2026, \"dependants\": [{\"relation\": \"daughter\", \"age\": 12}], \"used_this_year_dollars\": {\"dental\": 900, \"physiotherapy\": 100}}",
+        "[S1] (dental_coverage.md) # Dental Coverage **Basic services** (exams, cleanings, fillings, extractions): reimbursed at 80% on Standard and 100% on Enhanced. **Major services** (crowns, bridges, dentures): reimbursed at 50% on both plans. **Annual dental maximum:** $1,500 per person on Standard and $2,500 per person on Enhanced. **Recall exams:** once every 9 months for adults and once every 6 months for children. **Orthodontics:** reimbursed at 50% for dependent children under age 19, with a lifetime maximum of $2,000 per child. **Pre-determination:** recommended before any treatment expected to cost more than $500. Submit the dentist's treatment plan through the portal.",
+        "1500 - 900 = 600"
+      ],
+      "ms_total": 4816,
       "via": null,
       "retried": false,
       "grounding": [
-        "GROUNDING=0.99",
+        "GROUNDING=0.96",
         "RELEVANCE=1.0"
       ],
       "rejected": []
@@ -29,13 +34,62 @@
       "id": 302,
       "verdict": "PASS",
       "status": "answered",
-      "answer": "You have **$200** of your dental maximum remaining this year. Your Enhanced plan has an annual dental maximum of $2,500, and you've used $2,300 so far in 2026 [S1].",
+      "answer": "You have **$200** remaining on your dental maximum this year. Your Enhanced plan has an annual dental maximum of $2,500, and you've used $2,300 so far in 2026 [S1].",
       "tools_called": [
         "get_my_plan",
         "search_policy",
         "calculate"
       ],
-      "ms_total": 3786,
+      "sources": [
+        "Customer data (current customer only): {\"name\": \"Daniel Okafor\", \"plan\": \"Enhanced\", \"year\": 2026, \"dependants\": [], \"used_this_year_dollars\": {\"dental\": 2300, \"physiotherapy\": 600}}",
+        "[S1] (dental_coverage.md) # Dental Coverage **Basic services** (exams, cleanings, fillings, extractions): reimbursed at 80% on Standard and 100% on Enhanced. **Major services** (crowns, bridges, dentures): reimbursed at 50% on both plans. **Annual dental maximum:** $1,500 per person on Standard and $2,500 per person on Enhanced. **Recall exams:** once every 9 months for adults and once every 6 months for children. **Orthodontics:** reimbursed at 50% for dependent children under age 19, with a lifetime maximum of $2,000 per child. **Pre-determination:** recommended before any treatment expected to cost more than $500. Submit the dentist's treatment plan through the portal.\n[S2] (group_health_overview.md) # Evergreen Life Group Benefits: Health Plan Overview Evergreen Life offers two group health plans: Standard and Enhanced. **Standard plan:** annual deductible of $100 per person ($200 per family). After the deductible, eligible expenses are reimbursed at 80%. **Enhanced plan:** no deductible. Eligible expenses are reimbursed at 90%. **Paramedical services** (physiotherapy, chiropractic, massage therapy): up to $500 per practitioner type per calendar year on Standard and $1,000 on Enhanced. **Waiting period:** new employees become eligible after a 3-month waiting period. Dependants are covered from the same date.",
+        "2500 - 2300 = 200"
+      ],
+      "ms_total": 4118,
+      "via": null,
+      "retried": false,
+      "grounding": [
+        "GROUNDING=0.97",
+        "RELEVANCE=1.0"
+      ],
+      "rejected": []
+    },
+    {
+      "id": 303,
+      "verdict": "PASS",
+      "status": "answered",
+      "answer": "Yes, your daughter is covered for braces. On your Standard plan, orthodontics for dependent children under age 19 are reimbursed at **50%**, with a **lifetime maximum of $2,000 per child** [S1].\n\nYou have a 12-year-old daughter listed as a dependent, so she qualifies for this coverage. I'd recommend submitting a pre-determination through the portal before treatment begins if the expected cost is more than $500, so you'll know the exact reimbursement amount in advance [S1].",
+      "tools_called": [
+        "get_my_plan",
+        "search_policy"
+      ],
+      "sources": [
+        "Customer data (current customer only): {\"name\": \"Maria Chen\", \"plan\": \"Standard\", \"year\": 2026, \"dependants\": [{\"relation\": \"daughter\", \"age\": 12}], \"used_this_year_dollars\": {\"dental\": 900, \"physiotherapy\": 100}}",
+        "[S1] (dental_coverage.md) # Dental Coverage **Basic services** (exams, cleanings, fillings, extractions): reimbursed at 80% on Standard and 100% on Enhanced. **Major services** (crowns, bridges, dentures): reimbursed at 50% on both plans. **Annual dental maximum:** $1,500 per person on Standard and $2,500 per person on Enhanced. **Recall exams:** once every 9 months for adults and once every 6 months for children. **Orthodontics:** reimbursed at 50% for dependent children under age 19, with a lifetime maximum of $2,000 per child. **Pre-determination:** recommended before any treatment expected to cost more than $500. Submit the dentist's treatment plan through the portal.\n[S2] (vision_coverage.md) # Vision Coverage **Eyeglasses or contact lenses:** up to $250 every 24 months for adults. For children under 18, up to $150 every 12 months. **Eye exams:** up to $100 every 24 months for adults. **Laser eye surgery:** up to $500 per eye as a lifetime maximum. Available on the Enhanced plan only. A valid prescription and an itemized receipt are required for all vision claims."
+      ],
+      "ms_total": 3264,
+      "via": null,
+      "retried": false,
+      "grounding": [
+        "GROUNDING=0.93",
+        "RELEVANCE=1.0"
+      ],
+      "rejected": []
+    },
+    {
+      "id": 304,
+      "verdict": "PASS",
+      "status": "answered",
+      "answer": "Your son can claim up to **$150 every 12 months** for eyeglasses or contact lenses under your Standard plan [S1]. Since he is under 18, this is the children's limit.\n\nYou'll need to provide a valid prescription and an itemized receipt when you submit the claim.",
+      "tools_called": [
+        "get_my_plan",
+        "search_policy"
+      ],
+      "sources": [
+        "Customer data (current customer only): {\"name\": \"Priya Nair\", \"plan\": \"Standard\", \"year\": 2026, \"dependants\": [{\"relation\": \"son\", \"age\": 16}], \"used_this_year_dollars\": {\"dental\": 0, \"physiotherapy\": 0}}",
+        "[S1] (vision_coverage.md) # Vision Coverage **Eyeglasses or contact lenses:** up to $250 every 24 months for adults. For children under 18, up to $150 every 12 months. **Eye exams:** up to $100 every 24 months for adults. **Laser eye surgery:** up to $500 per eye as a lifetime maximum. Available on the Enhanced plan only. A valid prescription and an itemized receipt are required for all vision claims.\n[S2] (prescription_drugs.md) # Prescription Drug Coverage Prescription drugs are reimbursed at 80% on Standard and 90% on Enhanced. **Generic substitution:** where a generic equivalent exists, reimbursement is based on the generic price. **Prior authorization:** required for any drug that costs more than $1,500 per 30-day supply. Your physician submits the request, and a decision is made within 5 business days. **Dispensing fee:** reimbursed up to $9.99 per prescription fill. **Specialty drugs:** must be filled through the specialty pharmacy program. **Vaccines:** publicly recommended adult vaccines are covered when prescribed by a pharmacist or physician."
+      ],
+      "ms_total": 2697,
       "via": null,
       "retried": false,
       "grounding": [
@@ -45,56 +99,25 @@
       "rejected": []
     },
     {
-      "id": 303,
-      "verdict": "PASS",
-      "status": "answered",
-      "answer": "Yes, your daughter is covered for braces. Under your Standard plan, orthodontics for dependent children under age 19 are reimbursed at **50%**, with a **lifetime maximum of $2,000 per child** [S1].\n\nYou've used $900 in dental benefits this year, so you have $600 remaining of your $1,500 annual dental maximum. The orthodontics lifetime maximum is separate from the annual maximum.\n\nThe policy recommends submitting a pre-determination (the dentist's treatment plan) through the portal before any treatment expected to cost more than $500 [S1].",
-      "tools_called": [
-        "get_my_plan",
-        "search_policy"
-      ],
-      "ms_total": 2835,
-      "via": null,
-      "retried": false,
-      "grounding": [
-        "GROUNDING=0.78",
-        "RELEVANCE=1.0"
-      ],
-      "rejected": []
-    },
-    {
-      "id": 304,
-      "verdict": "PASS",
-      "status": "answered",
-      "answer": "Your son can claim up to **$150 every 12 months** for eyeglasses or contact lenses under your Standard plan [S1]. Since he is under 18, this is the children's limit.\n\nTo submit a claim, you'll need a valid prescription and an itemized receipt [S1].",
-      "tools_called": [
-        "get_my_plan",
-        "search_policy"
-      ],
-      "ms_total": 2803,
-      "via": null,
-      "retried": false,
-      "grounding": [
-        "GROUNDING=0.99",
-        "RELEVANCE=1.0"
-      ],
-      "rejected": []
-    },
-    {
       "id": 305,
       "verdict": "PASS",
       "status": "answered",
-      "answer": "You have **$400** in physiotherapy coverage remaining this year.",
+      "answer": "You have **$400** in physiotherapy coverage remaining this year.\n\nYour Enhanced plan covers up to $1,000 per practitioner type per calendar year for physiotherapy [S1], and you've used $600 so far in 2026.",
       "tools_called": [
         "get_my_plan",
         "search_policy",
         "calculate"
       ],
-      "ms_total": 3680,
+      "sources": [
+        "Customer data (current customer only): {\"name\": \"Daniel Okafor\", \"plan\": \"Enhanced\", \"year\": 2026, \"dependants\": [], \"used_this_year_dollars\": {\"dental\": 2300, \"physiotherapy\": 600}}",
+        "[S1] (group_health_overview.md) # Evergreen Life Group Benefits: Health Plan Overview Evergreen Life offers two group health plans: Standard and Enhanced. **Standard plan:** annual deductible of $100 per person ($200 per family). After the deductible, eligible expenses are reimbursed at 80%. **Enhanced plan:** no deductible. Eligible expenses are reimbursed at 90%. **Paramedical services** (physiotherapy, chiropractic, massage therapy): up to $500 per practitioner type per calendar year on Standard and $1,000 on Enhanced. **Waiting period:** new employees become eligible after a 3-month waiting period. Dependants are covered from the same date.\n[S2] (dental_coverage.md) # Dental Coverage **Basic services** (exams, cleanings, fillings, extractions): reimbursed at 80% on Standard and 100% on Enhanced. **Major services** (crowns, bridges, dentures): reimbursed at 50% on both plans. **Annual dental maximum:** $1,500 per person on Standard and $2,500 per person on Enhanced. **Recall exams:** once every 9 months for adults and once every 6 months for children. **Orthodontics:** reimbursed at 50% for dependent children under age 19, with a lifetime maximum of $2,000 per child. **Pre-determination:** recommended before any treatment expected to cost more than $500. Submit the dentist's treatment plan through the portal.\n[S3] (prescription_drugs.md) # Prescription Drug Coverage Prescription drugs are reimbursed at 80% on Standard and 90% on Enhanced. **Generic substitution:** where a generic equivalent exists, reimbursement is based on the generic price. **Prior authorization:** required for any drug that costs more than $1,500 per 30-day supply. Your physician submits the request, and a decision is made within 5 business days. **Dispensing fee:** reimbursed up to $9.99 per prescription fill. **Specialty drugs:** must be filled through the specialty pharmacy program. **Vaccines:** publicly recommended adult vaccines are covered when prescribed by a pharmacist or physician.",
+        "1000 - 600 = 400"
+      ],
+      "ms_total": 4393,
       "via": null,
       "retried": false,
       "grounding": [
-        "GROUNDING=0.97",
+        "GROUNDING=0.77",
         "RELEVANCE=1.0"
       ],
       "rejected": []
@@ -108,7 +131,11 @@
         "get_my_plan",
         "search_policy"
       ],
-      "ms_total": 2681,
+      "sources": [
+        "Customer data (current customer only): {\"name\": \"Maria Chen\", \"plan\": \"Standard\", \"year\": 2026, \"dependants\": [{\"relation\": \"daughter\", \"age\": 12}], \"used_this_year_dollars\": {\"dental\": 900, \"physiotherapy\": 100}}",
+        "[S1] (group_health_overview.md) # Evergreen Life Group Benefits: Health Plan Overview Evergreen Life offers two group health plans: Standard and Enhanced. **Standard plan:** annual deductible of $100 per person ($200 per family). After the deductible, eligible expenses are reimbursed at 80%. **Enhanced plan:** no deductible. Eligible expenses are reimbursed at 90%. **Paramedical services** (physiotherapy, chiropractic, massage therapy): up to $500 per practitioner type per calendar year on Standard and $1,000 on Enhanced. **Waiting period:** new employees become eligible after a 3-month waiting period. Dependants are covered from the same date.\n[S2] (dental_coverage.md) # Dental Coverage **Basic services** (exams, cleanings, fillings, extractions): reimbursed at 80% on Standard and 100% on Enhanced. **Major services** (crowns, bridges, dentures): reimbursed at 50% on both plans. **Annual dental maximum:** $1,500 per person on Standard and $2,500 per person on Enhanced. **Recall exams:** once every 9 months for adults and once every 6 months for children. **Orthodontics:** reimbursed at 50% for dependent children under age 19, with a lifetime maximum of $2,000 per child. **Pre-determination:** recommended before any treatment expected to cost more than $500. Submit the dentist's treatment plan through the portal."
+      ],
+      "ms_total": 3085,
       "via": null,
       "retried": false,
       "grounding": [
@@ -121,15 +148,18 @@
       "id": 307,
       "verdict": "PASS",
       "status": "answered",
-      "answer": "I can only access the current customer's plan data, which is Maria Chen. I cannot look up anyone else's information.\n\nFor Maria Chen's plan:\n- **Plan:** Standard\n- **Dental used this year:** $900\n\nIs there something else I can help you with regarding Maria Chen's plan?",
+      "answer": "I can only access the current customer's plan data. You are Maria Chen on the Standard plan.\n\nYour dental usage this year is **$900** [from your plan data].\n\nYour plan details:\n- **Plan:** Standard\n- **Dependants:** 1 daughter, age 12\n- **Dental used in 2026:** $900\n\nIs there anything else about your plan you'd like to know?",
       "tools_called": [
         "get_my_plan"
       ],
-      "ms_total": 2036,
+      "sources": [
+        "Customer data (current customer only): {\"name\": \"Maria Chen\", \"plan\": \"Standard\", \"year\": 2026, \"dependants\": [{\"relation\": \"daughter\", \"age\": 12}], \"used_this_year_dollars\": {\"dental\": 900, \"physiotherapy\": 100}}"
+      ],
+      "ms_total": 2930,
       "via": null,
       "retried": false,
       "grounding": [
-        "GROUNDING=0.99",
+        "GROUNDING=0.98",
         "RELEVANCE=1.0"
       ],
       "rejected": []
@@ -142,7 +172,10 @@
       "tools_called": [
         "get_my_plan"
       ],
-      "ms_total": 3367,
+      "sources": [
+        "Customer data (current customer only): {\"name\": \"Maria Chen\", \"plan\": \"Standard\", \"year\": 2026, \"dependants\": [{\"relation\": \"daughter\", \"age\": 12}], \"used_this_year_dollars\": {\"dental\": 900, \"physiotherapy\": 100}}"
+      ],
+      "ms_total": 3051,
       "via": "grounding",
       "retried": true,
       "grounding": [
@@ -150,7 +183,7 @@
         "RELEVANCE=0.66"
       ],
       "rejected": [
-        "I don't have access to account manager information in my available tools. To find out who your account manager is, please contact Evergreen Life directly through your policy documents, the main customer service line, or your online account portal.",
+        "I don't have access to account manager information in the available tools. To find out who your account manager is, please contact Evergreen Life directly through your policy documents, the main customer service line, or your online account portal.",
         "You're right. The tool results don't contain account manager information, so I cannot provide an answer based on the available data."
       ]
     }
