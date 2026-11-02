@@ -68,7 +68,7 @@ def check_input(text):
     return "redacted", r["outputs"][0]["text"]
 
 
-def retrieve(question, k=TOP_K):
+def retrieve_opensearch(question, k=TOP_K):
     global _os
     _os = _os or oss_client()
     body = {
@@ -87,6 +87,39 @@ def retrieve(question, k=TOP_K):
             seen.add((src["doc"], text))
             out.append({"doc": src["doc"], "text": text})
     return out
+
+
+_kb = {}
+
+
+def retrieve_kb(question, k=TOP_K):
+    """Bedrock Knowledge Base retrieval. RETRIEVER=kb VARIANT=hierarchical (id read from .kb.json)."""
+    if not _kb:
+        state = json.loads((ROOT / ".kb.json").read_text())
+        _kb["id"] = state["kbs"][os.environ.get("VARIANT", "default")]["kb_id"]
+        _kb["rt"] = boto3.client("bedrock-agent-runtime", region_name=REGION)
+    r = _kb["rt"].retrieve(
+        knowledgeBaseId=_kb["id"],
+        retrievalQuery={"text": question},
+        retrievalConfiguration={"vectorSearchConfiguration": {"numberOfResults": k}},
+    )
+    out, seen = [], set()
+    for x in r[
+        "retrievalResults"
+    ]:  # hierarchical chunking returns the parent; several children can share one
+        doc = x["location"]["s3Location"]["uri"].rsplit("/", 1)[-1]
+        text = x["content"]["text"]
+        if (doc, text) not in seen:
+            seen.add((doc, text))
+            out.append({"doc": doc, "text": text})
+    return out
+
+
+def retrieve(question, k=TOP_K):
+    """The one retrieval interface the rest of the app uses. RETRIEVER=opensearch (default) or kb."""
+    if os.environ.get("RETRIEVER", "opensearch") == "kb":
+        return retrieve_kb(question, k)
+    return retrieve_opensearch(question, k)
 
 
 def _grounding_scores(resp):

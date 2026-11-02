@@ -1,0 +1,16 @@
+{
+  "doc@1": 0.67,
+  "doc@3": 0.8,
+  "doc@5": 1.0,
+  "fact@1": 0.6,
+  "fact@3": 0.8,
+  "fact@5": 1.0,
+  "MRR@10": 0.77,
+  "fact@3_misses": [
+    2,
+    401,
+    404
+  ],
+  "latency_ms_median": 416,
+  "latency_ms_max": 453
+}

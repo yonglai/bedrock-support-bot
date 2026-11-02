@@ -1,5 +1,6 @@
 """Step 6: score a Bedrock Knowledge Base on the same retrieval questions as the hand-built pipeline.
-Run:  KB_ID=<knowledge base id> uv run python src/step6_kb_retrieval_eval.py
+Run:  VARIANT=default QFILE=questions_combined.jsonl uv run python src/step6_kb_retrieval_eval.py
+(reads the knowledge base id from .kb.json; or set KB_ID yourself)
 """
 
 import json
@@ -12,7 +13,17 @@ import boto3
 from config import REGION
 from rag_common import ROOT, evaluate, load_questions
 
-KB_ID = os.environ.get("KB_ID") or sys.exit("Set KB_ID to your knowledge base id.")
+VARIANT = os.environ.get("VARIANT", "default")
+_state = ROOT / ".kb.json"
+KB_ID = (
+    os.environ.get("KB_ID")
+    or (
+        json.loads(_state.read_text())["kbs"].get(VARIANT, {}).get("kb_id")
+        if _state.exists()
+        else None
+    )
+    or sys.exit("No knowledge base: run step6a_kb_create.py first, or set KB_ID.")
+)
 agent_rt = boto3.client("bedrock-agent-runtime", region_name=REGION)
 
 
@@ -34,10 +45,17 @@ def retrieve(question, k):
 questions = load_questions()
 retrieve(questions[0]["question"], 3)  # warm-up
 res = evaluate(retrieve, questions)
-print("\nBedrock Knowledge Base (managed retrieval), 11 questions:")
+print(f"\nBedrock Knowledge Base, variant {VARIANT}, {len(questions)} questions:")
 for k, v in res.items():
     print(f"  {k:20} {v}")
-print("\nHand-built, line_with_title (step 3d): doc@3 1.0, fact@3 1.0, MRR 0.95")
-print("Hand-built, whole_doc (step 3a):       doc@3 0.91, fact@3 0.91, MRR 0.93")
-(ROOT / "eval" / "results_kb.json").write_text(json.dumps(res, indent=2))
-print("saved eval/results_kb.json")
+if (
+    os.environ.get("QFILE") == "questions_combined.jsonl"
+):  # local step 3c, vector only, same 15 questions
+    print("\nReference, hand-built (doc@3 / fact@3 / MRR):")
+    print("  line_with_title   0.73 / 0.73 / 0.75")
+    print("  whole_doc         0.80 / 0.80 / 0.77")
+    print(
+        "  fixed_200_ov40    1.00 / 0.93 / 0.97  (200 characters; Bedrock's sizes are tokens)"
+    )
+(ROOT / "eval" / f"results_kb_{VARIANT}.json").write_text(json.dumps(res, indent=2))
+print(f"saved eval/results_kb_{VARIANT}.json")
