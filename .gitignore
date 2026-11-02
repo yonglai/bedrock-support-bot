@@ -9,4 +9,5 @@ __pycache__/
 .opensearch.json
 .pytest_cache/
 .kb.json
-.agent.json
+.agentcore.json
+.build/

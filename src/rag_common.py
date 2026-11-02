@@ -13,7 +13,10 @@ from config import EMBED_MODEL_ID, REGION
 ROOT = pathlib.Path(__file__).resolve().parent.parent
 MODEL = EMBED_MODEL_ID or "amazon.titan-embed-text-v2:0"
 DIMS = 512
-CACHE = ROOT / ".cache" / "embeddings.json"
+CACHE_DIR = pathlib.Path(
+    os.environ.get("CACHE_DIR") or ROOT / ".cache"
+)  # CACHE_DIR=/tmp/cache on AgentCore
+CACHE = CACHE_DIR / "embeddings.json"
 _cache = json.loads(CACHE.read_text()) if CACHE.exists() else {}
 _client = None
 
@@ -37,7 +40,7 @@ def embed(text):
 
 
 def save_cache():
-    CACHE.parent.mkdir(exist_ok=True)
+    CACHE.parent.mkdir(parents=True, exist_ok=True)
     CACHE.write_text(json.dumps(_cache))
 
 

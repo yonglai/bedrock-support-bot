@@ -3,10 +3,12 @@
   agent       - eval/questions_agent.jsonl (tool use, arithmetic from the customer's data, cross-customer access)
   fresh       - eval/questions_fresh.jsonl (12 new questions, run once for the numbers you report)
   regression  - the 15 development + 15 held-out questions through the agent (checks nothing got worse)
+Same agent on the Strands SDK:  AGENT_DRIVER=strands (see agent_strands.py)
 Run:  MODEL_ID=us.anthropic.claude-haiku-4-5-20251001-v1:0 uv run python src/step5_eval_agent.py escalation
 """
 
 import json
+import os
 import statistics
 import sys
 
@@ -72,7 +74,14 @@ counts = {
 }
 print(f"\n=== mode={MODE} model={MODEL_ID} ===")
 print(counts, f"| median total ms: {statistics.median(r['ms_total'] for r in rows)}")
-out = ROOT / "eval" / f"results_agent_{MODE}.json"
+SUFFIX = (
+    "_agentcore"
+    if os.environ.get("AGENT_REMOTE")
+    else "_" + os.environ["AGENT_DRIVER"]
+    if os.environ.get("AGENT_DRIVER")
+    else ""
+)
+out = ROOT / "eval" / f"results_agent_{MODE}{SUFFIX}.json"
 out.write_text(
     json.dumps({"model": MODEL_ID, "counts": counts, "rows": rows}, indent=2)
 )

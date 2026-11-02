@@ -1,3 +1,4 @@
 boto3>=1.40
 opensearch-py>=2.8
 streamlit>=1.40
+strands-agents

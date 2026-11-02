@@ -5,10 +5,10 @@ import uuid
 from datetime import datetime
 from zoneinfo import ZoneInfo
 
-from rag_common import ROOT
+from rag_common import CACHE_DIR
 
 LOG = (
-    ROOT / ".cache" / "handoffs.jsonl"
+    CACHE_DIR / "handoffs.jsonl"
 )  # gitignored; never stores the customer's message text
 TZ = ZoneInfo("America/Toronto")
 REASONS = [
@@ -44,7 +44,7 @@ def create_handoff(reason, summary, customer_id, now=None):
         "summary": summary,
         "live": live,
     }
-    LOG.parent.mkdir(exist_ok=True)
+    LOG.parent.mkdir(parents=True, exist_ok=True)
     with LOG.open("a") as f:
         f.write(json.dumps(rec) + "\n")
     return {**rec, "availability": line}

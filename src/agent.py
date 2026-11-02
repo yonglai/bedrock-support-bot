@@ -135,20 +135,22 @@ class ConverseDriver:
 
 
 def default_driver():
-    """AGENT_DRIVER=strands runs the loop on the Strands SDK; AGENT_DRIVER=bedrock on a managed Bedrock Agent."""
+    """AGENT_DRIVER=strands runs the loop on the Strands SDK."""
     driver = os.environ.get("AGENT_DRIVER")
     if driver == "strands":
         from agent_strands import StrandsDriver
 
         return StrandsDriver
-    if driver == "bedrock":
-        from agent_bedrock import AgentsDriver
-
-        return AgentsDriver
     return ConverseDriver
 
 
 def run_agent(question, customer_id, history=None, max_steps=6, driver=None):
+    if (
+        os.environ.get("AGENT_REMOTE") == "agentcore"
+    ):  # same code, running in the deployed AgentCore Runtime
+        from agentcore_client import invoke_remote
+
+        return invoke_remote(question, customer_id, history)
     t0 = time.perf_counter()
     sess = Session(customer_id)
     history = list(history or [])

@@ -277,3 +277,32 @@ def test_blocked_draft_after_a_model_handoff_opens_no_second_ticket(
     r = agent.run_agent("Where is my claim?", "C1001")
     assert r["status"] == "escalated" and "accurate information" not in r["answer"]
     assert len(log(tmp_path)) == 1  # one ticket, not two
+
+
+def test_an_offered_handoff_is_backed_by_a_real_ticket(monkeypatch, tmp_path):
+    setup(
+        monkeypatch,
+        tmp_path,
+        converse=[
+            tool_use("search_policy", {"query": "account manager"}),
+            text("I can connect you with a team member who can help."),
+        ],
+        guard=[OK],
+    )
+    monkeypatch.setattr(
+        handoff, "availability", lambda now=None: (False, "AVAIL 8am to 8pm.")
+    )
+    r = agent.run_agent("Who is my account manager?", "C1001")
+    assert r["status"] == "escalated" and len(log(tmp_path)) == 1
+    assert log(tmp_path)[0]["reason"] == "cannot_answer" and "AVAIL" in r["answer"]
+
+
+def test_a_normal_answer_creates_no_ticket(monkeypatch, tmp_path):
+    setup(
+        monkeypatch,
+        tmp_path,
+        converse=[tool_use("search_policy", {"query": "dental"}), text("$1,500 [S1].")],
+        guard=[OK],
+    )
+    r = agent.run_agent("dental max?", "C1001")
+    assert r["status"] == "answered" and log(tmp_path) == []
