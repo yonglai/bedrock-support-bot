@@ -382,3 +382,12 @@ Injected overall: 25 of 31 (81%) against 31 of 31 for the verifier, 30 for Stand
   and bullet level. It is a weaker signal than the claim-level verifier, not a replacement.
 - Caveats: same model family as the answers; one pass; the stored answers' [S#] numbers may not match the rebuilt sources;
   two real errors.
+
+## Repeat of the grounding-tier scoring (step 10c)
+
+Ran step10b a second time (OUT=eval/results_grounding_tiers_run2.json), a few minutes after the first run.
+Compared the 57 clean and injected items, which have identical inputs in both runs (src/step10c_repeat_check.py):
+- Classic: block decision changed 0/57, score changed 0/57, max change 0.00.
+- Standard: block decision changed 0/57, score changed 0/57, max change 0.00.
+Not compared: the Q501/Q506 items, because step10b re-runs the agent for them and its answers differ between runs.
+Limit: two runs minutes apart in one account and Region. Says nothing about drift across days or model updates.

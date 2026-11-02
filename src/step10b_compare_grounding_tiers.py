@@ -11,6 +11,7 @@ Run:   RETRIEVER=kb VARIANT=hierarchical MODEL_ID=us.anthropic.claude-haiku-4-5-
 """
 
 import json
+import os
 import statistics
 import time
 
@@ -80,7 +81,8 @@ for n, (qid, kind, question, answer, sources, is_error) in enumerate(items, 1):
     rows.append(row)
     if n % 10 == 0:
         print(f"scored {n}/{len(items)}")
-(ROOT / "eval/results_grounding_tiers.json").write_text(json.dumps(rows, indent=1))
+OUT = os.environ.get("OUT", "eval/results_grounding_tiers.json")
+(ROOT / OUT).write_text(json.dumps(rows, indent=1))
 
 
 def rng(vals):
@@ -131,4 +133,4 @@ print(
     "of",
     len(groups["injected"]),
 )
-print("\nsaved eval/results_grounding_tiers.json")
+print(f"\nsaved {OUT}")
